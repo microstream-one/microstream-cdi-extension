@@ -24,10 +24,9 @@ import org.junit.jupiter.api.Test;
 import javax.inject.Inject;
 
 @CDIExtension
-public class StorageManagerConverterJSONTest {
+public class StorageManagerConverterTest {
 
     @Inject
-    @ConfigProperty(name = "microstream-json")
     private StorageManager manager;
 
     @Test

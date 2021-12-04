@@ -14,12 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package one.microstream.cdi;
+package one.microstream.cdi.cache;
 
 import one.microstream.cache.types.Cache;
 import one.microstream.cache.types.CacheConfiguration;
 import one.microstream.cache.types.CacheManager;
 import one.microstream.cache.types.CachingProvider;
+import one.microstream.util.config.Config;
 
 import javax.cache.Caching;
 

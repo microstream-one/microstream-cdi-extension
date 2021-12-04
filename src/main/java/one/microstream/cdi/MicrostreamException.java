@@ -1,10 +1,7 @@
 package one.microstream.cdi;
 
-/**
- * RuntimeException thrown in case of Microstream Cache configuration problems.
- *
- */
-public class ConfigException extends MicrostreamException {
+public class MicrostreamException extends RuntimeException {
+
 
     /**
      * creates a new ConfigException.
@@ -12,17 +9,15 @@ public class ConfigException extends MicrostreamException {
      * @param message exception message
      * @param cause the cause
      */
-    public ConfigException(String message, Throwable cause) {
+    public MicrostreamException(String message, Throwable cause) {
         super(message, cause);
     }
-
     /**
      * creates a new ConfigException.
      *
      * @param message exception message
      */
-    public ConfigException(String message) {
+    public MicrostreamException(String message) {
         super(message);
     }
-
 }

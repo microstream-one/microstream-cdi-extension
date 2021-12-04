@@ -11,7 +11,7 @@ import javax.enterprise.inject.Produces;
 @ApplicationScoped
 class StorageManagerProducer {
 
-    private static final String DEFAULT_CONFIGURATION = "miccrostream";
+    private static final String DEFAULT_CONFIGURATION = "microstream";
 
     @Produces
     @ApplicationScoped

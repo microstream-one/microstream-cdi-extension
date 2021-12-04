@@ -1,6 +1,5 @@
 package one.microstream.cdi;
 
-import my.compary.restaurant.Items;
 import one.microstream.storage.embedded.types.EmbeddedStorage;
 import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 import one.microstream.storage.types.StorageManager;
@@ -31,7 +30,7 @@ class StorageManagerProducer {
         Object root = storageManager.root();
         if (Objects.isNull(root)) {
             LOGGER.info("Starting the root");
-            storageManager.setRoot(new Items());
+        //    storageManager.setRoot(new Items());
         }
         return storageManager;
     }

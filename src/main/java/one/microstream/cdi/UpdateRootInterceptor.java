@@ -1,5 +1,6 @@
 package one.microstream.cdi;
 
+import one.microstream.concurrency.XThreads;
 import one.microstream.storage.types.StorageManager;
 
 import javax.annotation.Priority;
@@ -23,11 +24,13 @@ class UpdateRootInterceptor {
     public Object auditMethod(InvocationContext ctx) throws Exception {
 
         Object result = ctx.proceed();
-        long storeRoot = manager.storeRoot();
-        String message = String.format("Saving the state of root at %s in the method %s, storeRoot id %d",
-                ctx.getTarget().getClass(), ctx.getMethod().getName(), storeRoot);
+        XThreads.executeSynchronized(() -> {
+            long storeRoot = manager.storeRoot();
+            String message = String.format("Saving the state of root at %s in the method %s, storeRoot id %d",
+                    ctx.getTarget().getClass(), ctx.getMethod().getName(), storeRoot);
+            LOGGER.info(message);
+        });
 
-        LOGGER.info(message);
         return result;
     }
 }

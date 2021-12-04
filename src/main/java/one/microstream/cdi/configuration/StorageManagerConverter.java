@@ -1,4 +1,4 @@
-package one.microstream.cdi;
+package one.microstream.cdi.configuration;
 
 import one.microstream.storage.embedded.configuration.types.EmbeddedStorageConfiguration;
 import one.microstream.storage.types.StorageManager;

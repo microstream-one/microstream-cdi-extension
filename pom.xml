@@ -36,7 +36,7 @@
         <maven.surefire.plugin.version>2.22.2</maven.surefire.plugin.version>
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
         <maven-javadoc-plugin.vesion>3.3.0</maven-javadoc-plugin.vesion>
-        <version.lib.microstream>05.00.02-MS-GA</version.lib.microstream>
+        <version.lib.microstream>06.01.00-MS-GA</version.lib.microstream>
     </properties>
 
     <dependencies>

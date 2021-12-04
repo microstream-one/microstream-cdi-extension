@@ -9,10 +9,10 @@ import org.junit.jupiter.api.Test;
 import javax.inject.Inject;
 
 @CDIExtension
-public class StorageManagerConverterYamlTest {
+public class StorageManagerConverterJSONTest {
 
     @Inject
-    @ConfigProperty(name = "microstream-yaml")
+    @ConfigProperty(name = "microstream-json")
     private StorageManager manager;
 
     @Test

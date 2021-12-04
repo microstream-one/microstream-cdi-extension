@@ -40,8 +40,8 @@ class StorageManagerProducer {
         storageManager.close();
     }
 
-    @Produces
-    public Items getItems(StorageManager storageManager) {
-        return (Items) storageManager.root();
-    }
+//    @Produces
+//    public Items getItems(StorageManager storageManager) {
+//        return (Items) storageManager.root();
+//    }
 }

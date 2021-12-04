@@ -11,7 +11,8 @@ public class StorageManagerConverter implements Converter<StorageManager> {
 
     @Override
     public StorageManager convert(String value) throws IllegalArgumentException, NullPointerException {
-        EmbeddedStorageConfiguration.load();
-        return null;
+        return EmbeddedStorageConfiguration.load(value)
+                .createEmbeddedStorageFoundation()
+                .createEmbeddedStorageManager();
     }
 }

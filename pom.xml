@@ -30,9 +30,16 @@
 
     <dependencies>
         <dependency>
+            <groupId>jakarta.enterprise</groupId>
+            <artifactId>jakarta.enterprise.cdi-api</artifactId>
+            <version>3.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>org.jboss.weld.se</groupId>
             <artifactId>weld-se-shaded</artifactId>
             <version>${weld.se.core.version}</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

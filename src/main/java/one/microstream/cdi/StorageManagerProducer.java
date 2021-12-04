@@ -36,7 +36,7 @@ class StorageManagerProducer {
     }
 
     public void close(@Disposes StorageManager storageManager) {
-        LOGGER.info("Closing EmbeddedStorageManager connection");
+        LOGGER.info("Closing StorageManager connection");
         storageManager.close();
     }
 

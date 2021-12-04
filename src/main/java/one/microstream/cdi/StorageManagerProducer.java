@@ -22,20 +22,26 @@ import org.eclipse.microprofile.config.ConfigProvider;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Disposes;
 import javax.enterprise.inject.Produces;
+import java.util.logging.Logger;
 
 @ApplicationScoped
 class StorageManagerProducer {
+
+    private static final Logger LOGGER = Logger.getLogger(StorageManagerProducer.class.getName());
 
     private static final String DEFAULT_CONFIGURATION = "microstream";
 
     @Produces
     @ApplicationScoped
     public StorageManager getStoreManager() {
+        LOGGER.info("Loading default StorageManager loading from MicroProfile Config the properties: " +
+                DEFAULT_CONFIGURATION);
         Config config = ConfigProvider.getConfig();
         return config.getValue(DEFAULT_CONFIGURATION, StorageManager.class);
     }
 
     public void dispose(@Disposes StorageManager manager) {
+        LOGGER.info("Closing the default StorageManager");
         manager.close();
     }
 }

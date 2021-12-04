@@ -1,1 +1,2 @@
 storage-directory: "target/yaml"
+channel-count: 4

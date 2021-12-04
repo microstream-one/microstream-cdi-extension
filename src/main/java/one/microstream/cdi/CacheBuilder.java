@@ -21,6 +21,8 @@ import one.microstream.cache.types.CacheConfiguration;
 import one.microstream.cache.types.CacheManager;
 import one.microstream.cache.types.CachingProvider;
 
+import javax.cache.Caching;
+
 public class CacheBuilder<K, V> {
     private static final String MICROSTREAM_CACHING_PROVIDER = "one.microstream.cache.types.CachingProvider";
 

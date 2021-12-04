@@ -12,7 +12,7 @@ import javax.inject.Inject;
 public class StorageManagerConverterYamlTest {
 
     @Inject
-    @ConfigProperty(name = "microstream")
+    @ConfigProperty(name = "microstream-yaml")
     private StorageManager manager;
 
     @Test

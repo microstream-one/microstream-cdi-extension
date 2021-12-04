@@ -31,6 +31,8 @@ public class StorageManagerConverterTest {
 
     @Test
     public void shouldNotBeNull() {
+        String name = manager.databaseName();
+        Assertions.assertNotNull(name);
         Assertions.assertNotNull(manager);
     }
 }

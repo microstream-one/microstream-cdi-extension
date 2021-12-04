@@ -50,8 +50,6 @@
             <scope>provided</scope>
         </dependency>
 
-
-
         <!--Test-->
         <dependency>
             <groupId>org.jboss.weld.se</groupId>

@@ -4,6 +4,7 @@ import one.microstream.concurrency.XThreads;
 import one.microstream.storage.types.StorageManager;
 
 import javax.annotation.Priority;
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
@@ -18,13 +19,14 @@ class UpdateRootInterceptor {
     private static final Logger LOGGER = Logger.getLogger(UpdateRootInterceptor.class.getName());
 
     @Inject
-    private StorageManager manager;
+    private Instance<StorageManager> managerInstance;
 
     @AroundInvoke
     public Object auditMethod(InvocationContext ctx) throws Exception {
 
         Object result = ctx.proceed();
         XThreads.executeSynchronized(() -> {
+            StorageManager manager = managerInstance.get();
             long storeRoot = manager.storeRoot();
             String message = String.format("Saving the state of root at %s in the method %s, storeRoot id %d",
                     ctx.getTarget().getClass(), ctx.getMethod().getName(), storeRoot);

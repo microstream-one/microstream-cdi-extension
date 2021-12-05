@@ -14,11 +14,13 @@
  */
 package one.microstream.cdi;
 
+import javax.enterprise.inject.Vetoed;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+@Vetoed
 public class NameRoot {
 
     private Set<String> names = new HashSet<>();

@@ -49,4 +49,11 @@ public class NameRoot {
     public int hashCode() {
         return Objects.hashCode(names);
     }
+
+    @Override
+    public String toString() {
+        return "NameRoot{" +
+                "names=" + names +
+                '}';
+    }
 }

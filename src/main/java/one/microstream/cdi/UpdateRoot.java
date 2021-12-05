@@ -23,6 +23,14 @@ import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
+
+/**
+ * An interceptor annotation to update the Root in the Microstream.
+ * Stores the registered root instance (as returned by {@link one.microstream.storage.types.StorageManager#root()})
+ * by using the default storing logic
+ * by calling {@link one.microstream.storage.types.StorageManager#createStorer()}
+ * to create the {@link one.microstream.persistence.types.Storer} to be used.<br>
+ */
 @InterceptorBinding
 @Target({METHOD, TYPE})
 @Retention(RUNTIME)

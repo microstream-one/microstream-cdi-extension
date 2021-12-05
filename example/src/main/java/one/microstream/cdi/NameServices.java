@@ -19,8 +19,8 @@ import one.microstream.storage.types.StorageManager;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @ApplicationScoped
 public class NameServices {
@@ -46,7 +46,7 @@ public class NameServices {
         this.nameRoot.add(name);
     }
 
-    public Set<String> getNames() {
+    public List<String> getNames() {
         return this.nameRoot.getNames();
     }
 

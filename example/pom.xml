@@ -18,7 +18,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>one.microstream</groupId>
-    <artifactId>cdi-extension</artifactId>
+    <artifactId>example</artifactId>
     <packaging>jar</packaging>
     <version>0.0.1-SNAPSHOT</version>
 
@@ -40,58 +40,27 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>jakarta.enterprise</groupId>
-            <artifactId>jakarta.enterprise.cdi-api</artifactId>
-            <version>2.0.2</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.cache</groupId>
-            <artifactId>cache-api</artifactId>
-            <version>1.1.1</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.microprofile.config</groupId>
-            <artifactId>microprofile-config-api</artifactId>
-            <version>2.0</version>
-            <scope>provided</scope>
-        </dependency>
 
-        <!--Test-->
+        <dependency>
+            <groupId>one.microstream</groupId>
+            <artifactId>cdi-extension</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.jboss.weld.se</groupId>
             <artifactId>weld-se-shaded</artifactId>
             <version>${weld.se.core.version}</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>io.smallrye.config</groupId>
             <artifactId>smallrye-config</artifactId>
             <version>2.7.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <!-- Microstream related -->
-        <dependency>
-            <groupId>one.microstream</groupId>
-            <artifactId>microstream-storage-embedded</artifactId>
-            <version>${version.lib.microstream}</version>
         </dependency>
         <dependency>
-            <groupId>one.microstream</groupId>
-            <artifactId>microstream-storage-embedded-configuration</artifactId>
-            <version>${version.lib.microstream}</version>
-        </dependency>
-        <dependency>
-            <groupId>one.microstream</groupId>
-            <artifactId>microstream-configuration</artifactId>
-            <version>${version.lib.microstream}</version>
-        </dependency>
-        <dependency>
-            <groupId>one.microstream</groupId>
-            <artifactId>microstream-cache</artifactId>
-            <version>${version.lib.microstream}</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>

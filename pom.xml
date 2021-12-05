@@ -24,5 +24,6 @@
 
     <modules>
         <module>cdi-extension</module>
+        <module>example</module>
     </modules>
 </project>

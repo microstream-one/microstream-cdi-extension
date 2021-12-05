@@ -32,5 +32,6 @@ public class App {
             service.add("Poliana");
             service.add("Sebastian");
         }
+        System.exit(0);
     }
 }

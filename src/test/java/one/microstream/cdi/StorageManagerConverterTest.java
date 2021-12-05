@@ -19,11 +19,13 @@ import one.microstream.cdi.test.CDIExtension;
 import one.microstream.storage.types.StorageManager;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import javax.inject.Inject;
 
 @CDIExtension
+@DisplayName("Check if the Storage Manager will load using the default MicroProfile Properties file")
 public class StorageManagerConverterTest {
 
     @Inject

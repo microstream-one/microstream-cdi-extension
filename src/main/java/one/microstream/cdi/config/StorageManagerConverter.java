@@ -37,6 +37,6 @@ public class StorageManagerConverter implements Converter<StorageManager> {
         EmbeddedStorageConfigurationBuilder load = EmbeddedStorageConfiguration.load(value);
         EmbeddedStorageFoundation<?> embeddedStorageFoundation = load.createEmbeddedStorageFoundation();
         EmbeddedStorageManager embeddedStorageManager = embeddedStorageFoundation.createEmbeddedStorageManager();
-        return embeddedStorageManager;
+        return embeddedStorageManager.start();
     }
 }

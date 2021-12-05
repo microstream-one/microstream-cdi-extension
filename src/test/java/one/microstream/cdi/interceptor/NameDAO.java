@@ -15,12 +15,15 @@
 
 package one.microstream.cdi.interceptor;
 
+import one.microstream.cdi.UpdateRoot;
 import one.microstream.storage.types.StorageManager;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class NameDAO {
@@ -38,5 +41,14 @@ public class NameDAO {
         } else {
             this.root = (NameRoot) manager.root();
         }
+    }
+
+    @UpdateRoot
+    public void add(String name) {
+        root.add(Objects.requireNonNull(name, "name is required"));
+    }
+
+    public List<String> getNamesSorted() {
+        return root.getNames().stream().sorted().collect(Collectors.toList());
     }
 }

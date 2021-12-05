@@ -15,22 +15,22 @@
 package one.microstream.cdi;
 
 import javax.enterprise.inject.Vetoed;
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @Vetoed
 public class NameRoot {
 
-    private Set<String> names = new HashSet<>();
+    private List<String> names = new ArrayList<>();
 
     public void add(String name) {
         this.names.add(Objects.requireNonNull(name, "name is required"));
     }
 
-    public Set<String> getNames() {
-        return Collections.unmodifiableSet(names);
+    public List<String> getNames() {
+        return Collections.unmodifiableList(names);
     }
 
     @Override

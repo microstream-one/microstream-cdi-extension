@@ -15,11 +15,14 @@
 
 package one.microstream.cdi;
 
+/**
+ * The Microstream exception root
+ */
 public class MicrostreamException extends RuntimeException {
 
 
     /**
-     * creates a new ConfigException.
+     * creates a new MicrostreamException.
      *
      * @param message exception message
      * @param cause the cause
@@ -28,7 +31,7 @@ public class MicrostreamException extends RuntimeException {
         super(message, cause);
     }
     /**
-     * creates a new ConfigException.
+     * creates a new MicrostreamException.
      *
      * @param message exception message
      */

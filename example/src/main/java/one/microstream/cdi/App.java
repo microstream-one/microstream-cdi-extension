@@ -24,8 +24,13 @@ public class App {
     public static void main(String[] args) {
         try(SeContainer container = SeContainerInitializer.newInstance().initialize()){
             StorageManager manager = container.select(StorageManager.class).get();
+            System.out.println("The root value: " + manager.root());
             NameServices service = container.select(NameServices.class).get();
+
             System.out.println("The names: " + service.getNames());
+            service.add("Otavio");
+            service.add("Poliana");
+            service.add("Sebastian");
         }
     }
 }

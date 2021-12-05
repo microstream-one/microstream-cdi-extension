@@ -40,7 +40,7 @@ class StorageManagerProducer {
                 DEFAULT_CONFIGURATION);
         return EmbeddedStorageConfiguration.load(DEFAULT_CONFIGURATION)
                 .createEmbeddedStorageFoundation()
-                .createEmbeddedStorageManager();
+                .createEmbeddedStorageManager().start();
     }
 
     public void dispose(@Disposes StorageManager manager) {

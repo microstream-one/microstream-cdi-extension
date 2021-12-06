@@ -29,8 +29,6 @@ public void update(T entity) {
 ```
 
 
-
-
 ## Microstream
 MicroStream Data-Store is a native Java object graph storage engine. From a technical point of view it serves one purpose only:
 

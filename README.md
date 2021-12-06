@@ -4,8 +4,8 @@ The Microstream CDI extension is an open-source project to integrate the Jakarta
 
 This project has two minimum requirements:
 
-* A CDI 2.0 implementation or higher
-* An Eclipse MicroProfile Config 2.0 implementation or higher
+* A [CDI](https://jakarta.ee/specifications/cdi/) 2.0 implementation or higher
+* An [Eclipse MicroProfile Config](https://github.com/eclipse/microprofile-config) 2.0 implementation or higher
 
 MicroStream Data-Store is a native Java object graph storage engine. From a technical point of view it serves one purpose only:
 

@@ -7,6 +7,27 @@ This project has two minimum requirements:
 * A [CDI](https://jakarta.ee/specifications/cdi/) 2.0 implementation or higher
 * An [Eclipse MicroProfile Config](https://github.com/eclipse/microprofile-config) 2.0 implementation or higher
 
+## Features
+
+You're enabled to inject the ```StorageManager``` easily using MicroProfile Config to read the properties.
+
+```java
+@Inject
+private StorageManager manager;
+```
+
+The CDI will create an instance application-scoped, and it will close automatically.
+
+
+Do you want to force um update in the root? But You don't want to put it on your code explicitly? Don't worry; 
+we have ```UpdateRoot``` annotation to handle it for us!
+```java
+@UpdateRoot
+public void update(T entity) {
+  this.root.add(entity);
+}
+```
+
 
 
 

@@ -41,7 +41,7 @@ public class NameServices {
         }
     }
 
-    @UpdateRoot
+    @UpdateStorage
     public void add(String name) {
         this.nameRoot.add(name);
     }

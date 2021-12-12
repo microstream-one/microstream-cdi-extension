@@ -15,7 +15,7 @@
 
 package one.microstream.cdi.interceptor;
 
-import one.microstream.cdi.UpdateRoot;
+import one.microstream.cdi.UpdateStorage;
 import one.microstream.storage.types.StorageManager;
 
 import javax.annotation.PostConstruct;
@@ -43,7 +43,7 @@ public class NameDAO {
         }
     }
 
-    @UpdateRoot
+    @UpdateStorage
     public void add(String name) {
         root.add(Objects.requireNonNull(name, "name is required"));
     }

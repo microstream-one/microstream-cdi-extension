@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @CDIExtension
-public class UpdateRootInterceptorTest {
+public class UpdateStorageInterceptorTest {
 
     @Inject
     private StorageManager manager;

@@ -27,9 +27,9 @@ import javax.interceptor.InvocationContext;
 import java.util.logging.Logger;
 
 /**
- * The implementation of the {@link UpdateRoot} using CDI interceptor
+ * The implementation of the {@link UpdateStorage} using CDI interceptor
  */
-@UpdateRoot
+@UpdateStorage
 @Interceptor
 @Priority(Interceptor.Priority.APPLICATION)
 class UpdateRootInterceptor {

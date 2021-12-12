@@ -14,5 +14,13 @@
  */
 package one.microstream.cdi.config;
 
+/**
+ * The Properties parser where we have the microprofile properties in its respective Microstream properties:
+ * https://docs.microstream.one/manual/storage/configuration/properties.html
+ */
 public enum MicrostreamConfiguration {
+    A("", "");
+
+    MicrostreamConfiguration(String microprofile, String microstream) {
+    }
 }

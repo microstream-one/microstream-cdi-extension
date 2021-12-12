@@ -14,6 +14,13 @@
  */
 package one.microstream.cdi;
 
-
+/**
+ * The Storage class in Microstream indicates a class as a root instance.
+ * Object instances can be stored as simple records.
+ * One value after another as a trivial byte stream.
+ * References between objects are mapped with unique numbers, called ObjectId, or short OID. + With both combined,
+ * byte streams and OIDs, an object graph can be stored in a simple and quick way,
+ * as well as loaded, as a whole or partially.
+ */
 public @interface Storage {
 }

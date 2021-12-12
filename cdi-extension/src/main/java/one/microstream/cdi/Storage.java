@@ -22,6 +22,8 @@ package one.microstream.cdi;
  * byte streams and OIDs, an object graph can be stored in a simple and quick way,
  * as well as loaded, as a whole or partially.
  * Ref: https://docs.microstream.one/manual/storage/root-instances.html
+ *
+ * Each application must have a unique class with this annotation.
  */
 public @interface Storage {
 }

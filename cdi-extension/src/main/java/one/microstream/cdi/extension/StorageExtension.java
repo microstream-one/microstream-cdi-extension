@@ -18,7 +18,9 @@ import one.microstream.cdi.Storage;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
+import javax.enterprise.inject.spi.AfterBeanDiscovery;
 import javax.enterprise.inject.spi.AnnotatedType;
+import javax.enterprise.inject.spi.BeanManager;
 import javax.enterprise.inject.spi.Extension;
 import javax.enterprise.inject.spi.ProcessAnnotatedType;
 import javax.enterprise.inject.spi.WithAnnotations;
@@ -39,6 +41,14 @@ public class StorageExtension implements Extension {
             Class<T> javaClass = target.getAnnotatedType().getJavaClass();
             storageRoot.add(javaClass);
             LOGGER.info("New class found annotated with @Storage is " + javaClass);
+        }
+    }
+
+    void onAfterBeanDiscovery(@Observes final AfterBeanDiscovery afterBeanDiscovery, final BeanManager beanManager) {
+        LOGGER.info(String.format("Processing StorageExtension:  %d found", storageRoot.size()));
+        if (storageRoot.size() > 1) {
+            throw new IllegalStateException("In the application must have only a class with the Storage annotation, classes: "
+                    + storageRoot);
         }
     }
 

@@ -40,22 +40,20 @@ public class StorageManagerConverter implements Converter<StorageManager> {
 
     private static final Map<String, StorageManager> MAP = new ConcurrentHashMap<>();
 
-    // keep it on Eclipse MicroProfile
-    //should I keep here or should I move it to Microstream
-    // https://12factor.net/config
-    //keep it as singleton
     @Override
     public StorageManager convert(String value) throws IllegalArgumentException, NullPointerException {
-//        if (MAP.get(value) == null) {
-//            synchronized (MAP) {
-        LOGGER.info("Loading configuration to start the class StorageManager from the key: " + value);
-        EmbeddedStorageConfigurationBuilder configurationBuilder = EmbeddedStorageConfiguration.load(value);
-        EmbeddedStorageFoundation<?> embeddedStorageFoundation = configurationBuilder.createEmbeddedStorageFoundation();
-        EmbeddedStorageManager embeddedStorageManager = embeddedStorageFoundation.createEmbeddedStorageManager();
-        EmbeddedStorageManager manager = embeddedStorageManager.start();
-        return manager;
-//                MAP.put(value, manager);
-//                return manager;
-//            }
+        StorageManager storageManager = MAP.get(value);
+        if (storageManager == null) {
+            synchronized (MAP) {
+                LOGGER.info("Loading configuration to start the class StorageManager from the key: " + value);
+                EmbeddedStorageConfigurationBuilder configurationBuilder = EmbeddedStorageConfiguration.load(value);
+                EmbeddedStorageFoundation<?> embeddedStorageFoundation = configurationBuilder.createEmbeddedStorageFoundation();
+                EmbeddedStorageManager embeddedStorageManager = embeddedStorageFoundation.createEmbeddedStorageManager();
+                EmbeddedStorageManager manager = embeddedStorageManager.start();
+                MAP.put(value, manager);
+                return manager;
+            }
+        }
+        return storageManager;
     }
 }

@@ -24,9 +24,12 @@ import javax.enterprise.inject.spi.ProcessAnnotatedType;
 import javax.enterprise.inject.spi.WithAnnotations;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Logger;
 
 @ApplicationScoped
 public class StorageExtension implements Extension {
+
+    private static final Logger LOGGER = Logger.getLogger(StorageExtension.class.getName());
 
     private final Set<Class<?>> storageRoot = new HashSet<>();
 
@@ -35,6 +38,7 @@ public class StorageExtension implements Extension {
         if (annotatedType.isAnnotationPresent(Storage.class)) {
             Class<T> javaClass = target.getAnnotatedType().getJavaClass();
             storageRoot.add(javaClass);
+            LOGGER.info("New class found annotated with @Storage is " + javaClass);
         }
     }
 

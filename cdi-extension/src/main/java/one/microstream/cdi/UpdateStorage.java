@@ -23,7 +23,7 @@ import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-
+//storeRoot
 /**
  * An interceptor annotation to update the Root in the Microstream.
  * Stores the registered root instance (as returned by {@link one.microstream.storage.types.StorageManager#root()})

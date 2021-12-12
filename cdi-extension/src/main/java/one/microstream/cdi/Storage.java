@@ -14,6 +14,13 @@
  */
 package one.microstream.cdi;
 
+import javax.enterprise.inject.Stereotype;
+import javax.enterprise.inject.Vetoed;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
 /**
  * The Storage class in Microstream indicates a class as a root instance.
  * Object instances can be stored as simple records.
@@ -25,5 +32,9 @@ package one.microstream.cdi;
  *
  * Each application must have a unique class with this annotation.
  */
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+@Stereotype
+@Vetoed
 public @interface Storage {
 }

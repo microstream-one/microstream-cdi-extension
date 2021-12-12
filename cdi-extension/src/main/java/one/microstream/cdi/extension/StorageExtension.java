@@ -14,5 +14,9 @@
  */
 package one.microstream.cdi.extension;
 
-public class StorageExtension {
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.spi.Extension;
+
+@ApplicationScoped
+public class StorageExtension implements Extension {
 }

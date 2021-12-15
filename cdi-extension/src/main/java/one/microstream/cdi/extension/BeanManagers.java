@@ -106,8 +106,8 @@ public class BeanManagers {
     private static <T> T getInstanceImpl(Class<T> clazz, Annotation qualifier, BeanManager beanManager) {
         Set<Bean<?>> beans = beanManager.getBeans(clazz, qualifier);
         checkInjection(clazz, beans);
-        Bean bean = beans.iterator().next();
-        CreationalContext ctx = beanManager.createCreationalContext(bean);
+        Bean<T> bean = (Bean<T>) beans.iterator().next();
+        CreationalContext<T> ctx = beanManager.createCreationalContext(bean);
         return (T) beanManager.getReference(bean, clazz, ctx);
     }
 

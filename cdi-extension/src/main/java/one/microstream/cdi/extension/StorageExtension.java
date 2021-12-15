@@ -28,6 +28,9 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Logger;
 
+/**
+ * This extension will look for entities with the Storage and then load it.
+ */
 @ApplicationScoped
 public class StorageExtension implements Extension {
 

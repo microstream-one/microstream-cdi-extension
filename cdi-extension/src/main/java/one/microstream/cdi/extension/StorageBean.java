@@ -14,13 +14,21 @@
  */
 package one.microstream.cdi.extension;
 
+import one.microstream.storage.types.StorageManager;
+
 import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.inject.spi.BeanManager;
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Type;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * Storage Discovery Bean to CDI extension to register an entity with {@link one.microstream.cdi.Storage} annotation
@@ -49,7 +57,23 @@ class StorageBean<T> extends AbstractBean<T> {
 
     @Override
     public T create(CreationalContext<T> creationalContext) {
-        return null;
+        StorageManager manager = getInstance(StorageManager.class);
+        Object root = manager.root();
+        if (Objects.isNull(root)) {
+            List<Constructor<?>> constructors = Stream.
+                    of(type.getDeclaredConstructors())
+                    .filter(c -> c.getParameterCount() == 0)
+                    .collect(toList());
+
+            if (constructors.isEmpty()) {
+                throw new ConstructorException(clazz);
+            }
+//            this.nameRoot = new NameRoot();
+//            manager.setRoot(nameRoot);
+        } else {
+//            this.nameRoot = (NameRoot) root;
+        }
+        return T;
     }
 
     @Override

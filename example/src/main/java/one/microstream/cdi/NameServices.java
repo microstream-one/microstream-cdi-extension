@@ -14,32 +14,17 @@
  */
 package one.microstream.cdi;
 
-import one.microstream.storage.types.StorageManager;
-
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.util.List;
-import java.util.Objects;
 
 @ApplicationScoped
 public class NameServices {
 
-    @Inject
-    private StorageManager manager;
 
+    @Inject
     private NameRoot nameRoot;
 
-    @PostConstruct
-    public void setUp() {
-        Object root = manager.root();
-        if (Objects.isNull(root)) {
-            this.nameRoot = new NameRoot();
-            manager.setRoot(nameRoot);
-        } else {
-            this.nameRoot = (NameRoot) root;
-        }
-    }
 
     @UpdateStorage
     public void add(String name) {

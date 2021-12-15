@@ -23,8 +23,6 @@ import javax.enterprise.inject.Default;
 import javax.enterprise.inject.spi.BeanManager;
 import javax.inject.Inject;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 @CDIExtension
 class BeanManagersTest {
 

@@ -15,18 +15,13 @@
 
 package one.microstream.cdi.config;
 
-import one.microstream.configuration.types.Configuration;
 import one.microstream.storage.embedded.configuration.types.EmbeddedStorageConfiguration;
 import one.microstream.storage.embedded.configuration.types.EmbeddedStorageConfigurationBuilder;
 import one.microstream.storage.embedded.types.EmbeddedStorageFoundation;
 import one.microstream.storage.embedded.types.EmbeddedStorageManager;
-import one.microstream.storage.exceptions.StorageExceptionInitialization;
-import one.microstream.storage.types.Database;
-import one.microstream.storage.types.Databases;
 import one.microstream.storage.types.StorageManager;
 import org.eclipse.microprofile.config.spi.Converter;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;

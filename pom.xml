@@ -25,5 +25,6 @@
     <modules>
         <module>cdi-extension</module>
         <module>example</module>
+        <module>payara</module>
     </modules>
 </project>

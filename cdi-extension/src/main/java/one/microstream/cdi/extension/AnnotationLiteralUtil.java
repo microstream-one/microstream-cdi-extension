@@ -14,5 +14,27 @@
  */
 package one.microstream.cdi.extension;
 
+import javax.enterprise.inject.Any;
+import javax.enterprise.inject.Default;
+import javax.enterprise.util.AnnotationLiteral;
+
+/**
+ * Utilitarian class to Annotation Literal
+ */
 final class AnnotationLiteralUtil {
+
+
+    /**
+     * Annotation literal {@link Default}
+     */
+    public static final AnnotationLiteral<Default> DEFAULT_ANNOTATION = new AnnotationLiteral<Default>() {
+    };
+
+    /**
+     * Annotation literal {@link Any}
+     */
+    public static final AnnotationLiteral<Any> ANY_ANNOTATION = new AnnotationLiteral<Any>() {
+    };
+    private AnnotationLiteralUtil() {
+    }
 }

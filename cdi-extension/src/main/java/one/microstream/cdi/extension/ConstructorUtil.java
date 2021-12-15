@@ -14,7 +14,10 @@
  */
 package one.microstream.cdi.extension;
 
+import one.microstream.cdi.MicrostreamException;
+
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -25,15 +28,20 @@ final class ConstructorUtil {
     }
 
 
-    static <T>  T create(Class<T> entity) {
+    static <T> T create(Class<T> entity) {
         List<Constructor<?>> constructors = Stream.
                 of(entity.getDeclaredConstructors())
                 .filter(c -> c.getParameterCount() == 0)
                 .collect(toList());
 
         if (constructors.isEmpty()) {
-
+            throw new ConstructorException(entity);
         }
-        return null;
+        Constructor<?> constructor = constructors.get(0);
+        try {
+            return (T) constructor.newInstance();
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException exception) {
+            throw new MicrostreamException("There is an issue to create the Storage class: " + entity.getName());
+        }
     }
 }

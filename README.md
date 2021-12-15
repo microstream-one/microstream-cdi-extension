@@ -21,6 +21,7 @@ The CDI will create an instance application-scoped, and it will close automatica
 
 Do you want to force um update in the root? But You don't want to put it on your code explicitly? Don't worry; 
 we have ```UpdateRoot``` annotation to handle it for us!
+
 ```java
 @UpdateRoot
 public void update(T entity) {
@@ -28,6 +29,21 @@ public void update(T entity) {
 }
 ```
 
+The Storage annotation allows injecting an entity from Microstream.
+
+```java
+@Storage
+public class NameStorage {
+    //...
+}
+```
+
+It will create/load this annotation using CDI.
+
+```java
+@Inject
+private NameStorage nameStorage;
+```
 
 ## Microstream
 MicroStream Data-Store is a native Java object graph storage engine. From a technical point of view it serves one purpose only:

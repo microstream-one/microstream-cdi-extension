@@ -14,6 +14,7 @@
  */
 package one.microstream.cdi;
 
+import javax.enterprise.inject.Vetoed;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

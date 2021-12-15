@@ -35,6 +35,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Stereotype
-@Vetoed
 public @interface Storage {
 }

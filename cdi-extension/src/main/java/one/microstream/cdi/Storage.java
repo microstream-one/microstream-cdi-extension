@@ -14,8 +14,12 @@
  */
 package one.microstream.cdi;
 
+import javax.annotation.Priority;
+import javax.enterprise.inject.Alternative;
 import javax.enterprise.inject.Stereotype;
 import javax.enterprise.inject.Vetoed;
+import javax.inject.Qualifier;
+import javax.interceptor.Interceptor;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -33,7 +37,8 @@ import java.lang.annotation.Target;
  * Each application must have a unique class with this annotation.
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
+@Target({ElementType.TYPE, ElementType.FIELD})
 @Stereotype
+@Alternative
 public @interface Storage {
 }

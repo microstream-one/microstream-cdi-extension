@@ -14,8 +14,56 @@
  */
 package one.microstream.cdi.extension;
 
+import javax.enterprise.context.spi.CreationalContext;
+import javax.enterprise.inject.spi.BeanManager;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Type;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Storage Discovery Bean to CDI extension to register an entity with {@link one.microstream.cdi.Storage} annotation
  */
-class StorageBean {
+class StorageBean<T> extends AbstractBean<T> {
+
+    private final Class<T> type;
+
+    private final Set<Type> types;
+
+    private final Set<Annotation> qualifiers;
+
+    protected StorageBean(BeanManager beanManager, Class<T> type) {
+        super(beanManager);
+        this.type = type;
+        this.types = Collections.singleton(type);
+        this.qualifiers = new HashSet<>();
+        qualifiers.add(AnnotationLiteralUtil.DEFAULT_ANNOTATION);
+        qualifiers.add(AnnotationLiteralUtil.ANY_ANNOTATION);
+    }
+
+    @Override
+    public Class<T> getBeanClass() {
+        return type;
+    }
+
+    @Override
+    public T create(CreationalContext<T> creationalContext) {
+        return null;
+    }
+
+    @Override
+    public Set<Type> getTypes() {
+        return types;
+    }
+
+    @Override
+    public Set<Annotation> getQualifiers() {
+        return qualifiers;
+    }
+
+    @Override
+    public String getId() {
+        return type.getName() + " @Storage";
+    }
 }

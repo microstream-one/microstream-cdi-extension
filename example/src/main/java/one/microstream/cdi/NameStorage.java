@@ -14,14 +14,13 @@
  */
 package one.microstream.cdi;
 
-import javax.enterprise.inject.Vetoed;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 @Storage
-public class NameRoot {
+public class NameStorage {
 
     private List<String> names = new ArrayList<>();
 
@@ -41,8 +40,8 @@ public class NameRoot {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        NameRoot nameRoot = (NameRoot) o;
-        return Objects.equals(names, nameRoot.names);
+        NameStorage nameStorage = (NameStorage) o;
+        return Objects.equals(names, nameStorage.names);
     }
 
     @Override

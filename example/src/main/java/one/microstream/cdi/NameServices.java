@@ -23,16 +23,16 @@ public class NameServices {
 
 
     @Inject
-    private NameRoot nameRoot;
+    private NameStorage nameStorage;
 
 
     @UpdateStorage
     public void add(String name) {
-        this.nameRoot.add(name);
+        this.nameStorage.add(name);
     }
 
     public List<String> getNames() {
-        return this.nameRoot.getNames();
+        return this.nameStorage.getNames();
     }
 
 }

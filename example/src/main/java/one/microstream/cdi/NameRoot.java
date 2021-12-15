@@ -20,7 +20,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-@Vetoed
+@Storage
 public class NameRoot {
 
     private List<String> names = new ArrayList<>();

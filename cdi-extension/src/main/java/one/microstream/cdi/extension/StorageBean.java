@@ -56,24 +56,19 @@ class StorageBean<T> extends AbstractBean<T> {
     }
 
     @Override
-    public T create(CreationalContext<T> creationalContext) {
+    public T create(CreationalContext<T> context) {
         StorageManager manager = getInstance(StorageManager.class);
         Object root = manager.root();
+        T entity = null;
         if (Objects.isNull(root)) {
-            List<Constructor<?>> constructors = Stream.
-                    of(type.getDeclaredConstructors())
-                    .filter(c -> c.getParameterCount() == 0)
-                    .collect(toList());
-
-            if (constructors.isEmpty()) {
-                throw new ConstructorException(clazz);
-            }
-//            this.nameRoot = new NameRoot();
-//            manager.setRoot(nameRoot);
+            entity = ConstructorUtil.create(type);
+            manager.setRoot(entity);
         } else {
-//            this.nameRoot = (NameRoot) root;
+            if (type.isInstance(root)) {
+                entity = (T) root;
+            }
         }
-        return T;
+        return entity;
     }
 
     @Override

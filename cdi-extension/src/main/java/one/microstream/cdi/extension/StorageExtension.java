@@ -53,6 +53,10 @@ public class StorageExtension implements Extension {
             throw new IllegalStateException("In the application must have only a class with the Storage annotation, classes: "
                     + storageRoot);
         }
+        storageRoot.forEach(entity -> {
+         StorageBean<?> bean = new StorageBean<>(beanManager, entity);
+         afterBeanDiscovery.addBean(bean);
+        });
     }
 
     @Override

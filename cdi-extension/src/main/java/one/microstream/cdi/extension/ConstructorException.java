@@ -20,7 +20,7 @@ import one.microstream.cdi.MicrostreamException;
 /**
  * Get the exception when a class has a no arg constructor either public or default
  */
-public class ConstructorException extends MicrostreamException {
+class ConstructorException extends MicrostreamException {
 
     public <T> ConstructorException(Class<T> clazz) {
         super("This class must have a no arg with either public and default visibility: " + clazz.getName());

@@ -85,4 +85,13 @@ class StorageBean<T> extends AbstractBean<T> {
     public String getId() {
         return type.getName() + " @Storage";
     }
+
+    @Override
+    public String toString() {
+        return "StorageBean{" +
+                "type=" + type +
+                ", types=" + types +
+                ", qualifiers=" + qualifiers +
+                '}';
+    }
 }

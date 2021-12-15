@@ -40,5 +40,6 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE, ElementType.FIELD})
 @Stereotype
 @Alternative
+@Vetoed
 public @interface Storage {
 }

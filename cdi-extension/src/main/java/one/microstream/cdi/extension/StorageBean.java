@@ -14,21 +14,17 @@
  */
 package one.microstream.cdi.extension;
 
+import one.microstream.cdi.Storage;
 import one.microstream.storage.types.StorageManager;
 
 import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.inject.spi.BeanManager;
 import java.lang.annotation.Annotation;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Type;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.toList;
 
 /**
  * Storage Discovery Bean to CDI extension to register an entity with {@link one.microstream.cdi.Storage} annotation
@@ -55,6 +51,7 @@ class StorageBean<T> extends AbstractBean<T> {
         return type;
     }
 
+
     @Override
     public T create(CreationalContext<T> context) {
         StorageManager manager = getInstance(StorageManager.class);
@@ -69,6 +66,11 @@ class StorageBean<T> extends AbstractBean<T> {
             }
         }
         return entity;
+    }
+
+    @Override
+    public Set<Class<? extends Annotation>> getStereotypes() {
+        return Collections.singleton(Storage.class);
     }
 
     @Override

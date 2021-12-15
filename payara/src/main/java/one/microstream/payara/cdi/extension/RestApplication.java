@@ -7,7 +7,7 @@ import javax.ws.rs.core.Application;
 /**
  *
  */
-@ApplicationPath("/data")
+@ApplicationPath("/")
 @ApplicationScoped
-public class CdiextensionRestApplication extends Application {
+public class RestApplication extends Application {
 }

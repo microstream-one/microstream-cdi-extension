@@ -21,10 +21,8 @@ import java.util.List;
 @ApplicationScoped
 public class NameServices {
 
-
     @Inject
     private NameStorage nameStorage;
-
 
     @UpdateStorage
     public void add(String name) {

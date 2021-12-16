@@ -20,6 +20,7 @@
         <maven.compiler.source>11</maven.compiler.source>
         <final.name>helidon-example</final.name>
         <helidonVersion>2.3.2</helidonVersion>
+        <microstream.cdi.version>0.0.1-SNAPSHOT</microstream.cdi.version>
     </properties>
     <dependencies>
         <dependency>
@@ -28,6 +29,11 @@
             <version>3.3</version>
             <type>pom</type>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>one.microstream</groupId>
+            <artifactId>cdi-extension</artifactId>
+            <version>${microstream.cdi.version}</version>
         </dependency>
     </dependencies>
     <build>

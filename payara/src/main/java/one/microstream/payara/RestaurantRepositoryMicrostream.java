@@ -15,6 +15,7 @@
 package one.microstream.payara;
 
 import my.compary.restaurant.infra.UpdateRoot;
+import one.microstream.cdi.UpdateStorage;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -37,7 +38,7 @@ public class RestaurantRepositoryMicrostream implements RestaurantRepository {
     }
 
     @Override
-    @UpdateRoot
+    @UpdateStorage
     public Item save(Item item) {
         this.items.add(item);
         return item;
@@ -50,7 +51,7 @@ public class RestaurantRepositoryMicrostream implements RestaurantRepository {
     }
 
     @Override
-    @UpdateRoot
+    @UpdateStorage
     public void deleteById(String id) {
         items.deleteById(id);
     }

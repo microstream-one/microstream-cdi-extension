@@ -14,7 +14,6 @@
 
 package one.microstream.payara;
 
-import my.compary.restaurant.infra.UpdateRoot;
 import one.microstream.cdi.UpdateStorage;
 
 import javax.enterprise.context.ApplicationScoped;

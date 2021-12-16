@@ -14,14 +14,15 @@
 
 package one.microstream.payara;
 
-import javax.enterprise.inject.Vetoed;
+import one.microstream.cdi.Storage;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-@Vetoed
+@Storage
 public class Items {
 
     private Set<Item> data = new HashSet<>();

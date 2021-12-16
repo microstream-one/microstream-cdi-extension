@@ -23,10 +23,9 @@ import java.util.Optional;
 import java.util.logging.Logger;
 
 @ApplicationScoped
-public class RestaurantRepositoryMicrostream implements RestaurantRepository {
+public class RestaurantRepositoryStorage implements RestaurantRepository {
 
-    private static final Logger LOGGER = Logger.getLogger(RestaurantRepositoryMicrostream.class.getName());
-
+    private static final Logger LOGGER = Logger.getLogger(RestaurantRepositoryStorage.class.getName());
 
     @Inject
     private Items items;

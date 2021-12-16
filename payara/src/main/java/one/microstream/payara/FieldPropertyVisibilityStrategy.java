@@ -12,8 +12,20 @@
  *    limitations under the License.
  */
 
-/**
- * The CDI/Microstream integration with Cache
- * Ref: https://github.com/oracle/helidon/pull/3355
- */
-package one.microstream.cdi.cache;
+package one.microstream.payara;
+
+import javax.json.bind.config.PropertyVisibilityStrategy;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+public class FieldPropertyVisibilityStrategy implements PropertyVisibilityStrategy {
+    @Override
+    public boolean isVisible(Field field) {
+        return true;
+    }
+
+    @Override
+    public boolean isVisible(Method method) {
+        return true;
+    }
+}

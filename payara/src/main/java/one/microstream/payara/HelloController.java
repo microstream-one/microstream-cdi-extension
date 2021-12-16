@@ -12,8 +12,21 @@
  *    limitations under the License.
  */
 
+package one.microstream.payara;
+
+import javax.inject.Singleton;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+
 /**
- * The CDI/Microstream integration with Cache
- * Ref: https://github.com/oracle/helidon/pull/3355
+ *
  */
-package one.microstream.cdi.cache;
+@Path("/hello")
+@Singleton
+public class HelloController {
+
+    @GET
+    public String sayHello() {
+        return "Hello World";
+    }
+}

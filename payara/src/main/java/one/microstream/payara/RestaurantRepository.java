@@ -12,8 +12,17 @@
  *    limitations under the License.
  */
 
-/**
- * The CDI/Microstream integration with Cache
- * Ref: https://github.com/oracle/helidon/pull/3355
- */
-package one.microstream.cdi.cache;
+package one.microstream.payara;
+
+import java.util.Collection;
+import java.util.Optional;
+
+public interface RestaurantRepository {
+    Collection<Item> getAll();
+
+    Item save(Item item);
+
+    Optional<Item> findById(String id);
+
+    void deleteById(String id);
+}

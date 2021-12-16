@@ -12,8 +12,16 @@
  *    limitations under the License.
  */
 
+package one.microstream.payara;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.core.Application;
+
 /**
- * The CDI/Microstream integration with Cache
- * Ref: https://github.com/oracle/helidon/pull/3355
+ *
  */
-package one.microstream.cdi.cache;
+@ApplicationPath("/")
+@ApplicationScoped
+public class RestApplication extends Application {
+}

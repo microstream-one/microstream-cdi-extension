@@ -12,8 +12,7 @@
  *    limitations under the License.
  */
 
-/**
- * The CDI/Microstream integration with Cache
- * Ref: https://github.com/oracle/helidon/pull/3355
- */
-package one.microstream.cdi.cache;
+package one.microstream.payara;
+public enum ItemType {
+    BEVERAGE, FOOD;
+}

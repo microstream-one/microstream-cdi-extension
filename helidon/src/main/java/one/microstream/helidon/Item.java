@@ -14,7 +14,8 @@
 
 package one.microstream.helidon;
 
-import one.microstream.payara.infra.FieldPropertyVisibilityStrategy;
+
+import one.microstream.helidon.infra.FieldPropertyVisibilityStrategy;
 
 import javax.json.bind.annotation.JsonbVisibility;
 import java.time.LocalDate;

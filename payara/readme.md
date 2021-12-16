@@ -11,15 +11,18 @@ The generation of the executable jar file can be performed by issuing the follow
 
 This will create an executable jar file **cdi-extension-microbundle.jar** within the _target_ maven folder. This can be started by executing the following command
 
-    java -jar target/cdi-extension-microbundle.jar
+```shell
+java -jar target/cdi-extension-microbundle.jar
+```
 
 To launch the test page, open your browser at the following URL
 
-    http://localhost:8080/index.html  
-
+```shell
+http://localhost:8080/index.html  
+```
 To execute the tests:
 
-```
+```shell
 curl --location --request POST 'http://localhost:8080/restaurants' \
 --header 'Content-Type: application/json' \
 --data-raw '{"name": "water", "description": "Water appears as a clear, nontoxic liquid composed of hydrogen and oxygen, essential for life.", "type": "BEVERAGE", 

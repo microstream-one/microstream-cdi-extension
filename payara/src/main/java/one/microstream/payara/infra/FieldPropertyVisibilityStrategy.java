@@ -12,7 +12,7 @@
  *    limitations under the License.
  */
 
-package one.microstream.payara;
+package one.microstream.payara.infra;
 
 import javax.json.bind.config.PropertyVisibilityStrategy;
 import java.lang.reflect.Field;

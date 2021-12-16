@@ -14,6 +14,8 @@
 
 package one.microstream.payara;
 
+import one.microstream.payara.infra.FieldPropertyVisibilityStrategy;
+
 import javax.json.bind.annotation.JsonbVisibility;
 import java.time.LocalDate;
 import java.util.Collections;

@@ -14,29 +14,15 @@
 
 package one.microstream.helidon;
 
+import java.util.Collection;
+import java.util.Optional;
 
+public interface RestaurantRepository {
+    Collection<Item> getAll();
 
+    Item save(Item item);
 
+    Optional<Item> findById(String id);
 
-
-import javax.enterprise.context.ApplicationScoped;
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
-import java.util.HashSet;
-import java.util.Set;
-
-/**
- *
- */
-@ApplicationPath("/data")
-@ApplicationScoped
-public class HelidonexampleRestApplication extends Application {
-
-    @Override
-    public Set<Class<?>> getClasses() {
-        Set<Class<?>> classes = new HashSet<>();
-        // resources
-        classes.add(HelloController.class);
-        return classes;
-    }
+    void deleteById(String id);
 }

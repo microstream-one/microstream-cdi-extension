@@ -12,31 +12,20 @@
  *    limitations under the License.
  */
 
-package one.microstream.helidon;
+package one.microstream.helidon.infra;
 
+import javax.json.bind.config.PropertyVisibilityStrategy;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
-
-
-
-
-import javax.enterprise.context.ApplicationScoped;
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
-import java.util.HashSet;
-import java.util.Set;
-
-/**
- *
- */
-@ApplicationPath("/data")
-@ApplicationScoped
-public class HelidonexampleRestApplication extends Application {
+public class FieldPropertyVisibilityStrategy implements PropertyVisibilityStrategy {
+    @Override
+    public boolean isVisible(Field field) {
+        return true;
+    }
 
     @Override
-    public Set<Class<?>> getClasses() {
-        Set<Class<?>> classes = new HashSet<>();
-        // resources
-        classes.add(HelloController.class);
-        return classes;
+    public boolean isVisible(Method method) {
+        return true;
     }
 }

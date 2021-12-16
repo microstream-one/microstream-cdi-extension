@@ -28,6 +28,7 @@ public class Item {
     private String name;
 
     private String description;
+
     private ItemType type;
 
     private LocalDate expires;

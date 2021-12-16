@@ -27,6 +27,7 @@
         <maven.compiler.source>11</maven.compiler.source>
         <payaraVersion>5.2021.10</payaraVersion>
         <final.name>payara-example</final.name>
+        <microstream.cdi.version>0.0.1-SNAPSHOT</microstream.cdi.version>
     </properties>
     <dependencies>
         <dependency>
@@ -35,6 +36,11 @@
             <version>4.0.1</version>
             <type>pom</type>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>one.microstream</groupId>
+            <artifactId>cdi-extension</artifactId>
+            <version>${microstream.cdi.version}</version>
         </dependency>
     </dependencies>
     <build>

@@ -9,10 +9,10 @@ The generation of the executable jar file can be performed by issuing the follow
 
     mvn clean package
 
-This will create an executable jar file **cdi-extension-microbundle.jar** within the _target_ maven folder. This can be started by executing the following command
+This will create an executable jar file **payara-example-microbundle.jar** within the _target_ maven folder. This can be started by executing the following command
 
 ```shell
-java -jar target/cdi-extension-microbundle.jar
+java -jar target/payara-example-microbundle.jar
 ```
 
 To launch the test page, open your browser at the following URL

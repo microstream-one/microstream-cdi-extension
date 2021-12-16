@@ -25,5 +25,6 @@
         <module>cdi-extension</module>
         <module>example</module>
         <module>payara</module>
+        <module>helidon</module>
     </modules>
 </project>

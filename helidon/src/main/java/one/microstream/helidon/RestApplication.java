@@ -14,11 +14,6 @@
 
 package one.microstream.helidon;
 
-
-
-
-
-
 import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -30,7 +25,7 @@ import java.util.Set;
  */
 @ApplicationPath("/")
 @ApplicationScoped
-public class HelidonexampleRestApplication extends Application {
+public class RestApplication extends Application {
 
     @Override
     public Set<Class<?>> getClasses() {

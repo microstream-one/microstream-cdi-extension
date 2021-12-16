@@ -28,7 +28,7 @@ import java.util.Set;
 /**
  *
  */
-@ApplicationPath("/data")
+@ApplicationPath("/")
 @ApplicationScoped
 public class HelidonexampleRestApplication extends Application {
 
@@ -37,6 +37,7 @@ public class HelidonexampleRestApplication extends Application {
         Set<Class<?>> classes = new HashSet<>();
         // resources
         classes.add(HelloController.class);
+        classes.add(RestaurantController.class);
         return classes;
     }
 }

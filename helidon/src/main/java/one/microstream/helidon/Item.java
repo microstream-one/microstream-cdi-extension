@@ -15,6 +15,7 @@
 package one.microstream.helidon;
 
 
+
 import one.microstream.helidon.infra.FieldPropertyVisibilityStrategy;
 
 import javax.json.bind.annotation.JsonbVisibility;

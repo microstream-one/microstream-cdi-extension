@@ -25,7 +25,6 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.validation.Valid;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -93,7 +92,7 @@ public class RestaurantController {
     @Tag(name = "BETA", description = "This API is currently in beta state")
     public Response insert(@RequestBody(description = "Create a new Item.",
             content = @Content(mediaType = "application/json",
-                    schema = @Schema(implementation = Item.class))) @Valid Item item) {
+                    schema = @Schema(implementation = Item.class))) Item item) {
         return Response.status(Response.Status.CREATED)
                 .entity(repository.save(item))
                 .build();

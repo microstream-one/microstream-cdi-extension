@@ -46,5 +46,3 @@ By default, there is always the creation of a JAX-RS application class to define
 Also, a simple Hello world endpoint is created, have a look at the class **HelloController**.
 
 More information on MicroProfile can be found [here](https://microprofile.io/)
-
-

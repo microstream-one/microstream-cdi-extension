@@ -18,6 +18,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 public interface RestaurantRepository {
+
     Collection<Item> getAll();
 
     Item save(Item item);

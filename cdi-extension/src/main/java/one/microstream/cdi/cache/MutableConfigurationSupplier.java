@@ -14,21 +14,61 @@
 
 package one.microstream.cdi.cache;
 
+import javax.cache.configuration.Factory;
 import javax.cache.configuration.MutableConfiguration;
+import javax.cache.expiry.ExpiryPolicy;
+import javax.cache.integration.CacheLoader;
+import javax.cache.integration.CacheWriter;
+import java.util.Objects;
 import java.util.function.Supplier;
 
 /**
  * Create a Parser to explore the benefits of Eclipse MicroProfile Configuration
+ *
  * @param <K> the key type in the cache
  * @param <V> the value type in the cache
  */
-class MutableConfigurationSupplier<K,V> implements Supplier<MutableConfiguration<K, V>> {
+class MutableConfigurationSupplier<K, V> implements Supplier<MutableConfiguration<K, V>> {
 
     private StorageCacheProperty<K, V> cacheProperty;
 
+    private boolean storeByValue;
+
+    private boolean writeThrough;
+
+    private boolean readThrough;
+
+    private boolean managementEnabled;
+
+    private boolean statisticsEnabled;
+
+    private Factory<CacheLoader<K, V>> loaderFactory;
+
+    private Factory<CacheWriter<K,V>> writerFactory;
+
+    private Factory<ExpiryPolicy> expiryFactory;
 
     @Override
     public MutableConfiguration<K, V> get() {
-        return null;
+        Class<K> key = cacheProperty.getKey();
+        Class<V> value = cacheProperty.getValue();
+        MutableConfiguration<K, V> configuration = new MutableConfiguration<>();
+        configuration.setTypes(key, value);
+        configuration.setStoreByValue(storeByValue)
+                .setWriteThrough(writeThrough)
+                .setReadThrough(readThrough)
+                .setManagementEnabled(managementEnabled)
+                .setStatisticsEnabled(statisticsEnabled);
+
+        if(Objects.nonNull(loaderFactory)) {
+            configuration.setCacheLoaderFactory(loaderFactory);
+        }
+        if(Objects.nonNull(writerFactory)) {
+            configuration.setCacheWriterFactory(writerFactory);
+        }
+        if(Objects.nonNull(expiryFactory)) {
+            configuration.setExpiryPolicyFactory(expiryFactory);
+        }
+        return configuration;
     }
 }

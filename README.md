@@ -50,6 +50,15 @@ It will create/load this annotation using CDI.
 private NameStorage nameStorage;
 ```
 
+### Cache
+
+You can use Microsctream as a cache as well, thanks to the ```StorageCache``` annotation.
+
+```java
+@Inject
+@StorageCache
+private Cache<String, Integer> counter;
+```
 
 ## Microstream
 

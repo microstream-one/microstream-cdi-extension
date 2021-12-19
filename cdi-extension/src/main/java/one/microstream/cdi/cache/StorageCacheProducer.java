@@ -31,12 +31,16 @@ import java.lang.reflect.Member;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 @ApplicationScoped
 class StorageCacheProducer {
 
-    public static final String CACHE_PROVIDER = "one.microstream.cache.types.CachingProvider";
+    private static final Logger LOGGER = Logger.getLogger(StorageCacheProducer.class.getName());
+
+    private static final String CACHE_PROVIDER = "one.microstream.cache.types.CachingProvider";
 
     private CachingProvider provider;
 
@@ -52,6 +56,8 @@ class StorageCacheProducer {
     @StorageCache
     public <K, V> Cache<K, V> producer(InjectionPoint injectionPoint) {
         StorageCacheProperty<K, V> cacheProperty = StorageCacheProperty.of(injectionPoint);
+
+        LOGGER.info("Loading cache: " + cacheProperty + " the current caches: " + cacheManager.getCacheNames());
 
         Cache<K, V> cache = null;
         if (Objects.isNull(cacheManager.getCache(cacheProperty.getName()))) {

@@ -16,15 +16,48 @@ package one.microstream.cdi.cache;
 
 import java.util.function.Supplier;
 
+/**
+ * The relation with the properties from Microstream docs:
+ * https://docs.microstream.one/manual/cache/configuration/properties.html
+ */
 public enum CacheProperties implements Supplier<String> {
 
+    /**
+     * cacheLoaderFactory - A CacheLoader should be configured
+     * for "Read Through" caches to load values when a cache miss occurs.
+     */
     CACHE_LOADER_FACTORY("microstream.cache.loader.factory"),
+    /**
+     * cacheWriterFactory - A CacheWriter is used for write-through to an external resource.
+     */
     CACHE_WRITER_FACTORY("microstream.cache.writer.factory"),
+    /**
+     * expiryPolicyFactory - Determines when cache entries will expire based on creation,
+     * access and modification operations.
+     */
     CACHE_EXPIRES_FACTORY("microstream.cache.expires.factory"),
+    /**
+     * readThrough - When in "read-through" mode, cache misses that occur due to cache entries not existing
+     * as a result of performing a "get" will appropriately cause the configured CacheLoader to be invoked.
+     */
     CACHE_READ_THROUGH("microstream.cache.read.through"),
+    /**
+     * writeThrough - When in "write-through" mode, cache updates that occur as a result
+     * of performing "put" operations will appropriately cause the configured CacheWriter to be invoked.
+     */
     CACHE_WRITE_THROUGH("microstream.cache.write.through"),
+    /**
+     * storeByValue - When a cache is storeByValue,
+     * any mutation to the key or value does not affect the key of value stored in the cache.
+     */
     CACHE_STORE_VALUE("microstream.cache.store.value"),
+    /**
+     *statisticsEnabled - Checks whether statistics collection is enabled in this cache.
+     */
     CACHE_STATISTICS("microstream.cache.statistics"),
+    /**
+     * managementEnabled - Checks whether management is enabled on this cache.
+     */
     CACHE_MANAGEMENT("microstream.cache.management");
 
     private final String value;

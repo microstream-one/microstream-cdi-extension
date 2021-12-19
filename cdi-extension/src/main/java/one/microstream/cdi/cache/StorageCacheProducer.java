@@ -23,7 +23,9 @@ import javax.cache.expiry.Duration;
 import javax.cache.spi.CachingProvider;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
+import javax.enterprise.inject.spi.Annotated;
 import javax.enterprise.inject.spi.InjectionPoint;
+
 
 @ApplicationScoped
 class StorageCacheProducer {
@@ -31,8 +33,9 @@ class StorageCacheProducer {
     public static final String CACHE_PROVIDER = "one.microstream.cache.types.CachingProvider";
 
     @Produces
-    @ApplicationScoped
-    public <X,Y> Cache<X,Y> producer(InjectionPoint injectionPoint) {
+    @StorageCache
+    public Cache<Integer,String> producer(InjectionPoint injectionPoint) {
+        Annotated annotated = injectionPoint.getAnnotated();
         CachingProvider provider = Caching.getCachingProvider(CACHE_PROVIDER);
         CacheManager cacheManager = provider.getCacheManager();
         MutableConfiguration<Integer, String> configuration = new MutableConfiguration<>();
@@ -40,6 +43,6 @@ class StorageCacheProducer {
                 .setStoreByValue(false)
                 .setExpiryPolicyFactory(CreatedExpiryPolicy.factoryOf(Duration.ONE_MINUTE));
         Cache<Integer, String> cache = cacheManager.createCache("jCache", configuration);
-        return (Cache<X, Y>) cache;
+        return cache;
     }
 }

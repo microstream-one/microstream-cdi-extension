@@ -14,6 +14,7 @@
 
 package one.microstream.cdi.cache;
 
+import javax.annotation.PostConstruct;
 import javax.cache.Cache;
 import javax.cache.CacheManager;
 import javax.cache.Caching;
@@ -25,6 +26,10 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.Annotated;
 import javax.enterprise.inject.spi.InjectionPoint;
+import java.lang.reflect.Field;
+import java.lang.reflect.Member;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 
 
 @ApplicationScoped
@@ -32,17 +37,26 @@ class StorageCacheProducer {
 
     public static final String CACHE_PROVIDER = "one.microstream.cache.types.CachingProvider";
 
+    private CachingProvider provider;
+
+    private CacheManager cacheManager;
+
+    @PostConstruct
+    void setUp() {
+        this.provider = Caching.getCachingProvider(CACHE_PROVIDER);
+        this.cacheManager = provider.getCacheManager();
+    }
+
     @Produces
     @StorageCache
-    public Cache<Integer,String> producer(InjectionPoint injectionPoint) {
-        Annotated annotated = injectionPoint.getAnnotated();
-        CachingProvider provider = Caching.getCachingProvider(CACHE_PROVIDER);
-        CacheManager cacheManager = provider.getCacheManager();
-        MutableConfiguration<Integer, String> configuration = new MutableConfiguration<>();
-        configuration.setTypes(Integer.class, String.class)
+    public <K, V> Cache<K, V> producer(InjectionPoint injectionPoint) {
+        StorageCacheProperty<K, V> cacheProperty = StorageCacheProperty.of(injectionPoint);
+
+        MutableConfiguration<K, V> configuration = new MutableConfiguration<>();
+        configuration.setTypes(cacheProperty.getKey(), cacheProperty.getValue())
                 .setStoreByValue(false)
                 .setExpiryPolicyFactory(CreatedExpiryPolicy.factoryOf(Duration.ONE_MINUTE));
-        Cache<Integer, String> cache = cacheManager.createCache("jCache", configuration);
+        Cache<K, V> cache = cacheManager.createCache(cacheProperty.getName(), configuration);
         return cache;
     }
 }

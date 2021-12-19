@@ -22,7 +22,10 @@ public class App1 {
     public static void main(String[] args) {
 
         try(SeContainer  container = SeContainerInitializer.newInstance().initialize()) {
-
+            NameCounter counter = container.select(NameCounter.class).get();
+            counter.count("Sebastian");
+            counter.count("Sebastian");
+            counter.count("Otavio");
         }
     }
 }

@@ -30,6 +30,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Member;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.Objects;
 
 
 @ApplicationScoped
@@ -52,11 +53,16 @@ class StorageCacheProducer {
     public <K, V> Cache<K, V> producer(InjectionPoint injectionPoint) {
         StorageCacheProperty<K, V> cacheProperty = StorageCacheProperty.of(injectionPoint);
 
-        MutableConfiguration<K, V> configuration = new MutableConfiguration<>();
-        configuration.setTypes(cacheProperty.getKey(), cacheProperty.getValue())
-                .setStoreByValue(false)
-                .setExpiryPolicyFactory(CreatedExpiryPolicy.factoryOf(Duration.ONE_MINUTE));
-        Cache<K, V> cache = cacheManager.createCache(cacheProperty.getName(), configuration);
+        Cache<K, V> cache = null;
+        if (Objects.isNull(cacheManager.getCache(cacheProperty.getName()))) {
+            MutableConfiguration<K, V> configuration = new MutableConfiguration<>();
+            configuration.setTypes(cacheProperty.getKey(), cacheProperty.getValue())
+                    .setStoreByValue(false)
+                    .setExpiryPolicyFactory(CreatedExpiryPolicy.factoryOf(Duration.ONE_MINUTE));
+            cache = cacheManager.createCache(cacheProperty.getName(), configuration);
+        } else{
+            cache = cacheManager.getCache(cacheProperty.getName());
+        }
         return cache;
     }
 }

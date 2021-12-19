@@ -90,11 +90,11 @@ class StorageCacheProducer {
         return cache;
     }
 
-    public void close(@Disposes CachingProvider provider) {
+    public void close(@Disposes @StorageCache CachingProvider provider) {
         provider.close();
     }
 
-    public void close(@Disposes CacheManager manager) {
+    public void close(@Disposes @StorageCache CacheManager manager) {
         manager.close();
     }
 }

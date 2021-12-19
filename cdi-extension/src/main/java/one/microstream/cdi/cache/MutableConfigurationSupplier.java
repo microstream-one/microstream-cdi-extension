@@ -71,4 +71,19 @@ class MutableConfigurationSupplier<K, V> implements Supplier<MutableConfiguratio
         }
         return configuration;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "cacheProperty=" + cacheProperty +
+                ", storeByValue=" + storeByValue +
+                ", writeThrough=" + writeThrough +
+                ", readThrough=" + readThrough +
+                ", managementEnabled=" + managementEnabled +
+                ", statisticsEnabled=" + statisticsEnabled +
+                ", loaderFactory=" + loaderFactory +
+                ", writerFactory=" + writerFactory +
+                ", expiryFactory=" + expiryFactory +
+                '}';
+    }
 }

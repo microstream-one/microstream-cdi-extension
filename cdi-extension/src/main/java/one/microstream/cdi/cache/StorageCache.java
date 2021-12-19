@@ -26,11 +26,11 @@ import java.lang.annotation.Target;
  * https://docs.microstream.one/manual/cache/getting-started.html
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.TYPE, ElementType.FIELD})
+@Target({ElementType.TYPE, ElementType.FIELD, ElementType.METHOD})
 @Qualifier
 public @interface StorageCache {
     /**
      * @return the cache name
      */
-    @Nonbinding String value();
+    @Nonbinding String value() default "jcache";
 }

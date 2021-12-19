@@ -17,7 +17,14 @@ package one.microstream.cdi.cache;
 import java.util.function.Supplier;
 
 public enum CacheProperties implements Supplier<String> {
-    CACHE_LOADER_FACTORY("");
+    CACHE_LOADER_FACTORY("microstream.cache.loader.factory"),
+    CACHE_WRITER_FACTORY("microstream.cache.writer.factory"),
+    CACHE_EXPIRES_FACTORY("microstream.cache.expires.factory"),
+    CACHE_READ_THROUGH("microstream.cache.read.through"),
+    CACHE_WRITE_THROUGH("microstream.cache.write.through"),
+    CACHE_STORE_VALUE("microstream.cache.store.value"),
+    CACHE_STATISTICS("microstream.cache.statistics"),
+    CACHE_MANAGEMENT("microstream.cache.management");
 
     private final String value;
 

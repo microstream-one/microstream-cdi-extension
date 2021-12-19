@@ -9,6 +9,8 @@ This project has two minimum requirements:
 
 ## Features
 
+### StorageManager
+
 You're enabled to inject the ```StorageManager``` easily using MicroProfile Config to read the properties.
 
 ```java
@@ -18,6 +20,7 @@ private StorageManager manager;
 
 The CDI will create an instance application-scoped, and it will close automatically.
 
+### UpdateRoot
 
 Do you want to force um update in the root? But You don't want to put it on your code explicitly? Don't worry; 
 we have ```UpdateRoot``` annotation to handle it for us!
@@ -28,6 +31,8 @@ public void update(T entity) {
   this.root.add(entity);
 }
 ```
+
+### Storage
 
 The Storage annotation allows injecting an entity from Microstream.
 
@@ -44,6 +49,7 @@ It will create/load this annotation using CDI.
 @Inject
 private NameStorage nameStorage;
 ```
+
 
 ## Microstream
 

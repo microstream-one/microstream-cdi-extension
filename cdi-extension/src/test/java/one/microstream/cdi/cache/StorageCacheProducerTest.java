@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import javax.cache.Cache;
+import javax.enterprise.inject.spi.BeanManager;
 import javax.inject.Inject;
 
 @CDIExtension
@@ -28,9 +29,19 @@ public class StorageCacheProducerTest {
     @StorageCache
     private Cache<Integer, String> cache;
 
+    @Inject
+    private BeanManager beanManager;
+
     @Test
     public void shouldCreateInjectCache() {
         cache.put(1, "one");
         Assertions.assertEquals("one", cache.get(1));
     }
+
+    @Test
+    public void shouldNotCreateNonQualifierCache() {
+        Assertions.assertEquals(0, beanManager.getBeans(Cache.class));
+    }
+
+
 }

@@ -29,9 +29,10 @@ public class NameCounter {
     @StorageCache
     private Cache<String, Integer> counter;
 
-    public void count(String name) {
+    public int count(String name) {
         int counter = ofNullable(this.counter.get(name)).orElse(0);
         counter++;
         this.counter.put(name, counter);
+        return counter;
     }
 }

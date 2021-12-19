@@ -23,6 +23,7 @@ import javax.cache.expiry.CreatedExpiryPolicy;
 import javax.cache.expiry.Duration;
 import javax.cache.spi.CachingProvider;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Disposes;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.Annotated;
 import javax.enterprise.inject.spi.InjectionPoint;
@@ -84,5 +85,13 @@ class StorageCacheProducer {
             cache = cacheManager.getCache(cacheProperty.getName());
         }
         return cache;
+    }
+
+    public void close(@Disposes CachingProvider provider) {
+        provider.close();
+    }
+
+    public void close(@Disposes CacheManager manager) {
+        manager.close();
     }
 }

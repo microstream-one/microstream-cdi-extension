@@ -17,6 +17,7 @@ package one.microstream.cdi.cache;
 import java.util.function.Supplier;
 
 public enum CacheProperties implements Supplier<String> {
+
     CACHE_LOADER_FACTORY("microstream.cache.loader.factory"),
     CACHE_WRITER_FACTORY("microstream.cache.writer.factory"),
     CACHE_EXPIRES_FACTORY("microstream.cache.expires.factory"),

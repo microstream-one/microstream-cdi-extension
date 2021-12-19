@@ -29,10 +29,15 @@ public class App1 {
             NameCounter counter = container.select(NameCounter.class).get();
 
             ThreadLocalRandom random = ThreadLocalRandom.current();
-            for (int index = 0; index < random.nextInt(10); index++) {
+            int sebastianCounter = random.nextInt(1, 10);
+            int otavioCounter = random.nextInt(1, 10);
+            System.out.println(String.format("The counters: Sebastian %d and Otavio %d",
+                    sebastianCounter, otavioCounter));
+
+            for (int index = 0; index < sebastianCounter; index++) {
                 counter.count(sebastian);
             }
-            for (int index = 0; index < random.nextInt(10); index++) {
+            for (int index = 0; index < otavioCounter; index++) {
                 counter.count(otavio);
             }
             System.out.println("The Sebastian's count: " + counter.show("Sebastian"));

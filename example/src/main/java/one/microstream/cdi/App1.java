@@ -24,8 +24,8 @@ public class App1 {
         try(SeContainer  container = SeContainerInitializer.newInstance().initialize()) {
             NameCounter counter = container.select(NameCounter.class).get();
             counter.count("Sebastian");
-            counter.count("Sebastian");
-            counter.count("Otavio");
+            System.out.println("The Sebastian's count: " + counter.count("Sebastian"));
+            System.out.println("The Otavio's count: " + counter.count("Otavio"));
         }
     }
 }

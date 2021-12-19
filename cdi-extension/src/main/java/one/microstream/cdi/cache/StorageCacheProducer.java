@@ -14,6 +14,9 @@
 
 package one.microstream.cdi.cache;
 
+import one.microstream.cache.types.CacheConfiguration;
+import one.microstream.cache.types.CacheConfigurationPropertyNames;
+
 import javax.annotation.PostConstruct;
 import javax.cache.Cache;
 import javax.cache.CacheManager;
@@ -67,7 +70,7 @@ class StorageCacheProducer {
         StorageCacheProperty<K, V> cacheProperty = StorageCacheProperty.of(injectionPoint);
 
         LOGGER.info("Loading cache: " + cacheProperty + " the current caches: " + cacheManager.getCacheNames());
-
+        //CacheConfigurationPropertyNames
         Cache<K, V> cache = null;
         String name = cacheProperty.getName();
         Class<K> key = cacheProperty.getKey();

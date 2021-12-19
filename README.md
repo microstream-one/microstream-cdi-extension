@@ -60,6 +60,18 @@ You can use Microsctream as a cache as well, thanks to the ```StorageCache``` an
 private Cache<String, Integer> counter;
 ```
 
+You also have the option to inject both ```CachingProvider``` and ```CacheManager``` using CDI.
+
+```java
+@Inject
+@StorageCache
+private CachingProvider provider;
+
+@Inject
+@StorageCache
+private CacheManager cacheManager;
+```
+
 ## Microstream
 
 MicroStream Data-Store is a native Java object graph storage engine. From a technical point of view it serves one purpose only:

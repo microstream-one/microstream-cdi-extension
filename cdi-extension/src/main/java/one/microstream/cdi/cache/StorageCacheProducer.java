@@ -40,6 +40,6 @@ class StorageCacheProducer {
                 .setStoreByValue(false)
                 .setExpiryPolicyFactory(CreatedExpiryPolicy.factoryOf(Duration.ONE_MINUTE));
         Cache<Integer, String> cache = cacheManager.createCache("jCache", configuration);
-        return cache;
+        return (Cache<X, Y>) cache;
     }
 }

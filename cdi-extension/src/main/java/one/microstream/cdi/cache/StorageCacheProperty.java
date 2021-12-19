@@ -80,7 +80,7 @@ class StorageCacheProperty<K, V> {
                 '}';
     }
 
-    public <K, V> StorageCacheProperty<K, V> of(InjectionPoint injectionPoint) {
+    public static <K, V> StorageCacheProperty<K, V> of(InjectionPoint injectionPoint) {
         Annotated annotated = injectionPoint.getAnnotated();
         StorageCache storageCache = annotated.getAnnotation(StorageCache.class);
         String cacheName = storageCache.value();

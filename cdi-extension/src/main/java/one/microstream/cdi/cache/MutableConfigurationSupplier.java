@@ -17,6 +17,11 @@ package one.microstream.cdi.cache;
 import javax.cache.configuration.MutableConfiguration;
 import java.util.function.Supplier;
 
+/**
+ * Create a Parser to explore the benefits of Eclipse MicroProfile Configuration
+ * @param <K> the key type in the cache
+ * @param <V> the value type in the cache
+ */
 class MutableConfigurationSupplier<K,V> implements Supplier<MutableConfiguration<K, V>> {
 
     private StorageCacheProperty<K, V> cacheProperty;

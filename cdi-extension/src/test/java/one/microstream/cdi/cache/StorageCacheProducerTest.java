@@ -25,6 +25,7 @@ import javax.inject.Inject;
 public class StorageCacheProducerTest {
 
     @Inject
+    @StorageCache
     private Cache<Integer, String> cache;
 
     @Test

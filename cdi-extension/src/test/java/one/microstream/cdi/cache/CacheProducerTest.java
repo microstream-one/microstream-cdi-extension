@@ -14,6 +14,7 @@
 
 package one.microstream.cdi.cache;
 
+import one.microstream.cdi.test.CDIExtension;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +22,9 @@ import javax.cache.CacheManager;
 import javax.cache.spi.CachingProvider;
 import javax.inject.Inject;
 
+@CDIExtension
 public class CacheProducerTest {
+
     @Inject
     @StorageCache
     private CachingProvider provider;
@@ -33,6 +36,11 @@ public class CacheProducerTest {
     @Test
     public void shouldNotBeNullProvider() {
         Assertions.assertNotNull(provider);
-
     }
+
+    @Test
+    public void shouldNotBeNullManager() {
+        Assertions.assertNotNull(cacheManager);
+    }
+
 }

@@ -35,8 +35,8 @@ public class App1 {
             for (int index = 0; index < random.nextInt(10); index++) {
                 counter.count(otavio);
             }
-            System.out.println("The Sebastian's count: " + counter.count("Sebastian"));
-            System.out.println("The Otavio's count: " + counter.count("Otavio"));
+            System.out.println("The Sebastian's count: " + counter.show("Sebastian"));
+            System.out.println("The Otavio's count: " + counter.show("Otavio"));
         }
     }
 }

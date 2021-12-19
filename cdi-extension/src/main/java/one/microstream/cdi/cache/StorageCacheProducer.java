@@ -75,14 +75,17 @@ class StorageCacheProducer {
         LOGGER.info("Loading cache: " + cacheProperty + " the current caches: " + cacheManager.getCacheNames());
 
         Cache<K, V> cache = null;
-        if (Objects.isNull(cacheManager.getCache(cacheProperty.getName()))) {
+        String name = cacheProperty.getName();
+        Class<K> key = cacheProperty.getKey();
+        Class<V> value = cacheProperty.getValue();
+        if (Objects.isNull(cacheManager.getCache(name, key, value))) {
             MutableConfiguration<K, V> configuration = new MutableConfiguration<>();
-            configuration.setTypes(cacheProperty.getKey(), cacheProperty.getValue())
+            configuration.setTypes(key, value)
                     .setStoreByValue(false)
                     .setExpiryPolicyFactory(CreatedExpiryPolicy.factoryOf(Duration.ONE_MINUTE));
-            cache = cacheManager.createCache(cacheProperty.getName(), configuration);
-        } else{
-            cache = cacheManager.getCache(cacheProperty.getName());
+            cache = cacheManager.createCache(name, configuration);
+        } else {
+            cache = cacheManager.getCache(name);
         }
         return cache;
     }

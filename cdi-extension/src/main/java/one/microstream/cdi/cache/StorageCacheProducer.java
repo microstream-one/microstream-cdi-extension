@@ -54,6 +54,18 @@ class StorageCacheProducer {
 
     @Produces
     @StorageCache
+    CachingProvider getProvider() {
+        return this.provider;
+    }
+
+    @Produces
+    @StorageCache
+    CacheManager getManager() {
+        return this.cacheManager;
+    }
+
+    @Produces
+    @StorageCache
     public <K, V> Cache<K, V> producer(InjectionPoint injectionPoint) {
         StorageCacheProperty<K, V> cacheProperty = StorageCacheProperty.of(injectionPoint);
 

@@ -54,12 +54,14 @@ class StorageCacheProducer {
 
     @Produces
     @StorageCache
+    @ApplicationScoped
     CachingProvider getProvider() {
         return this.provider;
     }
 
     @Produces
     @StorageCache
+    @ApplicationScoped
     CacheManager getManager() {
         return this.cacheManager;
     }

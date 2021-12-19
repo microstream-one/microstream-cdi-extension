@@ -16,14 +16,25 @@ package one.microstream.cdi;
 
 import javax.enterprise.inject.se.SeContainer;
 import javax.enterprise.inject.se.SeContainerInitializer;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class App1 {
 
     public static void main(String[] args) {
 
+
         try(SeContainer  container = SeContainerInitializer.newInstance().initialize()) {
+            String sebastian = "Sebastian";
+            String otavio = "Otavio";
             NameCounter counter = container.select(NameCounter.class).get();
-            counter.count("Sebastian");
+
+            ThreadLocalRandom random = ThreadLocalRandom.current();
+            for (int index = 0; index < random.nextInt(10); index++) {
+                counter.count(sebastian);
+            }
+            for (int index = 0; index < random.nextInt(10); index++) {
+                counter.count(otavio);
+            }
             System.out.println("The Sebastian's count: " + counter.count("Sebastian"));
             System.out.println("The Otavio's count: " + counter.count("Otavio"));
         }

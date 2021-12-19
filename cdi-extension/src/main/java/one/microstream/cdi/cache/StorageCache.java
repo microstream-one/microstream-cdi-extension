@@ -14,5 +14,23 @@
 
 package one.microstream.cdi.cache;
 
+import javax.enterprise.util.Nonbinding;
+import javax.inject.Qualifier;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+/**
+ * Defines a cache managed by Microstream:
+ * https://docs.microstream.one/manual/cache/getting-started.html
+ */
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.TYPE, ElementType.FIELD})
+@Qualifier
 public @interface StorageCache {
+    /**
+     * @return the cache name
+     */
+    @Nonbinding String value();
 }

@@ -25,14 +25,8 @@ import javax.cache.spi.CachingProvider;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Disposes;
 import javax.enterprise.inject.Produces;
-import javax.enterprise.inject.spi.Annotated;
 import javax.enterprise.inject.spi.InjectionPoint;
-import java.lang.reflect.Field;
-import java.lang.reflect.Member;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.Objects;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 

@@ -14,8 +14,6 @@
 
 package one.microstream.cdi.cache;
 
-import one.microstream.cache.types.CacheConfiguration;
-import one.microstream.cache.types.CacheConfigurationPropertyNames;
 import org.eclipse.microprofile.config.Config;
 
 import javax.annotation.PostConstruct;
@@ -23,8 +21,6 @@ import javax.cache.Cache;
 import javax.cache.CacheManager;
 import javax.cache.Caching;
 import javax.cache.configuration.MutableConfiguration;
-import javax.cache.expiry.CreatedExpiryPolicy;
-import javax.cache.expiry.Duration;
 import javax.cache.spi.CachingProvider;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Disposes;

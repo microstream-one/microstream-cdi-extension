@@ -26,8 +26,6 @@ import javax.cache.integration.CacheLoader;
 import javax.cache.integration.CacheWriter;
 import javax.inject.Inject;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @CDIExtension
 class CachePropertiesTest {
 

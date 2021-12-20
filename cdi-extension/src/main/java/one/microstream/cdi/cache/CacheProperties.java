@@ -126,7 +126,7 @@ public enum CacheProperties implements Supplier<String> {
                 return instance;
             }
             throw new IllegalArgumentException("The instance class must be a " + Factory.class.getName()
-                    + " implementation");
+                    + " implementation, please check the class: " + className);
         } catch (ClassNotFoundException e) {
             throw new MicrostreamException("There is an issue to load the class: " + className, e);
         }

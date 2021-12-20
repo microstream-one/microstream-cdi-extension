@@ -22,7 +22,6 @@ import javax.cache.configuration.Factory;
 import javax.cache.expiry.ExpiryPolicy;
 import javax.cache.integration.CacheLoader;
 import javax.cache.integration.CacheWriter;
-import java.util.Arrays;
 import java.util.function.Supplier;
 
 /**

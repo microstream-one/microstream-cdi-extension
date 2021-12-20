@@ -14,6 +14,8 @@
 
 package one.microstream.cdi.cache;
 
+import org.eclipse.microprofile.config.Config;
+
 import javax.cache.configuration.Factory;
 import javax.cache.configuration.MutableConfiguration;
 import javax.cache.expiry.ExpiryPolicy;
@@ -30,23 +32,53 @@ import java.util.function.Supplier;
  */
 class MutableConfigurationSupplier<K, V> implements Supplier<MutableConfiguration<K, V>> {
 
-    private StorageCacheProperty<K, V> cacheProperty;
+    private final StorageCacheProperty<K, V> cacheProperty;
 
-    private boolean storeByValue;
+    private final boolean storeByValue;
 
-    private boolean writeThrough;
+    private final boolean writeThrough;
 
-    private boolean readThrough;
+    private final boolean readThrough;
 
-    private boolean managementEnabled;
+    private final boolean managementEnabled;
 
-    private boolean statisticsEnabled;
+    private final boolean statisticsEnabled;
 
-    private Factory<CacheLoader<K, V>> loaderFactory;
+    private final Factory<CacheLoader<K, V>> loaderFactory;
 
-    private Factory<CacheWriter<K,V>> writerFactory;
+    private final Factory<CacheWriter<K, V>> writerFactory;
 
-    private Factory<ExpiryPolicy> expiryFactory;
+    private final Factory<ExpiryPolicy> expiryFactory;
+
+    private MutableConfigurationSupplier(StorageCacheProperty<K, V> cacheProperty, boolean storeByValue,
+                                         boolean writeThrough, boolean readThrough,
+                                         boolean managementEnabled, boolean statisticsEnabled,
+                                         Factory<CacheLoader<K, V>> loaderFactory,
+                                         Factory<CacheWriter<K, V>> writerFactory,
+                                         Factory<ExpiryPolicy> expiryFactory) {
+        this.cacheProperty = cacheProperty;
+        this.storeByValue = storeByValue;
+        this.writeThrough = writeThrough;
+        this.readThrough = readThrough;
+        this.managementEnabled = managementEnabled;
+        this.statisticsEnabled = statisticsEnabled;
+        this.loaderFactory = loaderFactory;
+        this.writerFactory = writerFactory;
+        this.expiryFactory = expiryFactory;
+    }
+
+    public static <K, V> MutableConfigurationSupplier<K, V> of(StorageCacheProperty<K, V> cacheProperty, Config config) {
+        boolean storeByValue = CacheProperties.getStoreByValue(config);
+        boolean writeThrough = CacheProperties.getWriteThrough(config);
+        boolean readThrough = CacheProperties.getReadThrough(config);
+        boolean managementEnabled = CacheProperties.getManagementEnabled(config);
+        boolean statisticsEnabled = CacheProperties.getStatisticsEnabled(config);
+        Factory<CacheLoader<K, V>> loaderFactory;
+        Factory<CacheWriter<K, V>> writerFactory;
+        Factory<ExpiryPolicy> expiryFactory;
+
+        return null;
+    }
 
     @Override
     public MutableConfiguration<K, V> get() {
@@ -60,13 +92,13 @@ class MutableConfigurationSupplier<K, V> implements Supplier<MutableConfiguratio
                 .setManagementEnabled(managementEnabled)
                 .setStatisticsEnabled(statisticsEnabled);
 
-        if(Objects.nonNull(loaderFactory)) {
+        if (Objects.nonNull(loaderFactory)) {
             configuration.setCacheLoaderFactory(loaderFactory);
         }
-        if(Objects.nonNull(writerFactory)) {
+        if (Objects.nonNull(writerFactory)) {
             configuration.setCacheWriterFactory(writerFactory);
         }
-        if(Objects.nonNull(expiryFactory)) {
+        if (Objects.nonNull(expiryFactory)) {
             configuration.setExpiryPolicyFactory(expiryFactory);
         }
         return configuration;

@@ -16,6 +16,10 @@ package one.microstream.cdi.cache;
 
 import org.eclipse.microprofile.config.Config;
 
+import javax.cache.configuration.Factory;
+import javax.cache.expiry.ExpiryPolicy;
+import javax.cache.integration.CacheLoader;
+import javax.cache.integration.CacheWriter;
 import java.util.function.Supplier;
 
 /**
@@ -90,6 +94,18 @@ public enum CacheProperties implements Supplier<String> {
 
     private static Boolean getBoolean(Config config, CacheProperties cacheStatistics) {
         return config.getOptionalValue(cacheStatistics.get(), boolean.class).orElse(false);
+    }
+
+    public static <V, K> Factory<CacheLoader<K, V>> getLoaderFactory(Config config) {
+        return null;
+    }
+
+    public static <V, K> Factory<CacheWriter<K, V>> getWriterFactory(Config config) {
+        return null;
+    }
+
+    public static Factory<ExpiryPolicy> getExpiryFactory(Config config) {
+        return null;
     }
 
     @Override

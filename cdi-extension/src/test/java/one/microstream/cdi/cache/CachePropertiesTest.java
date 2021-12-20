@@ -114,4 +114,19 @@ class CachePropertiesTest {
         Assertions.assertTrue(CacheProperties.getStatisticsEnabled(config));
         System.clearProperty(CacheProperties.CACHE_STATISTICS.get());
     }
+
+    @Test
+    public void shouldReturnNullAsDefaultLoaderFactory() {
+        Assertions.assertNull(CacheProperties.getLoaderFactory(config));
+    }
+
+    @Test
+    public void shouldReturnNullAsDefaultWriterFactory() {
+        Assertions.assertNull(CacheProperties.getWriterFactory(config));
+    }
+
+    @Test
+    public void shouldReturnNullAsDefaultExpireFactory() {
+        Assertions.assertNull(CacheProperties.getExpiryFactory(config));
+    }
 }

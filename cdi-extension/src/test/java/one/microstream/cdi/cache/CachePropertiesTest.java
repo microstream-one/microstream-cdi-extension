@@ -58,9 +58,9 @@ class CachePropertiesTest {
     @DisplayName("Should get writeThrough from Eclipse MicroProfile Config")
     public void shouldReturnSWriteThroughConfig() {
         System.setProperty(CacheProperties.CACHE_WRITE_THROUGH.get(), "false");
-        Assertions.assertFalse(CacheProperties.getStoreByValue(config));
+        Assertions.assertFalse(CacheProperties.getWriteThrough(config));
         System.setProperty(CacheProperties.CACHE_WRITE_THROUGH.get(), "true");
-        Assertions.assertTrue(CacheProperties.getStoreByValue(config));
+        Assertions.assertTrue(CacheProperties.getWriteThrough(config));
         System.clearProperty(CacheProperties.CACHE_WRITE_THROUGH.get());
     }
 
@@ -75,9 +75,43 @@ class CachePropertiesTest {
     @DisplayName("Should get readThrough from Eclipse MicroProfile Config")
     public void shouldReturnReadThroughConfig() {
         System.setProperty(CacheProperties.CACHE_READ_THROUGH.get(), "false");
-        Assertions.assertFalse(CacheProperties.getStoreByValue(config));
+        Assertions.assertFalse(CacheProperties.getReadThrough(config));
         System.setProperty(CacheProperties.CACHE_READ_THROUGH.get(), "true");
-        Assertions.assertTrue(CacheProperties.getStoreByValue(config));
+        Assertions.assertTrue(CacheProperties.getReadThrough(config));
         System.clearProperty(CacheProperties.CACHE_READ_THROUGH.get());
+    }
+
+    @Test
+    @DisplayName("Should get the default value in the managementEnabled")
+    public void shouldReturnManagementEnabled() {
+        boolean storeByValue = CacheProperties.getManagementEnabled(config);
+        Assertions.assertFalse(storeByValue);
+    }
+
+    @Test
+    @DisplayName("Should get managementEnabled from Eclipse MicroProfile Config")
+    public void shouldReturnManagementEnabledConfig() {
+        System.setProperty(CacheProperties.CACHE_MANAGEMENT.get(), "false");
+        Assertions.assertFalse(CacheProperties.getManagementEnabled(config));
+        System.setProperty(CacheProperties.CACHE_MANAGEMENT.get(), "true");
+        Assertions.assertTrue(CacheProperties.getManagementEnabled(config));
+        System.clearProperty(CacheProperties.CACHE_MANAGEMENT.get());
+    }
+
+    @Test
+    @DisplayName("Should get the default value in the statisticsEnabled")
+    public void shouldReturnStatisticsEnabled() {
+        boolean storeByValue = CacheProperties.getStatisticsEnabled(config);
+        Assertions.assertFalse(storeByValue);
+    }
+
+    @Test
+    @DisplayName("Should get statisticsEnabled from Eclipse MicroProfile Config")
+    public void shouldReturnStatisticsEnabledConfig() {
+        System.setProperty(CacheProperties.CACHE_STATISTICS.get(), "false");
+        Assertions.assertFalse(CacheProperties.getStatisticsEnabled(config));
+        System.setProperty(CacheProperties.CACHE_STATISTICS.get(), "true");
+        Assertions.assertTrue(CacheProperties.getStatisticsEnabled(config));
+        System.clearProperty(CacheProperties.CACHE_STATISTICS.get());
     }
 }

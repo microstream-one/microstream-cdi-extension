@@ -20,6 +20,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import javax.cache.configuration.Factory;
+import javax.cache.integration.CacheLoader;
 import javax.inject.Inject;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -128,5 +130,20 @@ class CachePropertiesTest {
     @Test
     public void shouldReturnNullAsDefaultExpireFactory() {
         Assertions.assertNull(CacheProperties.getExpiryFactory(config));
+    }
+
+    @Test
+    public void shouldReturnErrorWhenIsNotFactoryInstance() {
+        System.setProperty(CacheProperties.CACHE_LOADER_FACTORY.get(), "java.lang.String");
+        Assertions.assertThrows(IllegalArgumentException.class,
+                ()-> Assertions.assertNull(CacheProperties.getLoaderFactory(config)));
+        System.clearProperty(CacheProperties.CACHE_LOADER_FACTORY.get());
+    }
+
+    @Test
+    public void shouldCreateLoaderFactory() {
+        System.setProperty(CacheProperties.CACHE_LOADER_FACTORY.get(), MockLoaderFactory.class.getName());
+        Factory<CacheLoader<Object, Object>> loaderFactory = CacheProperties.getLoaderFactory(config);
+        Assertions.assertTrue(loaderFactory instanceof MockLoaderFactory);
     }
 }

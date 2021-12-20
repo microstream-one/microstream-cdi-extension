@@ -21,7 +21,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import javax.cache.configuration.Factory;
+import javax.cache.expiry.ExpiryPolicy;
 import javax.cache.integration.CacheLoader;
+import javax.cache.integration.CacheWriter;
 import javax.inject.Inject;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -151,8 +153,16 @@ class CachePropertiesTest {
     @Test
     public void shouldCreateCacheWriterFactory() {
         System.setProperty(CacheProperties.CACHE_WRITER_FACTORY.get(), MockCacheWriter.class.getName());
-        Factory<CacheLoader<Object, Object>> loaderFactory = CacheProperties.getLoaderFactory(config);
+        Factory<CacheWriter<Object, Object>> loaderFactory = CacheProperties.getWriterFactory(config);
         Assertions.assertTrue(loaderFactory instanceof MockCacheWriter);
         System.clearProperty(CacheProperties.CACHE_WRITER_FACTORY.get());
+    }
+
+    @Test
+    public void shouldCreateExpireFactory() {
+        System.setProperty(CacheProperties.CACHE_EXPIRES_FACTORY.get(), MockExpiryPolicy.class.getName());
+        Factory<ExpiryPolicy> loaderFactory = CacheProperties.getExpiryFactory(config);
+        Assertions.assertTrue(loaderFactory instanceof MockExpiryPolicy);
+        System.clearProperty(CacheProperties.CACHE_EXPIRES_FACTORY.get());
     }
 }

@@ -14,12 +14,15 @@
 
 package one.microstream.cdi.cache;
 
+import one.microstream.cdi.MicrostreamException;
+import one.microstream.cdi.extension.ConstructorUtil;
 import org.eclipse.microprofile.config.Config;
 
 import javax.cache.configuration.Factory;
 import javax.cache.expiry.ExpiryPolicy;
 import javax.cache.integration.CacheLoader;
 import javax.cache.integration.CacheWriter;
+import java.util.Arrays;
 import java.util.function.Supplier;
 
 /**
@@ -58,7 +61,7 @@ public enum CacheProperties implements Supplier<String> {
      */
     CACHE_STORE_VALUE("microstream.cache.store.value"),
     /**
-     *statisticsEnabled - Checks whether statistics collection is enabled in this cache.
+     * statisticsEnabled - Checks whether statistics collection is enabled in this cache.
      */
     CACHE_STATISTICS("microstream.cache.statistics"),
     /**
@@ -97,15 +100,37 @@ public enum CacheProperties implements Supplier<String> {
     }
 
     public static <V, K> Factory<CacheLoader<K, V>> getLoaderFactory(Config config) {
-        return null;
+        String factoryClass = config.getOptionalValue(CACHE_LOADER_FACTORY.get(), String.class).orElse("");
+        return getFactoryClass(factoryClass);
     }
 
+
     public static <V, K> Factory<CacheWriter<K, V>> getWriterFactory(Config config) {
-        return null;
+        String factoryClass = config.getOptionalValue(CACHE_WRITER_FACTORY.get(), String.class).orElse("");
+        return getFactoryClass(factoryClass);
     }
 
     public static Factory<ExpiryPolicy> getExpiryFactory(Config config) {
-        return null;
+        String factoryClass = config.getOptionalValue(CACHE_EXPIRES_FACTORY.get(), String.class).orElse("");
+
+        return getFactoryClass(factoryClass);
+    }
+
+    private static <T> T getFactoryClass(String className) {
+        if (className.isBlank()) {
+            return null;
+        }
+        try {
+            Class<T> factory = (Class<T>) Class.forName(className);
+            T instance = ConstructorUtil.create(factory);
+            if (instance instanceof Factory) {
+                return instance;
+            }
+            throw new IllegalArgumentException("The instance class must be a " + Factory.class.getName()
+                    + " implementation");
+        } catch (ClassNotFoundException e) {
+            throw new MicrostreamException("There is an issue to load the class: " + className, e);
+        }
     }
 
     @Override

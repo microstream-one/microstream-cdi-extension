@@ -22,12 +22,12 @@ import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 
-final class ConstructorUtil {
+public final class ConstructorUtil {
     private ConstructorUtil() {
     }
 
 
-    static <T> T create(Class<T> entity) {
+   public static <T> T create(Class<T> entity) {
         List<Constructor<?>> constructors = Stream.
                 of(entity.getDeclaredConstructors())
                 .filter(c -> c.getParameterCount() == 0)

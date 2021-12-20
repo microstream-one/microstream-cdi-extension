@@ -31,8 +31,8 @@ public class App1 {
             ThreadLocalRandom random = ThreadLocalRandom.current();
             int sebastianCounter = random.nextInt(1, 10);
             int otavioCounter = random.nextInt(1, 10);
-            System.out.println(String.format("The counters: Sebastian %d and Otavio %d",
-                    sebastianCounter, otavioCounter));
+            System.out.printf("The counters: Sebastian %d and Otavio %d %n",
+                    sebastianCounter, otavioCounter);
 
             for (int index = 0; index < sebastianCounter; index++) {
                 counter.count(sebastian);

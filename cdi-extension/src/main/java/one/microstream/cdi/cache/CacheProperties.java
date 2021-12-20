@@ -94,10 +94,6 @@ public enum CacheProperties implements Supplier<String> {
         return getBoolean(config, CACHE_STATISTICS);
     }
 
-    private static Boolean getBoolean(Config config, CacheProperties cacheStatistics) {
-        return config.getOptionalValue(cacheStatistics.get(), boolean.class).orElse(false);
-    }
-
     public static <V, K> Factory<CacheLoader<K, V>> getLoaderFactory(Config config) {
         String factoryClass = config.getOptionalValue(CACHE_LOADER_FACTORY.get(), String.class).orElse("");
         return getFactoryClass(factoryClass);
@@ -113,6 +109,10 @@ public enum CacheProperties implements Supplier<String> {
         String factoryClass = config.getOptionalValue(CACHE_EXPIRES_FACTORY.get(), String.class).orElse("");
 
         return getFactoryClass(factoryClass);
+    }
+
+    private static Boolean getBoolean(Config config, CacheProperties cacheStatistics) {
+        return config.getOptionalValue(cacheStatistics.get(), boolean.class).orElse(false);
     }
 
     private static <T> T getFactoryClass(String className) {

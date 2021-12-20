@@ -73,11 +73,13 @@ class MutableConfigurationSupplier<K, V> implements Supplier<MutableConfiguratio
         boolean readThrough = CacheProperties.getReadThrough(config);
         boolean managementEnabled = CacheProperties.getManagementEnabled(config);
         boolean statisticsEnabled = CacheProperties.getStatisticsEnabled(config);
-        Factory<CacheLoader<K, V>> loaderFactory;
-        Factory<CacheWriter<K, V>> writerFactory;
-        Factory<ExpiryPolicy> expiryFactory;
+        Factory<CacheLoader<K, V>> loaderFactory = CacheProperties.getLoaderFactory(config);
+        Factory<CacheWriter<K, V>> writerFactory = CacheProperties.getWriterFactory(config);
+        Factory<ExpiryPolicy> expiryFactory = CacheProperties.getExpiryFactory(config);
 
-        return null;
+        return new MutableConfigurationSupplier<>(cacheProperty, storeByValue, writeThrough,
+                readThrough, managementEnabled, statisticsEnabled,
+                loaderFactory, writerFactory, expiryFactory);
     }
 
     @Override

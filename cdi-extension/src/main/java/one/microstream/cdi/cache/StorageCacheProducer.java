@@ -73,12 +73,13 @@ class StorageCacheProducer {
     @StorageCache
     public <K, V> Cache<K, V> producer(InjectionPoint injectionPoint) {
         StorageCacheProperty<K, V> cacheProperty = StorageCacheProperty.of(injectionPoint);
-
-        LOGGER.info("Loading cache: " + cacheProperty + " the current caches: " + cacheManager.getCacheNames());
-        Cache<K, V> cache;
         String name = cacheProperty.getName();
         Class<K> key = cacheProperty.getKey();
         Class<V> value = cacheProperty.getValue();
+
+        LOGGER.info("Loading cache: " + name + " the current caches: " + cacheManager.getCacheNames());
+
+        Cache<K, V> cache;
         if (Objects.isNull(cacheManager.getCache(name, key, value))) {
             MutableConfigurationSupplier<K, V> supplier = MutableConfigurationSupplier.of(cacheProperty, config);
             LOGGER.info("Cache " + name + " does not exist. Creating with configuration: " + supplier);

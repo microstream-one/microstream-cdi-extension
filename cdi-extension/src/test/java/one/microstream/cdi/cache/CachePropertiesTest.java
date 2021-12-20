@@ -145,5 +145,14 @@ class CachePropertiesTest {
         System.setProperty(CacheProperties.CACHE_LOADER_FACTORY.get(), MockLoaderFactory.class.getName());
         Factory<CacheLoader<Object, Object>> loaderFactory = CacheProperties.getLoaderFactory(config);
         Assertions.assertTrue(loaderFactory instanceof MockLoaderFactory);
+        System.clearProperty(CacheProperties.CACHE_LOADER_FACTORY.get());
+    }
+
+    @Test
+    public void shouldCreateCacheWriterFactory() {
+        System.setProperty(CacheProperties.CACHE_WRITER_FACTORY.get(), MockCacheWriter.class.getName());
+        Factory<CacheLoader<Object, Object>> loaderFactory = CacheProperties.getLoaderFactory(config);
+        Assertions.assertTrue(loaderFactory instanceof MockCacheWriter);
+        System.clearProperty(CacheProperties.CACHE_WRITER_FACTORY.get());
     }
 }

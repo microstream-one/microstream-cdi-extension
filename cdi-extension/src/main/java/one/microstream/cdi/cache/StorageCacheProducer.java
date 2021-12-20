@@ -16,6 +16,7 @@ package one.microstream.cdi.cache;
 
 import one.microstream.cache.types.CacheConfiguration;
 import one.microstream.cache.types.CacheConfigurationPropertyNames;
+import org.eclipse.microprofile.config.Config;
 
 import javax.annotation.PostConstruct;
 import javax.cache.Cache;
@@ -29,6 +30,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Disposes;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
+import javax.inject.Inject;
 import java.util.Objects;
 import java.util.logging.Logger;
 
@@ -43,6 +45,9 @@ class StorageCacheProducer {
     private CachingProvider provider;
 
     private CacheManager cacheManager;
+
+    @Inject
+    private Config config;
 
     @PostConstruct
     void setUp() {
@@ -70,16 +75,14 @@ class StorageCacheProducer {
         StorageCacheProperty<K, V> cacheProperty = StorageCacheProperty.of(injectionPoint);
 
         LOGGER.info("Loading cache: " + cacheProperty + " the current caches: " + cacheManager.getCacheNames());
-        //CacheConfigurationPropertyNames
-        Cache<K, V> cache = null;
+        Cache<K, V> cache;
         String name = cacheProperty.getName();
         Class<K> key = cacheProperty.getKey();
         Class<V> value = cacheProperty.getValue();
         if (Objects.isNull(cacheManager.getCache(name, key, value))) {
-            MutableConfiguration<K, V> configuration = new MutableConfiguration<>();
-            configuration.setTypes(key, value)
-                    .setStoreByValue(false)
-                    .setExpiryPolicyFactory(CreatedExpiryPolicy.factoryOf(Duration.ONE_MINUTE));
+            MutableConfigurationSupplier<K, V> supplier = MutableConfigurationSupplier.of(cacheProperty, config);
+            LOGGER.info("Cache " + name + " does not exist. Creating with configuration: " + supplier);
+            MutableConfiguration<K, V> configuration = supplier.get();
             cache = cacheManager.createCache(name, configuration);
         } else {
             cache = cacheManager.getCache(name);

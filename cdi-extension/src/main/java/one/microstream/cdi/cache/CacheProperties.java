@@ -14,6 +14,8 @@
 
 package one.microstream.cdi.cache;
 
+import org.eclipse.microprofile.config.Config;
+
 import java.util.function.Supplier;
 
 /**
@@ -64,6 +66,30 @@ public enum CacheProperties implements Supplier<String> {
 
     CacheProperties(String value) {
         this.value = value;
+    }
+
+    public static boolean getStoreByValue(Config config) {
+        return getBoolean(config, CACHE_STORE_VALUE);
+    }
+
+    public static boolean getWriteThrough(Config config) {
+        return getBoolean(config, CACHE_WRITE_THROUGH);
+    }
+
+    public static boolean getReadThrough(Config config) {
+        return getBoolean(config, CACHE_READ_THROUGH);
+    }
+
+    public static boolean getManagementEnabled(Config config) {
+        return getBoolean(config, CACHE_MANAGEMENT);
+    }
+
+    public static boolean getStatisticsEnabled(Config config) {
+        return getBoolean(config, CACHE_STATISTICS);
+    }
+
+    private static Boolean getBoolean(Config config, CacheProperties cacheStatistics) {
+        return config.getOptionalValue(cacheStatistics.get(), boolean.class).orElse(false);
     }
 
     @Override

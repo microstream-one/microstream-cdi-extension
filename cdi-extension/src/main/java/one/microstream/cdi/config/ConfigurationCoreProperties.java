@@ -22,7 +22,22 @@ import one.microstream.storage.embedded.configuration.types.EmbeddedStorageConfi
  */
 enum ConfigurationCoreProperties {
     STORAGE_DIRECTORY("microstream.storage.directory", EmbeddedStorageConfigurationPropertyNames.STORAGE_DIRECTORY),
-    STORAGE_FILESYSTEM("microstream.storage.filesystem", EmbeddedStorageConfigurationPropertyNames.STORAGE_FILESYSTEM);
+    STORAGE_FILESYSTEM("microstream.storage.filesystem", EmbeddedStorageConfigurationPropertyNames.STORAGE_FILESYSTEM),
+    DELETION_DIRECTORY("microstream.deletion.directory", EmbeddedStorageConfigurationPropertyNames.DELETION_DIRECTORY),
+    TRUNCATION_DIRECTORY("microstream.truncation.directory", EmbeddedStorageConfigurationPropertyNames.TRUNCATION_DIRECTORY),
+    BACKUP_DIRECTORY("microstream.backup.directory", EmbeddedStorageConfigurationPropertyNames.BACKUP_DIRECTORY),
+    BACKUP_FILESYSTEM("microstream.backup.filesystem", EmbeddedStorageConfigurationPropertyNames.BACKUP_FILESYSTEM),
+    CHANNEL_COUNT("microstream.channel.count", EmbeddedStorageConfigurationPropertyNames.CHANNEL_COUNT),
+    CHANNEL_DIRECTORY_PREFIX("microstream.channel.directory.prefix", EmbeddedStorageConfigurationPropertyNames.CHANNEL_DIRECTORY_PREFIX),
+    DATA_FILE_PREFIX("microstream.data.file.prefix", EmbeddedStorageConfigurationPropertyNames.DATA_FILE_PREFIX),
+    DATA_FILE_SUFFIX("microstream.data.file.suffix", EmbeddedStorageConfigurationPropertyNames.DATA_FILE_SUFFIX),
+    TRANSACTION_FILE_PREFIX("microstream.transaction.file.prefix", EmbeddedStorageConfigurationPropertyNames.TRANSACTION_FILE_PREFIX),
+    TRANSACTION_FILE_SUFFIX("microstream.transaction.file.suffix", EmbeddedStorageConfigurationPropertyNames.TRANSACTION_FILE_SUFFIX),
+    TYPE_DICTIONARY_FILE_NAME("microstream.type.dictionary.file.name", EmbeddedStorageConfigurationPropertyNames.TYPE_DICTIONARY_FILE_NAME),
+    RESCUED_FILE_SUFFIX("microstream.rescued.file.suffix", EmbeddedStorageConfigurationPropertyNames.RESCUED_FILE_SUFFIX),
+    LOCK_FILE_NAME("microstream.lock.file.name", EmbeddedStorageConfigurationPropertyNames.LOCK_FILE_NAME),
+    HOUSEKEEPING_INTERVAL("microstream.housekeeping.interval", EmbeddedStorageConfigurationPropertyNames.HOUSEKEEPING_INTERVAL),
+    HOUSEKEEPING_TIME_BUDGET("microstream.housekeeping.time.budget", EmbeddedStorageConfigurationPropertyNames.HOUSEKEEPING_TIME_BUDGET);
 
     private final String microprofile;
     private final String microstream;

@@ -37,7 +37,13 @@ enum ConfigurationCoreProperties {
     RESCUED_FILE_SUFFIX("microstream.rescued.file.suffix", EmbeddedStorageConfigurationPropertyNames.RESCUED_FILE_SUFFIX),
     LOCK_FILE_NAME("microstream.lock.file.name", EmbeddedStorageConfigurationPropertyNames.LOCK_FILE_NAME),
     HOUSEKEEPING_INTERVAL("microstream.housekeeping.interval", EmbeddedStorageConfigurationPropertyNames.HOUSEKEEPING_INTERVAL),
-    HOUSEKEEPING_TIME_BUDGET("microstream.housekeeping.time.budget", EmbeddedStorageConfigurationPropertyNames.HOUSEKEEPING_TIME_BUDGET);
+    HOUSEKEEPING_TIME_BUDGET("microstream.housekeeping.time.budget", EmbeddedStorageConfigurationPropertyNames.HOUSEKEEPING_TIME_BUDGET),
+    ENTITY_CACHE_THRESHOLD("microstream.entity.cache.threshold", EmbeddedStorageConfigurationPropertyNames.ENTITY_CACHE_THRESHOLD),
+    ENTITY_CACHE_TIMEOUT("microstream.entity.cache.timeout", EmbeddedStorageConfigurationPropertyNames.ENTITY_CACHE_TIMEOUT),
+    DATA_FILE_MINIMUM_SIZE("microstream.data.file.minimum.size", EmbeddedStorageConfigurationPropertyNames.DATA_FILE_MINIMUM_SIZE),
+    DATA_FILE_MAXIMUM_SIZE("microstream.data.file.maximum.size", EmbeddedStorageConfigurationPropertyNames.DATA_FILE_MAXIMUM_SIZE),
+    DATA_FILE_MINIMUM_USE_RATIO("microstream.data.file.minimum.use.ratio", EmbeddedStorageConfigurationPropertyNames.DATA_FILE_MINIMUM_USE_RATIO),
+    DATA_FILE_CLEANUP_HEAD_FILE("microstream.data.file.cleanup.head.file", EmbeddedStorageConfigurationPropertyNames.DATA_FILE_CLEANUP_HEAD_FILE);
 
     private final String microprofile;
     private final String microstream;

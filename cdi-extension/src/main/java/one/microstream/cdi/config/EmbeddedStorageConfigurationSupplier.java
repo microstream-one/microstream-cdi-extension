@@ -14,14 +14,19 @@
 
 package one.microstream.cdi.config;
 
+import one.microstream.configuration.types.ByteSize;
 import one.microstream.storage.embedded.configuration.types.EmbeddedStorageConfiguration;
 import one.microstream.storage.embedded.types.EmbeddedStorageManager;
+import org.eclipse.microprofile.config.Config;
 
 import java.util.function.Supplier;
 
 class EmbeddedStorageConfigurationSupplier implements Supplier<EmbeddedStorageConfiguration> {
+
+
     @Override
     public EmbeddedStorageConfiguration get() {
+
         return null;
     }
 }

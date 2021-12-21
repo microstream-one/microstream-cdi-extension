@@ -72,6 +72,12 @@ private CachingProvider provider;
 private CacheManager cacheManager;
 ```
 
+## Eclipse MicroProfile Configuration
+
+The integration allows to receive all information from the Eclipse MicroProfile Config instead of either a programmatic
+configuration or a single file. 
+Thus, you can overwrite any properties
+
 ## Microstream
 
 MicroStream Data-Store is a native Java object graph storage engine. From a technical point of view it serves one purpose only:

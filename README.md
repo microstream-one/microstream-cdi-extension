@@ -84,7 +84,7 @@ The relation with the properties from [Microstream docs](https://docs.microstrea
 
 There is a list of properties in the ```CacheProperties``` enum.
 
-
+The primary purpose of this configuration is to allow you to explore the Configuration of Cache through Eclipse MicroProfile.
      
 * ```microstream.cache.loader.factory```: cacheLoaderFactory - A CacheLoader should be configured for "Read Through" caches to load values when a cache miss occurs.
 * ```microstream.cache.writer.factory```: cacheWriterFactory - A CacheWriter is used for write-through to an external resource.

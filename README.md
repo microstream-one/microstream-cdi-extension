@@ -76,7 +76,7 @@ private CacheManager cacheManager;
 
 The integration allows to receive all information from the Eclipse MicroProfile Config instead of either a programmatic
 configuration or a single file. 
-Thus, you can overwrite any properties
+Thus, you can overwrite any properties following the good practices in the Market such as[ the Twelve Factor App](https://12factor.net/).
 
 ## Microstream
 

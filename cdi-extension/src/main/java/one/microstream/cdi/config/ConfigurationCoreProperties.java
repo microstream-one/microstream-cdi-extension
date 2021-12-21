@@ -16,6 +16,10 @@ package one.microstream.cdi.config;
 
 import one.microstream.storage.embedded.configuration.types.EmbeddedStorageConfigurationPropertyNames;
 
+/**
+ * The relation with the properties from Microstream docs:
+ * https://docs.microstream.one/manual/storage/configuration/properties.html
+ */
 enum ConfigurationCoreProperties {
     STORAGE_DIRECTORY("microstream.storage.directory", EmbeddedStorageConfigurationPropertyNames.STORAGE_DIRECTORY),
     STORAGE_FILESYSTEM("microstream.storage.filesystem", EmbeddedStorageConfigurationPropertyNames.STORAGE_FILESYSTEM);

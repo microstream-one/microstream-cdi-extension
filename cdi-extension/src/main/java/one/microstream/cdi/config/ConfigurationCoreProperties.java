@@ -21,28 +21,103 @@ import one.microstream.storage.embedded.configuration.types.EmbeddedStorageConfi
  * https://docs.microstream.one/manual/storage/configuration/properties.html
  */
 enum ConfigurationCoreProperties {
+    /**
+     * The base directory of the storage in the file system. Default is "storage" in the working directory.
+     */
     STORAGE_DIRECTORY("microstream.storage.directory", EmbeddedStorageConfigurationPropertyNames.STORAGE_DIRECTORY),
+    /**
+     * The live file system configuration. See storage targets configuration.
+     */
     STORAGE_FILESYSTEM("microstream.storage.filesystem", EmbeddedStorageConfigurationPropertyNames.STORAGE_FILESYSTEM),
+    /**
+     * If configured, the storage will not delete files. Instead of deleting a file it will be moved to this directory.
+     */
     DELETION_DIRECTORY("microstream.deletion.directory", EmbeddedStorageConfigurationPropertyNames.DELETION_DIRECTORY),
+    /**
+     * If configured, files that will get truncated are copied into this directory.
+     */
     TRUNCATION_DIRECTORY("microstream.truncation.directory", EmbeddedStorageConfigurationPropertyNames.TRUNCATION_DIRECTORY),
+    /**
+     * The backup directory.
+     */
     BACKUP_DIRECTORY("microstream.backup.directory", EmbeddedStorageConfigurationPropertyNames.BACKUP_DIRECTORY),
+    /**
+     * The backup file system configuration. See storage targets configuration.
+     */
     BACKUP_FILESYSTEM("microstream.backup.filesystem", EmbeddedStorageConfigurationPropertyNames.BACKUP_FILESYSTEM),
+    /**
+     * The number of threads and number of directories used by the storage engine. Every thread has exclusive access
+     * to its directory. Default is 1.
+     */
     CHANNEL_COUNT("microstream.channel.count", EmbeddedStorageConfigurationPropertyNames.CHANNEL_COUNT),
+    /**
+     * Name prefix of the subdirectories used by the channel threads. Default is "channel_".
+     */
     CHANNEL_DIRECTORY_PREFIX("microstream.channel.directory.prefix", EmbeddedStorageConfigurationPropertyNames.CHANNEL_DIRECTORY_PREFIX),
+    /**
+     * Name prefix of the storage files. Default is "channel_".
+     */
     DATA_FILE_PREFIX("microstream.data.file.prefix", EmbeddedStorageConfigurationPropertyNames.DATA_FILE_PREFIX),
+    /**
+     * Name suffix of the storage files. Default is ".dat".
+     */
     DATA_FILE_SUFFIX("microstream.data.file.suffix", EmbeddedStorageConfigurationPropertyNames.DATA_FILE_SUFFIX),
+    /**
+     * Name prefix of the storage transaction file. Default is "transactions_".
+     */
     TRANSACTION_FILE_PREFIX("microstream.transaction.file.prefix", EmbeddedStorageConfigurationPropertyNames.TRANSACTION_FILE_PREFIX),
+    /**
+     * Name suffix of the storage transaction file. Default is ".sft".
+     */
     TRANSACTION_FILE_SUFFIX("microstream.transaction.file.suffix", EmbeddedStorageConfigurationPropertyNames.TRANSACTION_FILE_SUFFIX),
+    /**
+     * The name of the dictionary file. Default is "PersistenceTypeDictionary.ptd".
+     */
     TYPE_DICTIONARY_FILE_NAME("microstream.type.dictionary.file.name", EmbeddedStorageConfigurationPropertyNames.TYPE_DICTIONARY_FILE_NAME),
+    /**
+     * Name suffix of the storage rescue files. Default is ".bak".
+     */
     RESCUED_FILE_SUFFIX("microstream.rescued.file.suffix", EmbeddedStorageConfigurationPropertyNames.RESCUED_FILE_SUFFIX),
+    /**
+     * Name of the lock file. Default is "used.lock".
+     */
     LOCK_FILE_NAME("microstream.lock.file.name", EmbeddedStorageConfigurationPropertyNames.LOCK_FILE_NAME),
+    /**
+     * Interval for the housekeeping. This is work like garbage collection or cache checking. In combination with
+     * houseKeepingNanoTimeBudget the maximum processor time for housekeeping work can be set. Default is 1 second.
+     */
     HOUSEKEEPING_INTERVAL("microstream.housekeeping.interval", EmbeddedStorageConfigurationPropertyNames.HOUSEKEEPING_INTERVAL),
+    /**
+     * Number of nanoseconds used for each housekeeping cycle. Default is 10 milliseconds = 0.01 seconds.
+     */
     HOUSEKEEPING_TIME_BUDGET("microstream.housekeeping.time.budget", EmbeddedStorageConfigurationPropertyNames.HOUSEKEEPING_TIME_BUDGET),
+    /**
+     * Abstract threshold value for the lifetime of entities in the cache. Default is 1000000000.
+     */
     ENTITY_CACHE_THRESHOLD("microstream.entity.cache.threshold", EmbeddedStorageConfigurationPropertyNames.ENTITY_CACHE_THRESHOLD),
+    /**
+     * Timeout in milliseconds for the entity cache evaluator. If an entity wasn’t
+     * accessed in this timespan it will be removed from the cache. Default is 1 day.
+     */
     ENTITY_CACHE_TIMEOUT("microstream.entity.cache.timeout", EmbeddedStorageConfigurationPropertyNames.ENTITY_CACHE_TIMEOUT),
+    /**
+     * Minimum file size for a data file to avoid cleaning it up. Default is 1024^2 = 1 MiB.
+     */
     DATA_FILE_MINIMUM_SIZE("microstream.data.file.minimum.size", EmbeddedStorageConfigurationPropertyNames.DATA_FILE_MINIMUM_SIZE),
+    /**
+     * Maximum file size for a data file to avoid cleaning it up. Default is 1024^2*8 = 8 MiB.
+     */
     DATA_FILE_MAXIMUM_SIZE("microstream.data.file.maximum.size", EmbeddedStorageConfigurationPropertyNames.DATA_FILE_MAXIMUM_SIZE),
+    /**
+     *
+     * The ratio (value in ]0.0;1.0]) of non-gap data contained in a storage file to prevent the file from being
+     * dissolved. Default is 0.75 (75%).
+     */
     DATA_FILE_MINIMUM_USE_RATIO("microstream.data.file.minimum.use.ratio", EmbeddedStorageConfigurationPropertyNames.DATA_FILE_MINIMUM_USE_RATIO),
+    /**
+     * A flag defining whether the current head file (the only file actively written to)
+     * shall be subjected to file cleanups as well.
+     */
     DATA_FILE_CLEANUP_HEAD_FILE("microstream.data.file.cleanup.head.file", EmbeddedStorageConfigurationPropertyNames.DATA_FILE_CLEANUP_HEAD_FILE);
 
     private final String microprofile;

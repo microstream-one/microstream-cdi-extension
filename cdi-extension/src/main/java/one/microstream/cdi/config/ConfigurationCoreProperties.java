@@ -121,6 +121,7 @@ enum ConfigurationCoreProperties {
     DATA_FILE_CLEANUP_HEAD_FILE("microstream.data.file.cleanup.head.file", EmbeddedStorageConfigurationPropertyNames.DATA_FILE_CLEANUP_HEAD_FILE);
 
     private final String microprofile;
+
     private final String microstream;
 
     ConfigurationCoreProperties(String microprofile, String microstream) {

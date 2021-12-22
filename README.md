@@ -82,7 +82,29 @@ Thus, you can overwrite any properties following the good practices in the Marke
 
 The relation with the properties from [Microstream docs](https://docs.microstream.one/manual/storage/configuration/properties.html):
 
-
+* ```microstream.storage.directory```: storage-directory; The base directory of the storage in the file system. Default is "storage" in the working directory.
+* ```microstream.storage.filesystem```: storage-filesystem; The live file system configuration. See storage targets configuration.
+* ```microstream.deletion.directory```: deletion-directory; If configured, the storage will not delete files. Instead of deleting a file it will be moved to this directory.
+* ```microstream.truncation.directory```: truncation-directory; If configured, files that will get truncated are copied into this directory.
+* ```microstream.backup.directory```: backup-directory; The backup directory.
+* ```microstream.backup.filesystem```: backup-filesystem; The backup file system configuration. See storage targets configuration.
+* ```microstream.channel.count```: channel-count; The number of threads and number of directories used by the storage engine. Every thread has exclusive access to its directory. Default is 1.
+* ```microstream.channel.directory.prefix```: channel-directory-prefix; Name prefix of the subdirectories used by the channel threads. Default is "channel_".
+* ```microstream.data.file.prefix```: data-file-prefix; Name prefix of the storage files. Default is "channel_".
+* ```microstream.data.file.suffix```: data-file-suffix; Name suffix of the storage files. Default is ".dat".
+* ```microstream.transaction.file.prefix```: transaction-file-prefix; Name prefix of the storage transaction file. Default is "transactions_".
+* ```microstream.transaction.file.suffix```: transaction-file-suffix; Name suffix of the storage transaction file. Default is ".sft".
+* ```microstream.type.dictionary.file.name```: type-dictionary-file-name; The name of the dictionary file. Default is "PersistenceTypeDictionary.ptd".
+* ```microstream.rescued.file.suffix```: rescued-file-suffix; Name suffix of the storage rescue files. Default is ".bak".
+* ```microstream.lock.file.name```: lock-file-name; Name of the lock file. Default is "used.lock".
+* ```microstream.housekeeping.interval```: housekeeping-interval; Interval for the housekeeping. This is work like garbage collection or cache checking. In combination with houseKeepingNanoTimeBudget the maximum processor time for housekeeping work can be set. Default is 1 second.
+* ```microstream.housekeeping.time.budget```: housekeeping-time-budget; Number of nanoseconds used for each housekeeping cycle. Default is 10 milliseconds = 0.01 seconds.
+* ```microstream.entity.cache.threshold```: entity-cache-threshold; Abstract threshold value for the lifetime of entities in the cache. Default is 1000000000.
+* ```microstream.entity.cache.timeout```: entity-cache-timeout; Timeout in milliseconds for the entity cache evaluator. If an entity wasn’t accessed in this timespan it will be removed from the cache. Default is 1 day.
+* ```microstream.data.file.minimum.size```: data-file-minimum-size; Minimum file size for a data file to avoid cleaning it up. Default is 1024^2 = 1 MiB.
+* ```microstream.data.file.maximum.size```: data-file-maximum-size; Maximum file size for a data file to avoid cleaning it up. Default is 1024^2*8 = 8 MiB.
+* ```microstream.data.file.minimum.use.ratio```: data-file-minimum-use-ratio; The ratio (value in ]0.0;1.0]) of non-gap data contained in a storage file to prevent the file from being dissolved. Default is 0.75 (75%).
+* ```microstream.data.file.cleanup.head.file```: data-file-cleanup-head-file; A flag defining whether the current head file (the only file actively written to) shall be subjected to file cleanups as well.
 
 ### Cache
 

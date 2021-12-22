@@ -15,6 +15,11 @@
 package one.microstream.cdi.config;
 
 import one.microstream.storage.embedded.configuration.types.EmbeddedStorageConfigurationPropertyNames;
+import org.eclipse.microprofile.config.Config;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 /**
  * The relation with the properties from Microstream docs:
@@ -135,5 +140,15 @@ enum ConfigurationCoreProperties {
 
     public String getMicrostream() {
         return microstream;
+    }
+
+    public static Map<String, String> getProperties(Config config) {
+        Map<String, String> properties = new HashMap<>();
+
+        for (ConfigurationCoreProperties property : ConfigurationCoreProperties.values()) {
+            Optional<String> optional = config.getOptionalValue(property.getMicroprofile(), String.class);
+            optional.ifPresent(v -> properties.put(property.getMicrostream(), v));
+        }
+        return properties;
     }
 }

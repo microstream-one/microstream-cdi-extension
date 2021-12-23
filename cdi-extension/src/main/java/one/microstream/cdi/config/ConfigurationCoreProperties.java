@@ -123,7 +123,12 @@ enum ConfigurationCoreProperties {
      * A flag defining whether the current head file (the only file actively written to)
      * shall be subjected to file cleanups as well.
      */
-    DATA_FILE_CLEANUP_HEAD_FILE("microstream.data.file.cleanup.head.file", EmbeddedStorageConfigurationPropertyNames.DATA_FILE_CLEANUP_HEAD_FILE);
+    DATA_FILE_CLEANUP_HEAD_FILE("microstream.data.file.cleanup.head.file", EmbeddedStorageConfigurationPropertyNames.DATA_FILE_CLEANUP_HEAD_FILE),
+    /**
+     * Allow custom properties in through Microprofile, using this prefix. E.g.:
+     * If you want to include the "custom.test" property, you will set it as "microstream.property.custom.test"
+     */
+    CUSTOM("microstream.property", "");
 
     private final String microprofile;
 

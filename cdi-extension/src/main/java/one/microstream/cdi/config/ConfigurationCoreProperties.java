@@ -129,7 +129,12 @@ enum ConfigurationCoreProperties {
      * Allow custom properties in through Microprofile, using this prefix. E.g.:
      * If you want to include the "custom.test" property, you will set it as "microstream.property.custom.test"
      */
-    CUSTOM("microstream.property", "");
+    CUSTOM("microstream.property", ""),
+    /**
+     * Define if the read mode to read the properties will be by either Eclipse MicroProfile using the entity mapper
+     * or reading the file with the method. By default, it is false.
+     */
+    MICROPROFILE_READ("microstream.microprofile.active", "");
 
     private final String microprofile;
 
@@ -151,6 +156,7 @@ enum ConfigurationCoreProperties {
     /**
      * Check if there is a relation between the Microstream and Microstream properties.
      * If not, it is because it is a custom property.
+     *
      * @return true if miscrostream is {@link String#isBlank()}
      */
     public boolean isCustom() {
@@ -159,11 +165,13 @@ enum ConfigurationCoreProperties {
 
     /**
      * Return true if there is a relation between the Microstream and Microstream properties.
+     *
      * @return the positive of {@link ConfigurationCoreProperties#isCustom()}
      */
     boolean isMapped() {
         return !isCustom();
     }
+
     public static Map<String, String> getProperties(Config config) {
         Map<String, String> properties = new HashMap<>();
 
@@ -175,7 +183,7 @@ enum ConfigurationCoreProperties {
                 .stream(config.getPropertyNames().spliterator(), false)
                 .filter(k -> k.contains(CUSTOM.getMicroprofile()))
                 .forEach(k -> {
-                    String key = k.split(CUSTOM.getMicroprofile()+".")[1];
+                    String key = k.split(CUSTOM.getMicroprofile() + ".")[1];
                     String value = config.getValue(k, String.class);
                     properties.put(key, value);
                 });

@@ -106,7 +106,6 @@ The relation with the properties from [Microstream docs](https://docs.microstrea
 * ```microstream.data.file.minimum.use.ratio```: data-file-minimum-use-ratio; The ratio (value in ]0.0;1.0]) of non-gap data contained in a storage file to prevent the file from being dissolved. Default is 0.75 (75%).
 * ```microstream.data.file.cleanup.head.file```: data-file-cleanup-head-file; A flag defining whether the current head file (the only file actively written to) shall be subjected to file cleanups as well.
 * ```microstream.property```: llow custom properties in through Microprofile, using this prefix. E.g.: If you want to include the "custom.test" property, you will set it as "microstream.property.custom.test"
-* ```microstream.microprofile.active```: Define if the read mode to read the properties will be by either Eclipse MicroProfile using the entity mapper or reading the file with the method. By default, it is false.
 
 ### Cache
 

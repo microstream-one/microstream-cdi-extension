@@ -130,11 +130,6 @@ enum ConfigurationCoreProperties {
      * If you want to include the "custom.test" property, you will set it as "microstream.property.custom.test"
      */
     CUSTOM("microstream.property", ""),
-    /**
-     * Define if the read mode to read the properties will be by either Eclipse MicroProfile using the entity mapper
-     * or reading the file with the method. By default, it is false.
-     */
-    MICROPROFILE_READ("microstream.microprofile.active", "");
 
     private final String microprofile;
 

@@ -16,10 +16,13 @@ package one.microstream.cdi;
 
 import one.microstream.storage.embedded.configuration.types.EmbeddedStorageConfiguration;
 import one.microstream.storage.types.StorageManager;
+import org.eclipse.microprofile.config.Config;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Disposes;
 import javax.enterprise.inject.Produces;
+import javax.inject.Inject;
+import java.util.Map;
 import java.util.logging.Logger;
 
 @ApplicationScoped
@@ -29,11 +32,17 @@ class StorageManagerProducer {
 
     private static final String DEFAULT_CONFIGURATION = "META-INF/microprofile-config.properties";
 
+    @Inject
+    private Config config;
+
     @Produces
     @ApplicationScoped
     public StorageManager getStoreManager() {
-        LOGGER.info("Loading default StorageManager loading from MicroProfile Config file: " +
-                DEFAULT_CONFIGURATION);
+
+        Map<String, String> properties = ConfigurationCoreProperties.getProperties(config);
+        LOGGER.info("Loading default StorageManager loading from MicroProfile Config properties. The keys: "
+        + properties.keySet());
+
         return EmbeddedStorageConfiguration.load(DEFAULT_CONFIGURATION)
                 .createEmbeddedStorageFoundation()
                 .createEmbeddedStorageManager().start();

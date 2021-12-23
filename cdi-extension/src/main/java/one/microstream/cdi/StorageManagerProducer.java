@@ -14,7 +14,7 @@
 
 package one.microstream.cdi;
 
-import one.microstream.storage.embedded.configuration.types.EmbeddedStorageConfiguration;
+import one.microstream.storage.embedded.configuration.types.EmbeddedStorageConfigurationBuilder;
 import one.microstream.storage.types.StorageManager;
 import org.eclipse.microprofile.config.Config;
 
@@ -30,8 +30,6 @@ class StorageManagerProducer {
 
     private static final Logger LOGGER = Logger.getLogger(StorageManagerProducer.class.getName());
 
-    private static final String DEFAULT_CONFIGURATION = "META-INF/microprofile-config.properties";
-
     @Inject
     private Config config;
 
@@ -41,11 +39,13 @@ class StorageManagerProducer {
 
         Map<String, String> properties = ConfigurationCoreProperties.getProperties(config);
         LOGGER.info("Loading default StorageManager loading from MicroProfile Config properties. The keys: "
-        + properties.keySet());
+                + properties.keySet());
 
-        return EmbeddedStorageConfiguration.load(DEFAULT_CONFIGURATION)
-                .createEmbeddedStorageFoundation()
-                .createEmbeddedStorageManager().start();
+        EmbeddedStorageConfigurationBuilder builder = EmbeddedStorageConfigurationBuilder.New();
+        for (Map.Entry<String, String> entry : properties.entrySet()) {
+            builder.set(entry.getKey(), entry.getValue());
+        }
+        return builder.createEmbeddedStorageFoundation().start();
     }
 
     public void dispose(@Disposes StorageManager manager) {

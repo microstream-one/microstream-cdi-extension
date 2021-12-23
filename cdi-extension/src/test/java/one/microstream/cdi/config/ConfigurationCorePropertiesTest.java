@@ -57,6 +57,7 @@ class ConfigurationCorePropertiesTest {
         Map<String, String> properties = ConfigurationCoreProperties.getProperties(config);
         String value = properties.get(customProperty);
         Assertions.assertEquals(value, "random_value");
+        System.clearProperty(CUSTOM.getMicroprofile() + "." + customProperty);
     }
 
 }

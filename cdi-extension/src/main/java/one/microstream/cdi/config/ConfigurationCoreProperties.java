@@ -19,7 +19,6 @@ import org.eclipse.microprofile.config.Config;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -147,14 +146,14 @@ enum ConfigurationCoreProperties {
         return microstream;
     }
 
-    public boolean isNotPropertyMapper() {
+    public boolean isCustom() {
         return this.microstream.isBlank();
     }
     public static Map<String, String> getProperties(Config config) {
         Map<String, String> properties = new HashMap<>();
 
         for (ConfigurationCoreProperties property : ConfigurationCoreProperties.values()) {
-            if (property.isNotPropertyMapper()) {
+            if (property.isCustom()) {
                 continue;
             }
             Optional<String> optional = config.getOptionalValue(property.getMicroprofile(), String.class);

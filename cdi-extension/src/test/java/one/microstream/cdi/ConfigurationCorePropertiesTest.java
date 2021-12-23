@@ -12,7 +12,7 @@
  *    limitations under the License.
  */
 
-package one.microstream.cdi.config;
+package one.microstream.cdi;
 
 import one.microstream.cdi.ConfigurationCoreProperties;
 import one.microstream.cdi.test.CDIExtension;

@@ -167,14 +167,16 @@ enum ConfigurationCoreProperties {
         Map<String, String> properties = new HashMap<>();
 
         Arrays.stream(ConfigurationCoreProperties.values())
-                .filter(ConfigurationCoreProperties::)
-        for (ConfigurationCoreProperties property : ConfigurationCoreProperties.values()) {
-            if (property.isCustom()) {
-                continue;
-            }
-            Optional<String> optional = config.getOptionalValue(property.getMicroprofile(), String.class);
-            optional.ifPresent(v -> properties.put(property.getMicrostream(), v));
-        }
+                .filter(ConfigurationCoreProperties::isMapped)
+                .forEach(p -> addProperty(config, properties, p));
+
+
         return properties;
+    }
+
+    private static void addProperty(Config config, Map<String, String> properties,
+                                    ConfigurationCoreProperties property) {
+        Optional<String> optional = config.getOptionalValue(property.getMicroprofile(), String.class);
+        optional.ifPresent(v -> properties.put(property.getMicrostream(), v));
     }
 }

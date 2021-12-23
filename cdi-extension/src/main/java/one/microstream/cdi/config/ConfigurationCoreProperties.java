@@ -17,6 +17,7 @@ package one.microstream.cdi.config;
 import one.microstream.storage.embedded.configuration.types.EmbeddedStorageConfigurationPropertyNames;
 import org.eclipse.microprofile.config.Config;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -154,9 +155,19 @@ enum ConfigurationCoreProperties {
     public boolean isCustom() {
         return this.microstream.isBlank();
     }
+
+    /**
+     * Return true if there is a relation between the Microstream and Microstream properties.
+     * @return the positive of {@link ConfigurationCoreProperties#isCustom()}
+     */
+    boolean isMapped() {
+        return !isCustom();
+    }
     public static Map<String, String> getProperties(Config config) {
         Map<String, String> properties = new HashMap<>();
 
+        Arrays.stream(ConfigurationCoreProperties.values())
+                .filter(ConfigurationCoreProperties::)
         for (ConfigurationCoreProperties property : ConfigurationCoreProperties.values()) {
             if (property.isCustom()) {
                 continue;

@@ -27,7 +27,7 @@ import java.util.stream.StreamSupport;
  * The relation with the properties from Microstream docs:
  * https://docs.microstream.one/manual/storage/configuration/properties.html
  */
-enum ConfigurationCoreProperties {
+public enum ConfigurationCoreProperties {
     /**
      * The base directory of the storage in the file system. Default is "storage" in the working directory.
      */

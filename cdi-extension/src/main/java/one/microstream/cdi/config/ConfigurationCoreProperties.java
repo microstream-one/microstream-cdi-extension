@@ -146,6 +146,11 @@ enum ConfigurationCoreProperties {
         return microstream;
     }
 
+    /**
+     * Check if there is a relation between the Microstream and Microstream properties.
+     * If not, it is because it is a custom property.
+     * @return true if miscrostream is {@link String#isBlank()}
+     */
     public boolean isCustom() {
         return this.microstream.isBlank();
     }

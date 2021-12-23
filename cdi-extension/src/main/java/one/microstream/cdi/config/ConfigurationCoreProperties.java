@@ -175,7 +175,7 @@ enum ConfigurationCoreProperties {
                 .stream(config.getPropertyNames().spliterator(), false)
                 .filter(k -> k.contains(CUSTOM.getMicroprofile()))
                 .forEach(k -> {
-                    String key = k.split(CUSTOM.getMicroprofile()+".")[0];
+                    String key = k.split(CUSTOM.getMicroprofile()+".")[1];
                     String value = config.getValue(k, String.class);
                     properties.put(key, value);
                 });

@@ -23,6 +23,7 @@ import javax.inject.Inject;
 
 import java.util.Map;
 
+import static one.microstream.cdi.config.ConfigurationCoreProperties.CUSTOM;
 import static one.microstream.cdi.config.ConfigurationCoreProperties.STORAGE_DIRECTORY;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -47,6 +48,15 @@ class ConfigurationCorePropertiesTest {
         Assertions.assertNotNull(storageDirectory);
         Assertions.assertEquals(storageDirectory, "target/");
         System.clearProperty(STORAGE_DIRECTORY.getMicroprofile());
+    }
+
+    @Test
+    public void shouldAddCustomConfiguration() {
+        String customProperty = "custom.test";
+        System.setProperty(CUSTOM.getMicroprofile() + "." + customProperty, "random_value");
+        Map<String, String> properties = ConfigurationCoreProperties.getProperties(config);
+        String value = properties.get(customProperty);
+        Assertions.assertEquals(value, "random_value");
     }
 
 }

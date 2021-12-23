@@ -21,6 +21,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.StreamSupport;
 
 /**
  * The relation with the properties from Microstream docs:
@@ -170,6 +171,14 @@ enum ConfigurationCoreProperties {
                 .filter(ConfigurationCoreProperties::isMapped)
                 .forEach(p -> addProperty(config, properties, p));
 
+        StreamSupport
+                .stream(config.getPropertyNames().spliterator(), false)
+                .filter(k -> k.contains(CUSTOM.getMicroprofile()))
+                .forEach(k -> {
+                    String key = k.split(CUSTOM.getMicroprofile()+".")[0];
+                    String value = config.getValue(k, String.class);
+                    properties.put(key, value);
+                });
 
         return properties;
     }

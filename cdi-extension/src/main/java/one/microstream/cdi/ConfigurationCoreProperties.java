@@ -12,7 +12,7 @@
  *    limitations under the License.
  */
 
-package one.microstream.cdi.config;
+package one.microstream.cdi;
 
 import one.microstream.storage.embedded.configuration.types.EmbeddedStorageConfigurationPropertyNames;
 import org.eclipse.microprofile.config.Config;

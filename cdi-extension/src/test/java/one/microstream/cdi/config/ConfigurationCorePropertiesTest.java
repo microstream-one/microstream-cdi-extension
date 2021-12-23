@@ -14,6 +14,7 @@
 
 package one.microstream.cdi.config;
 
+import one.microstream.cdi.ConfigurationCoreProperties;
 import one.microstream.cdi.test.CDIExtension;
 import org.eclipse.microprofile.config.Config;
 import org.junit.jupiter.api.Assertions;
@@ -23,9 +24,8 @@ import javax.inject.Inject;
 
 import java.util.Map;
 
-import static one.microstream.cdi.config.ConfigurationCoreProperties.CUSTOM;
-import static one.microstream.cdi.config.ConfigurationCoreProperties.STORAGE_DIRECTORY;
-import static org.junit.jupiter.api.Assertions.*;
+import static one.microstream.cdi.ConfigurationCoreProperties.CUSTOM;
+import static one.microstream.cdi.ConfigurationCoreProperties.STORAGE_DIRECTORY;
 
 @CDIExtension
 class ConfigurationCorePropertiesTest {

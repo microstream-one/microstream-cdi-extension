@@ -129,7 +129,7 @@ enum ConfigurationCoreProperties {
      * Allow custom properties in through Microprofile, using this prefix. E.g.:
      * If you want to include the "custom.test" property, you will set it as "microstream.property.custom.test"
      */
-    CUSTOM("microstream.property", ""),
+    CUSTOM("microstream.property", "");
 
     private final String microprofile;
 

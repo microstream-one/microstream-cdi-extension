@@ -19,6 +19,7 @@ import org.eclipse.microprofile.config.Config;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -114,7 +115,6 @@ enum ConfigurationCoreProperties {
      */
     DATA_FILE_MAXIMUM_SIZE("microstream.data.file.maximum.size", EmbeddedStorageConfigurationPropertyNames.DATA_FILE_MAXIMUM_SIZE),
     /**
-     *
      * The ratio (value in ]0.0;1.0]) of non-gap data contained in a storage file to prevent the file from being
      * dissolved. Default is 0.75 (75%).
      */
@@ -151,6 +151,9 @@ enum ConfigurationCoreProperties {
         Map<String, String> properties = new HashMap<>();
 
         for (ConfigurationCoreProperties property : ConfigurationCoreProperties.values()) {
+            if (property.microstream.isBlank()) {
+                continue;
+            }
             Optional<String> optional = config.getOptionalValue(property.getMicroprofile(), String.class);
             optional.ifPresent(v -> properties.put(property.getMicrostream(), v));
         }

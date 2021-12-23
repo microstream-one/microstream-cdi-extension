@@ -23,6 +23,7 @@ import javax.inject.Inject;
 
 import java.util.Map;
 
+import static one.microstream.cdi.config.ConfigurationCoreProperties.STORAGE_DIRECTORY;
 import static org.junit.jupiter.api.Assertions.*;
 
 @CDIExtension
@@ -36,6 +37,16 @@ class ConfigurationCorePropertiesTest {
         Map<String, String> properties = ConfigurationCoreProperties.getProperties(config);
         Assertions.assertNotNull(properties);
         Assertions.assertTrue(properties.isEmpty());
+    }
+
+    @Test
+    public void shouldLoadPropertiesFromConfiguration() {
+        System.setProperty(STORAGE_DIRECTORY.getMicroprofile(), "target/");
+        Map<String, String> properties = ConfigurationCoreProperties.getProperties(config);
+        String storageDirectory = properties.get(STORAGE_DIRECTORY.getMicrostream());
+        Assertions.assertNotNull(storageDirectory);
+        Assertions.assertEquals(storageDirectory, "target/");
+        System.clearProperty(STORAGE_DIRECTORY.getMicroprofile());
     }
 
 }

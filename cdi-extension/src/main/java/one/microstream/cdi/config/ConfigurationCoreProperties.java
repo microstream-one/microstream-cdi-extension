@@ -147,11 +147,14 @@ enum ConfigurationCoreProperties {
         return microstream;
     }
 
+    public boolean isNotPropertyMapper() {
+        return this.microstream.isBlank();
+    }
     public static Map<String, String> getProperties(Config config) {
         Map<String, String> properties = new HashMap<>();
 
         for (ConfigurationCoreProperties property : ConfigurationCoreProperties.values()) {
-            if (property.microstream.isBlank()) {
+            if (property.isNotPropertyMapper()) {
                 continue;
             }
             Optional<String> optional = config.getOptionalValue(property.getMicroprofile(), String.class);

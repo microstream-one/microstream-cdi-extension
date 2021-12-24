@@ -78,6 +78,18 @@ The integration allows receiving all information from the Eclipse MicroProfile C
 configuration or a single file.
 Thus, you can overwrite any properties following the good practices in the Market, such as [the Twelve-Factor App](https://12factor.net/).
 
+By default, Eclipse Microprofile will read all the properties and do a parser to Microstream, with the properties parses below. Furthermore,  you can read the properties directly as the Microstream way.
+
+It will use the Eclipse Microprofile to read/parse the properties.
+
+```java
+@Inject
+private NameStorage nameStorage;
+```
+
+
+
+
 ### Core
 
 The relation with the properties from [Microstream docs](https://docs.microstream.one/manual/storage/configuration/properties.html):

@@ -87,6 +87,14 @@ It will use the Eclipse Microprofile to read/parse the properties.
 private NameStorage nameStorage;
 ```
 
+This injection will look in the ```microprofile-config.properties``` file to the property that will be a file to load directly by Micrscrostream with the ``EmbeddedStorageConfiguration.load(value);`` method.
+
+```java
+@Inject
+@ConfigProperty(name = "microstream.ini")
+private NameStorage nameStorage;
+```
+
 
 
 

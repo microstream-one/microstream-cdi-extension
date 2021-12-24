@@ -28,7 +28,7 @@ import javax.inject.Inject;
 public class StorageManagerConverterXMLTest {
 
     @Inject
-    @ConfigProperty(name = "microstream-xml")
+    @ConfigProperty(name = "microstream.xml")
     private StorageManager manager;
 
     @Test

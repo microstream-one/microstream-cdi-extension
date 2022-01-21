@@ -29,6 +29,9 @@ public class App {
 
             System.out.println("The names: " + service.getNames());
             service.add("Sebastian");
+            service.add("Otavio");
+            service.add("Ada");
+            service.add("Mari");
         }
         System.exit(0);
     }

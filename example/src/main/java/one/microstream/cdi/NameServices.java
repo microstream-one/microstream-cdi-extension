@@ -23,7 +23,6 @@ public class NameServices {
     @Inject
     private NameStorage nameStorage;
 
-    @UpdateStorage
     public void add(String name) {
         this.nameStorage.add(name);
     }

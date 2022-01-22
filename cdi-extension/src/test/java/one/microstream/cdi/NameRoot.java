@@ -1,5 +1,5 @@
 /*
- *    Copyright 2021 Otavio Santana
+ *    Copyright 2022 Otavio Santana
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *   you may not use this file except in compliance with the License.
@@ -11,7 +11,6 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
 package one.microstream.cdi;
 
 import java.util.Collections;
@@ -19,6 +18,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+@Storage
 public class NameRoot {
 
     private Set<String> names;

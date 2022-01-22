@@ -32,6 +32,10 @@ public class StorageCacheProducerTest {
     private Cache<Integer, String> cache;
 
     @Inject
+    @StorageCache("jcache2")
+    private Cache<Integer, String> cacheB;
+
+    @Inject
     private BeanManager beanManager;
 
     @Test
@@ -44,6 +48,14 @@ public class StorageCacheProducerTest {
     public void shouldNotCreateNonQualifierCache() {
         Set<Bean<?>> beans = beanManager.getBeans(Cache.class);
         Assertions.assertEquals(0, beans.size());
+    }
+
+    @Test
+    public void shouldShouldHaveDifferentInstance() {
+        cache.put(1, "one");
+        Assertions.assertNotEquals(cache, cacheB);
+        Assertions.assertTrue(cache.containsKey(1));
+        Assertions.assertFalse(cacheB.containsKey(1));
     }
 
 

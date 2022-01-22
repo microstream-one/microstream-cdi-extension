@@ -13,8 +13,39 @@
  */
 package one.microstream.cdi.extension;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ConstructorUtilTest {
 
+    @Test
+    @DisplayName("Should return NPE when it uses")
+    public void shouldReturnNPEWhenThereIsNull() {
+        Assertions.assertThrows(NullPointerException.class, () -> ConstructorUtil.create(null));
+    }
+
+    @Test
+    public void shouldReturnErrorWhenThereIsInterface() {
+        Assertions.assertThrows(ConstructorException.class, () -> ConstructorUtil.create(Animal.class));
+    }
+
+    @Test
+    public void shouldReturnErrorWhenThereNoDefaultConstructor() {
+        Assertions.assertThrows(ConstructorException.class, () -> ConstructorUtil.create(Lion.class));
+    }
+
+    @Test
+    public void shouldReturnConstructor() {
+        Tiger tiger = ConstructorUtil.create(Tiger.class);
+        Assertions.assertNotNull(tiger);
+    }
+
+    @Test
+    public void shouldCreateDefaultConstructor() {
+        Cat cat = ConstructorUtil.create(Cat.class);
+        Assertions.assertNotNull(cat);
+    }
 }

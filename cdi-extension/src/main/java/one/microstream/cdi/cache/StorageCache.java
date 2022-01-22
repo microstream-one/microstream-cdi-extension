@@ -26,7 +26,7 @@ import java.lang.annotation.Target;
  * https://docs.microstream.one/manual/cache/getting-started.html
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.TYPE, ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER})
+@Target({ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER})
 @Qualifier
 public @interface StorageCache {
     /**

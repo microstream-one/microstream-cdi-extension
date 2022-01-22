@@ -13,12 +13,18 @@
  */
 package one.microstream.cdi;
 
+import one.microstream.cdi.extension.BeanManagers;
 import one.microstream.cdi.test.CDIExtension;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import javax.enterprise.context.spi.Contextual;
+import javax.enterprise.context.spi.CreationalContext;
+import javax.enterprise.inject.spi.Bean;
+import javax.enterprise.inject.spi.BeanManager;
 import javax.inject.Inject;
+import java.util.Set;
 
 @CDIExtension
 public class StorageTest {
@@ -26,9 +32,24 @@ public class StorageTest {
     @Inject
     private NameRoot nameRoot;
 
+    @Inject
+    private BeanManager beanManager;
+
     @Test
     @DisplayName("Should check if it create an instance by annotation")
     public void shouldCreateInstance() {
         Assertions.assertNotNull(this.nameRoot);
+    }
+
+    @Test
+    public void shouldCreateNameRootInjection() {
+        nameRoot.add("Otavio");
+        nameRoot.add("Ada");
+        Set<Bean<?>> beans = beanManager.getBeans(NameRoot.class);
+        Assertions.assertFalse(beans.isEmpty());
+        NameRoot instance = BeanManagers.getInstance(NameRoot.class);
+        Assertions.assertEquals(instance, nameRoot);
+        Assertions.assertEquals(instance.getNames(), nameRoot.getNames());
+
     }
 }

@@ -13,5 +13,22 @@
  */
 package one.microstream.cdi;
 
+import one.microstream.cdi.test.CDIExtension;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import javax.inject.Inject;
+
+@CDIExtension
 public class StorageTest {
+
+    @Inject
+    private NameRoot nameRoot;
+
+    @Test
+    @DisplayName("Should check if it create an instance by annotation")
+    public void shouldCreateInstance() {
+        Assertions.assertNotNull(this.nameRoot);
+    }
 }

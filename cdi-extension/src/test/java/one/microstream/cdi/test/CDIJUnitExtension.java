@@ -63,8 +63,9 @@ class CDIJUnitExtension implements BeforeAllCallback, AfterAllCallback, BeforeEa
     private Consumer<Object> inject() {
         return instance ->  {
             final BeanManager manager = container.getBeanManager();
-            final AnnotatedType<?> annotatedType = manager.createAnnotatedType(instance.getClass());
-            final InjectionTarget injectionTarget = manager.createInjectionTarget(annotatedType);
+            final AnnotatedType<Object> annotatedType = manager
+                    .createAnnotatedType((Class<Object>) instance.getClass());
+            final InjectionTarget<Object> injectionTarget = manager.createInjectionTarget(annotatedType);
             context = manager.createCreationalContext(null);
             injectionTarget.inject(instance, context);
         };

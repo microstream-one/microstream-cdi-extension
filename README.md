@@ -48,6 +48,14 @@ You can use Microsctream as a cache as well, thanks to the ```StorageCache``` an
 private Cache<String, Integer> counter;
 ```
 
+You have the option to declare more than one cache from the same configuration from the name.
+
+```java
+@Inject
+@StorageCache("jcache2")
+private Cache<String, Integer> counter;
+```
+
 You also have the option to inject both ```CachingProvider``` and ```CacheManager``` using CDI.
 
 ```java

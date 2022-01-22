@@ -13,6 +13,6 @@
  */
 package one.microstream.cdi.extension;
 
-public interface Animal {
+interface Animal {
 
 }

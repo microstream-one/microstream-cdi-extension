@@ -13,7 +13,7 @@
  */
 package one.microstream.cdi.extension;
 
-public class Tiger {
+class Tiger {
 
     Tiger() {
     }

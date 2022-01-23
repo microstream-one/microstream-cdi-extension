@@ -125,17 +125,35 @@ public enum CacheProperties implements Supplier<String> {
         return getBoolean(config, CACHE_STATISTICS);
     }
 
+    /**
+     * Loads the properties {@link CacheProperties#CACHE_LOADER_FACTORY} from {@link Config}
+     * the respective value
+     * @param config the Eclipse Microprofile instance
+     * @return the Factory from {@link Config} or null
+     */
     static <V, K> Factory<CacheLoader<K, V>> getLoaderFactory(Config config) {
         String factoryClass = config.getOptionalValue(CACHE_LOADER_FACTORY.get(), String.class).orElse("");
         return getFactoryClass(factoryClass);
     }
 
 
+    /**
+     * Loads the properties {@link CacheProperties#CACHE_WRITER_FACTORY} from {@link Config}
+     * the respective value
+     * @param config the Eclipse Microprofile instance
+     * @return the Factory from {@link Config} or null
+     */
     static <V, K> Factory<CacheWriter<K, V>> getWriterFactory(Config config) {
         String factoryClass = config.getOptionalValue(CACHE_WRITER_FACTORY.get(), String.class).orElse("");
         return getFactoryClass(factoryClass);
     }
 
+    /**
+     * Loads the properties {@link CacheProperties#CACHE_EXPIRES_FACTORY} from {@link Config}
+     * the respective value
+     * @param config the Eclipse Microprofile instance
+     * @return the Factory from {@link Config} or null
+     */
     static Factory<ExpiryPolicy> getExpiryFactory(Config config) {
         String factoryClass = config.getOptionalValue(CACHE_EXPIRES_FACTORY.get(), String.class).orElse("");
 

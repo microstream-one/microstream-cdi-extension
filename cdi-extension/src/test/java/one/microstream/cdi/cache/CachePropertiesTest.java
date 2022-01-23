@@ -40,6 +40,18 @@ class CachePropertiesTest {
     }
 
     @Test
+    public void shouldReturnErrorWhenConfigIsNull() {
+        Assertions.assertThrows(NullPointerException.class, () -> CacheProperties.getStoreByValue(null));
+        Assertions.assertThrows(NullPointerException.class, () -> CacheProperties.getWriteThrough(null));
+        Assertions.assertThrows(NullPointerException.class, () -> CacheProperties.getReadThrough(null));
+        Assertions.assertThrows(NullPointerException.class, () -> CacheProperties.getManagementEnabled(null));
+        Assertions.assertThrows(NullPointerException.class, () -> CacheProperties.getStatisticsEnabled(null));
+        Assertions.assertThrows(NullPointerException.class, () -> CacheProperties.getLoaderFactory(null));
+        Assertions.assertThrows(NullPointerException.class, () -> CacheProperties.getWriterFactory(null));
+        Assertions.assertThrows(NullPointerException.class, () -> CacheProperties.getExpiryFactory(null));
+    }
+
+    @Test
     @DisplayName("Should get storeByValue from Eclipse MicroProfile Config")
     public void shouldReturnStoreByValueConfig() {
         System.setProperty(CacheProperties.CACHE_STORE_VALUE.get(), "false");
@@ -163,4 +175,5 @@ class CachePropertiesTest {
         Assertions.assertTrue(loaderFactory instanceof MockExpiryPolicy);
         System.clearProperty(CacheProperties.CACHE_EXPIRES_FACTORY.get());
     }
+
 }

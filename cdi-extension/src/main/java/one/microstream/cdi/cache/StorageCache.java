@@ -30,6 +30,7 @@ import java.lang.annotation.Target;
 @Qualifier
 public @interface StorageCache {
     /**
+     * the name of the managed {@link javax.cache.Cache} to acquire
      * @return the cache name
      */
     @Nonbinding String value() default "jcache";

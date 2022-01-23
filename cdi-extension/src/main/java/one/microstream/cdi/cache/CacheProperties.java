@@ -81,7 +81,7 @@ public enum CacheProperties implements Supplier<String> {
      * @param config the Eclipse Microprofile instance
      * @return the properties from {@link Config} or false
      */
-    public static boolean getStoreByValue(Config config) {
+    static boolean getStoreByValue(Config config) {
         return getBoolean(config, CACHE_STORE_VALUE);
     }
 
@@ -91,7 +91,7 @@ public enum CacheProperties implements Supplier<String> {
      * @param config the Eclipse Microprofile instance
      * @return the properties from {@link Config} or false
      */
-    public static boolean getWriteThrough(Config config) {
+    static boolean getWriteThrough(Config config) {
         return getBoolean(config, CACHE_WRITE_THROUGH);
     }
 
@@ -101,7 +101,7 @@ public enum CacheProperties implements Supplier<String> {
      * @param config the Eclipse Microprofile instance
      * @return the properties from {@link Config} or false
      */
-    public static boolean getReadThrough(Config config) {
+    static boolean getReadThrough(Config config) {
         return getBoolean(config, CACHE_READ_THROUGH);
     }
 
@@ -111,7 +111,7 @@ public enum CacheProperties implements Supplier<String> {
      * @param config the Eclipse Microprofile instance
      * @return the properties from {@link Config} or false
      */
-    public static boolean getManagementEnabled(Config config) {
+    static boolean getManagementEnabled(Config config) {
         return getBoolean(config, CACHE_MANAGEMENT);
     }
 
@@ -121,22 +121,22 @@ public enum CacheProperties implements Supplier<String> {
      * @param config the Eclipse Microprofile instance
      * @return the properties from {@link Config} or false
      */
-    public static boolean getStatisticsEnabled(Config config) {
+    static boolean getStatisticsEnabled(Config config) {
         return getBoolean(config, CACHE_STATISTICS);
     }
 
-    public static <V, K> Factory<CacheLoader<K, V>> getLoaderFactory(Config config) {
+    static <V, K> Factory<CacheLoader<K, V>> getLoaderFactory(Config config) {
         String factoryClass = config.getOptionalValue(CACHE_LOADER_FACTORY.get(), String.class).orElse("");
         return getFactoryClass(factoryClass);
     }
 
 
-    public static <V, K> Factory<CacheWriter<K, V>> getWriterFactory(Config config) {
+    static <V, K> Factory<CacheWriter<K, V>> getWriterFactory(Config config) {
         String factoryClass = config.getOptionalValue(CACHE_WRITER_FACTORY.get(), String.class).orElse("");
         return getFactoryClass(factoryClass);
     }
 
-    public static Factory<ExpiryPolicy> getExpiryFactory(Config config) {
+    static Factory<ExpiryPolicy> getExpiryFactory(Config config) {
         String factoryClass = config.getOptionalValue(CACHE_EXPIRES_FACTORY.get(), String.class).orElse("");
 
         return getFactoryClass(factoryClass);

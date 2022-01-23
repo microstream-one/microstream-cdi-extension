@@ -138,6 +138,7 @@ public enum CacheProperties implements Supplier<String> {
      * @throws NullPointerException when config is null
      */
     static <V, K> Factory<CacheLoader<K, V>> getLoaderFactory(Config config) {
+        Objects.requireNonNull(config, "Config is required");
         String factoryClass = config.getOptionalValue(CACHE_LOADER_FACTORY.get(), String.class).orElse("");
         return getFactoryClass(factoryClass);
     }
@@ -150,6 +151,7 @@ public enum CacheProperties implements Supplier<String> {
      * @throws NullPointerException when config is null
      */
     static <V, K> Factory<CacheWriter<K, V>> getWriterFactory(Config config) {
+        Objects.requireNonNull(config, "Config is required");
         String factoryClass = config.getOptionalValue(CACHE_WRITER_FACTORY.get(), String.class).orElse("");
         return getFactoryClass(factoryClass);
     }
@@ -162,6 +164,7 @@ public enum CacheProperties implements Supplier<String> {
      * @throws NullPointerException when config is null
      */
     static Factory<ExpiryPolicy> getExpiryFactory(Config config) {
+        Objects.requireNonNull(config, "Config is required");
         String factoryClass = config.getOptionalValue(CACHE_EXPIRES_FACTORY.get(), String.class).orElse("");
 
         return getFactoryClass(factoryClass);

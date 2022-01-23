@@ -13,7 +13,14 @@
  */
 
 /**
- * The CDI/Microstream integration with Cache
- * Ref: https://github.com/oracle/helidon/pull/3355
+ * Since version 3 MicroStream provides a JCache (JSR-107) implementation, which is optionally backed
+ * by the MicroStream Storage.
+ *
+ * JCache standardizes caching for the Java platform. It provides a common mechanism to cache values in
+ * a map-like structure. It expedites the mainstream adoption of in-memory computing by giving all
+ * Java developers an easy way to access memory from within Java. Businesses can change providers
+ * without rewriting their applications or maintaining a proprietary cache abstraction layer.
+ *
+ * Ref: https://docs.microstream.one/manual/cache/index.html
  */
 package one.microstream.cdi.cache;

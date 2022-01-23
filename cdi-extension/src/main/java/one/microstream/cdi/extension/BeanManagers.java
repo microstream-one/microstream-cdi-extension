@@ -25,7 +25,7 @@ import java.util.Set;
 /**
  * Utilitarian class to {@link javax.enterprise.inject.spi.BeanManager}
  */
-public class BeanManagers {
+class BeanManagers {
 
     /**
      * Get instance from the {@link BeanManager}

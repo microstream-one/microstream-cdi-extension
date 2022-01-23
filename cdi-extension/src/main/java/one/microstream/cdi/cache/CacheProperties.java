@@ -22,6 +22,7 @@ import javax.cache.configuration.Factory;
 import javax.cache.expiry.ExpiryPolicy;
 import javax.cache.integration.CacheLoader;
 import javax.cache.integration.CacheWriter;
+import java.util.Objects;
 import java.util.function.Supplier;
 
 /**
@@ -142,6 +143,7 @@ public enum CacheProperties implements Supplier<String> {
     }
 
     private static Boolean getBoolean(Config config, CacheProperties cacheStatistics) {
+        Objects.requireNonNull(config, "Config is required");
         return config.getOptionalValue(cacheStatistics.get(), boolean.class).orElse(false);
     }
 

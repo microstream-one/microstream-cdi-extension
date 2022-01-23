@@ -80,6 +80,7 @@ public enum CacheProperties implements Supplier<String> {
      * the respective value; it will return false by default.
      * @param config the Eclipse Microprofile instance
      * @return the properties from {@link Config} or false
+     * @throws NullPointerException when config is null
      */
     static boolean getStoreByValue(Config config) {
         return getBoolean(config, CACHE_STORE_VALUE);
@@ -90,6 +91,7 @@ public enum CacheProperties implements Supplier<String> {
      * the respective value; it will return false by default.
      * @param config the Eclipse Microprofile instance
      * @return the properties from {@link Config} or false
+     * @throws NullPointerException when config is null
      */
     static boolean getWriteThrough(Config config) {
         return getBoolean(config, CACHE_WRITE_THROUGH);
@@ -100,6 +102,7 @@ public enum CacheProperties implements Supplier<String> {
      * the respective value; it will return false by default.
      * @param config the Eclipse Microprofile instance
      * @return the properties from {@link Config} or false
+     * @throws NullPointerException when config is null
      */
     static boolean getReadThrough(Config config) {
         return getBoolean(config, CACHE_READ_THROUGH);
@@ -110,6 +113,7 @@ public enum CacheProperties implements Supplier<String> {
      * the respective value; it will return false by default.
      * @param config the Eclipse Microprofile instance
      * @return the properties from {@link Config} or false
+     * @throws NullPointerException when config is null
      */
     static boolean getManagementEnabled(Config config) {
         return getBoolean(config, CACHE_MANAGEMENT);
@@ -120,6 +124,7 @@ public enum CacheProperties implements Supplier<String> {
      * the respective value; it will return false by default.
      * @param config the Eclipse Microprofile instance
      * @return the properties from {@link Config} or false
+     * @throws NullPointerException when config is null
      */
     static boolean getStatisticsEnabled(Config config) {
         return getBoolean(config, CACHE_STATISTICS);
@@ -130,18 +135,19 @@ public enum CacheProperties implements Supplier<String> {
      * the respective value
      * @param config the Eclipse Microprofile instance
      * @return the Factory from {@link Config} or null
+     * @throws NullPointerException when config is null
      */
     static <V, K> Factory<CacheLoader<K, V>> getLoaderFactory(Config config) {
         String factoryClass = config.getOptionalValue(CACHE_LOADER_FACTORY.get(), String.class).orElse("");
         return getFactoryClass(factoryClass);
     }
 
-
     /**
      * Loads the properties {@link CacheProperties#CACHE_WRITER_FACTORY} from {@link Config}
      * the respective value
      * @param config the Eclipse Microprofile instance
      * @return the Factory from {@link Config} or null
+     * @throws NullPointerException when config is null
      */
     static <V, K> Factory<CacheWriter<K, V>> getWriterFactory(Config config) {
         String factoryClass = config.getOptionalValue(CACHE_WRITER_FACTORY.get(), String.class).orElse("");
@@ -153,6 +159,7 @@ public enum CacheProperties implements Supplier<String> {
      * the respective value
      * @param config the Eclipse Microprofile instance
      * @return the Factory from {@link Config} or null
+     * @throws NullPointerException when config is null
      */
     static Factory<ExpiryPolicy> getExpiryFactory(Config config) {
         String factoryClass = config.getOptionalValue(CACHE_EXPIRES_FACTORY.get(), String.class).orElse("");

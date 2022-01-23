@@ -14,5 +14,6 @@
 
 /**
  * This package contains information about the integration between Microstream and Eclipse Microprofile Configuration.
+ * Link: https://docs.microstream.one/manual/storage/configuration/index.html
  */
 package one.microstream.cdi.config;

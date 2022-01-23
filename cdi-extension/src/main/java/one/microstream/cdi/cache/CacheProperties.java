@@ -84,18 +84,42 @@ public enum CacheProperties implements Supplier<String> {
         return getBoolean(config, CACHE_STORE_VALUE);
     }
 
+    /**
+     * Loads the properties {@link CacheProperties#CACHE_WRITE_THROUGH} from {@link Config}
+     * the respective value; it will return false by default.
+     * @param config the Eclipse Microprofile instance
+     * @return the properties from {@link Config} or false
+     */
     public static boolean getWriteThrough(Config config) {
         return getBoolean(config, CACHE_WRITE_THROUGH);
     }
 
+    /**
+     * Loads the properties {@link CacheProperties#CACHE_READ_THROUGH} from {@link Config}
+     * the respective value; it will return false by default.
+     * @param config the Eclipse Microprofile instance
+     * @return the properties from {@link Config} or false
+     */
     public static boolean getReadThrough(Config config) {
         return getBoolean(config, CACHE_READ_THROUGH);
     }
 
+    /**
+     * Loads the properties {@link CacheProperties#CACHE_MANAGEMENT} from {@link Config}
+     * the respective value; it will return false by default.
+     * @param config the Eclipse Microprofile instance
+     * @return the properties from {@link Config} or false
+     */
     public static boolean getManagementEnabled(Config config) {
         return getBoolean(config, CACHE_MANAGEMENT);
     }
 
+    /**
+     * Loads the properties {@link CacheProperties#CACHE_STATISTICS} from {@link Config}
+     * the respective value; it will return false by default.
+     * @param config the Eclipse Microprofile instance
+     * @return the properties from {@link Config} or false
+     */
     public static boolean getStatisticsEnabled(Config config) {
         return getBoolean(config, CACHE_STATISTICS);
     }

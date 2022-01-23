@@ -74,6 +74,12 @@ public enum CacheProperties implements Supplier<String> {
         this.value = value;
     }
 
+    /**
+     * Loads the properties {@link CacheProperties#CACHE_STORE_VALUE} from {@link Config}
+     * the respective value; it will return false by default.
+     * @param config the Eclipse Microprofile instance
+     * @return the properties from {@link Config} or false
+     */
     public static boolean getStoreByValue(Config config) {
         return getBoolean(config, CACHE_STORE_VALUE);
     }

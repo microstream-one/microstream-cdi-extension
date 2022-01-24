@@ -16,7 +16,7 @@ package one.microstream.cdi;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentSkipListSet;
 
 @Storage
 public class NameRoot {
@@ -24,7 +24,7 @@ public class NameRoot {
     private final Set<String> names;
 
     public NameRoot() {
-        this.names =  Collections.newSetFromMap(new ConcurrentHashMap<>());
+        this.names =  new ConcurrentSkipListSet<>();
     }
 
     public void add(String name) {

@@ -20,4 +20,8 @@ class Lion {
     public Lion(String name) {
         this.name = name;
     }
+
+    public String getName() {
+        return name;
+    }
 }

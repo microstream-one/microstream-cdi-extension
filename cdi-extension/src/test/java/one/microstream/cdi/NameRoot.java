@@ -21,7 +21,7 @@ import java.util.Set;
 @Storage
 public class NameRoot {
 
-    private Set<String> names;
+    private final Set<String> names;
 
     public NameRoot() {
         this.names = new HashSet<>();

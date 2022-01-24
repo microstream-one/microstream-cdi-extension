@@ -15,7 +15,7 @@ package one.microstream.cdi.extension;
 
 class Lion {
 
-    private String name;
+    private final String name;
 
     public Lion(String name) {
         this.name = name;

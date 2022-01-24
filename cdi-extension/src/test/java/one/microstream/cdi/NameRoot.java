@@ -14,9 +14,9 @@
 package one.microstream.cdi;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Storage
 public class NameRoot {
@@ -24,7 +24,7 @@ public class NameRoot {
     private final Set<String> names;
 
     public NameRoot() {
-        this.names = new HashSet<>();
+        this.names =  Collections.newSetFromMap(new ConcurrentHashMap<>());
     }
 
     public void add(String name) {

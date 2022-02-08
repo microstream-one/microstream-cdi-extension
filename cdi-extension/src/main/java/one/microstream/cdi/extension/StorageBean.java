@@ -59,6 +59,7 @@ class StorageBean<T> extends AbstractBean<T> {
         if (Objects.isNull(root)) {
             entity = ConstructorUtil.create(type);
             manager.setRoot(entity);
+            manager.storeRoot();
         } else {
             if (type.isInstance(root)) {
                 entity = (T) root;

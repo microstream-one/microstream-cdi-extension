@@ -64,7 +64,7 @@ class StorageBean<T> extends AbstractBean<T> {
             if (type.isInstance(root)) {
                 entity = (T) root;
             } else {
-                throw new
+                throw new StorageException(type, root.getClass());
             }
         }
         return entity;

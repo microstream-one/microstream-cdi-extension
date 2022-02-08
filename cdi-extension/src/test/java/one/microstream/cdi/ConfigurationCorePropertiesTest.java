@@ -14,14 +14,12 @@
 
 package one.microstream.cdi;
 
-import one.microstream.cdi.ConfigurationCoreProperties;
 import one.microstream.cdi.test.CDIExtension;
 import org.eclipse.microprofile.config.Config;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import javax.inject.Inject;
-
 import java.util.Map;
 
 import static one.microstream.cdi.ConfigurationCoreProperties.CUSTOM;

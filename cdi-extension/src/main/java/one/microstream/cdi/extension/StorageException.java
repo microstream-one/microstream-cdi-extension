@@ -18,7 +18,11 @@ import one.microstream.cdi.MicrostreamException;
 
 class StorageException extends MicrostreamException {
 
-    public <T, E> StorageException(Class<T> entity, Class<E> root) {
-        super("This class must have a no arg with either public and default visibility: " + clazz.getName());
+    private static final String MESSAGE = "There is an incompatibility between the entity and the" +
+            " current root in the StorageManager. Please check the compatibility. " +
+            "Entity: %s and current root class %s";
+
+    <T, E> StorageException(Class<T> entity, Class<E> root) {
+        super(String.format(MESSAGE, entity, root));
     }
 }

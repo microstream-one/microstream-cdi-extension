@@ -13,10 +13,21 @@
  */
 package one.microstream.cdi;
 
+import one.microstream.cdi.interceptor.AgendaService;
 import one.microstream.cdi.test.CDIExtension;
+import org.junit.jupiter.api.Test;
+
+import javax.inject.Inject;
 
 @CDIExtension
 class StoreInterceptorTest {
 
 
+    @Inject
+    private AgendaService service;
+
+    @Test
+    public void addNameEager() {
+        service.addNameEager("Poliana");
+    }
 }

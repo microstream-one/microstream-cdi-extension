@@ -14,6 +14,7 @@
 package one.microstream.cdi.extension;
 
 import one.microstream.cdi.Store;
+import one.microstream.cdi.StoreType;
 import one.microstream.concurrency.XThreads;
 import one.microstream.storage.types.StorageManager;
 
@@ -23,8 +24,11 @@ import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static java.util.Optional.ofNullable;
 
 @Store
 @Interceptor
@@ -38,12 +42,22 @@ class StoreInterceptor {
 
     @AroundInvoke
     public Object store(InvocationContext context) throws Exception {
-        LOGGER.log(Level.FINE, "Using Store operation in the " + context.getMethod());
+
+        final Store store = ofNullable(context.getMethod().getAnnotation(Store.class))
+                .orElse(context.getMethod().getDeclaringClass().getAnnotation(Store.class));
+        LOGGER.log(Level.FINEST, "Using Store operation in the " + context.getMethod()
+                + " using the store type: " + store.value());
+
         Object result = context.proceed();
+
         XThreads.executeSynchronized(() -> {
             Object root = manager.root();
-            long store = manager.store(root);
-            LOGGER.log(Level.FINE, "Store in the object id " + store);
+            if (StoreType.EAGER.equals(store.value())) {
+                long storeId = manager.store(root);
+                LOGGER.log(Level.WARNING, "Store the root it might return performance issue " + storeId);
+            } else {
+                LOGGER.log(Level.FINEST, "Storing Iterables and Maps fields from the root ");
+            }
         });
 
         return result;

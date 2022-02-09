@@ -19,11 +19,11 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentSkipListSet;
 
 @Storage
-public class NameRoot {
+public class Agenda {
 
     private final Set<String> names;
 
-    public NameRoot() {
+    public Agenda() {
         this.names =  new ConcurrentSkipListSet<>();
     }
 
@@ -43,8 +43,8 @@ public class NameRoot {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        NameRoot nameRoot = (NameRoot) o;
-        return Objects.equals(names, nameRoot.names);
+        Agenda agenda = (Agenda) o;
+        return Objects.equals(this.names, agenda.names);
     }
 
     @Override
@@ -54,7 +54,7 @@ public class NameRoot {
 
     @Override
     public String toString() {
-        return "NameRoot{" +
+        return "Agenda{" +
                 "names=" + names +
                 '}';
     }

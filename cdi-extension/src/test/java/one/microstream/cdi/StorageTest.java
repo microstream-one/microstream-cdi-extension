@@ -28,7 +28,7 @@ import java.util.Set;
 public class StorageTest {
 
     @Inject
-    private NameRoot nameRoot;
+    private Agenda agenda;
 
     @Inject
     private BeanManager beanManager;
@@ -36,18 +36,18 @@ public class StorageTest {
     @Test
     @DisplayName("Should check if it create an instance by annotation")
     public void shouldCreateInstance() {
-        Assertions.assertNotNull(this.nameRoot);
+        Assertions.assertNotNull(this.agenda);
     }
 
     @Test
     public void shouldCreateNameRootInjection() {
-        nameRoot.add("Otavio");
-        nameRoot.add("Ada");
-        Set<Bean<?>> beans = beanManager.getBeans(NameRoot.class);
+        agenda.add("Otavio");
+        agenda.add("Ada");
+        Set<Bean<?>> beans = beanManager.getBeans(Agenda.class);
         Assertions.assertFalse(beans.isEmpty());
-        NameRoot instance = BeanManagers.getInstance(NameRoot.class);
-        Assertions.assertEquals(instance, nameRoot);
-        Assertions.assertEquals(instance.getNames(), nameRoot.getNames());
+        Agenda instance = BeanManagers.getInstance(Agenda.class);
+        Assertions.assertEquals(instance, agenda);
+        Assertions.assertEquals(instance.getNames(), agenda.getNames());
 
     }
 }

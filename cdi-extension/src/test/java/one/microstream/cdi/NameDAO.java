@@ -29,15 +29,15 @@ public class NameDAO {
     @Inject
     private StorageManager manager;
 
-    private NameRoot root;
+    private Agenda root;
 
     @PostConstruct
     public void init() {
         if (Objects.isNull(manager.root())) {
-            this.root = new NameRoot();
+            this.root = new Agenda();
             manager.setRoot(root);
         } else {
-            this.root = (NameRoot) manager.root();
+            this.root = (Agenda) manager.root();
         }
     }
 

@@ -14,6 +14,7 @@
 package one.microstream.cdi;
 
 import one.microstream.cdi.interceptor.AgendaService;
+import one.microstream.cdi.interceptor.AgendaService2;
 import one.microstream.cdi.test.CDIExtension;
 import org.junit.jupiter.api.Test;
 
@@ -26,8 +27,21 @@ class StoreInterceptorTest {
     @Inject
     private AgendaService service;
 
+    @Inject
+    private AgendaService2 service2;
+
     @Test
     public void addNameEager() {
         service.addNameEager("Poliana");
+    }
+
+    @Test
+    public void addNameLazy() {
+        service.addNameLazy("Otavio");
+    }
+
+    @Test
+    public void add() {
+        service2.add("Ada");
     }
 }

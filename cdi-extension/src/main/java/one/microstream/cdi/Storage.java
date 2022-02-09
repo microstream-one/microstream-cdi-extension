@@ -30,6 +30,7 @@ import java.lang.annotation.Target;
  * Ref: https://docs.microstream.one/manual/storage/root-instances.html
  *
  * Each application must have a unique class with this annotation.
+ * Note: To increase performance use immutable sub-graphs as often as possible.
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE, ElementType.FIELD})

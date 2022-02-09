@@ -14,6 +14,12 @@
 package one.microstream.cdi;
 
 
+import javax.interceptor.InterceptorBinding;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
 /**
  * This annotation indicates the operation that will be stored using Microstream automatically.
  * It is a high-level implementation to save either the Iterable and Map instances 
@@ -26,5 +32,8 @@ package one.microstream.cdi;
  * Ref: https://docs.microstream.one/manual/storage/storing-data/index.html
  *
  */
+@InterceptorBinding
+@Target({ElementType.METHOD, ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
 public @interface Store {
 }

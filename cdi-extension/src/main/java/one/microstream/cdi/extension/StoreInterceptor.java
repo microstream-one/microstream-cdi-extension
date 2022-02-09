@@ -26,7 +26,6 @@ import javax.interceptor.InvocationContext;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@ApplicationScoped
 @Store
 @Interceptor
 @Priority(Interceptor.Priority.APPLICATION)

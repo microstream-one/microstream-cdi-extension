@@ -14,6 +14,7 @@
 package one.microstream.cdi;
 
 
+import javax.enterprise.util.Nonbinding;
 import javax.interceptor.InterceptorBinding;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -44,5 +45,5 @@ public @interface Store {
      *
      * @return the {@link StoreType}
      */
-    StoreType value() default StoreType.LAZY;
+    @Nonbinding StoreType value() default StoreType.LAZY;
 }

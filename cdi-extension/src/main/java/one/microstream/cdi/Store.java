@@ -22,18 +22,27 @@ import java.lang.annotation.Target;
 
 /**
  * This annotation indicates the operation that will be stored using Microstream automatically.
- * It is a high-level implementation to save either the Iterable and Map instances 
+ * It is a high-level implementation to save either the Iterable and Map instances
  * or the root itself, where you can set by StoreType.
  * By default, it is lazy, and using the EAGER only is extremely necessary.
  * The rule is: "The Object that has been modified has to be stored!".
- * So, to more tunning and optimization in the persistence process, 
- * you can always have the option to do it manually through 
+ * So, to more tunning and optimization in the persistence process,
+ * you can always have the option to do it manually through
  * the {@link one.microstream.storage.types.StorageManager#store(Object)} method.
  * Ref: https://docs.microstream.one/manual/storage/storing-data/index.html
- *
  */
 @InterceptorBinding
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Store {
+
+    /**
+     * Defines the instance that will call the {@link one.microstream.storage.types.StorageManager#store(Object)}
+     * method where:
+     * EAGER is the whole root
+     * Lazy only the Iterable and Map instances
+     *
+     * @return the {@link StoreType}
+     */
+    StoreType value() default StoreType.LAZY;
 }

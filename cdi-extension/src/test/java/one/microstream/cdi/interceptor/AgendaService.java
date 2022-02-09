@@ -1,4 +1,8 @@
-package one.microstream.cdi;
+package one.microstream.cdi.interceptor;
+
+import one.microstream.cdi.Agenda;
+import one.microstream.cdi.Store;
+import one.microstream.cdi.StoreType;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

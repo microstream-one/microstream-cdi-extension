@@ -36,12 +36,12 @@ class StoreInterceptor {
     private StorageManager manager;
 
     @AroundInvoke
-    public Object auditMethod(InvocationContext ctx) throws Exception {
+    public Object auditMethod(InvocationContext context) throws Exception {
 
-        Object result = ctx.proceed();
+        Object result = context.proceed();
         long storeRoot = manager.storeRoot();
         String message = String.format("Saving the state of root at %s in the method %s, storeRoot id %d",
-                ctx.getTarget().getClass(), ctx.getMethod().getName(), storeRoot);
+                context.getTarget().getClass(), context.getMethod().getName(), storeRoot);
 
         LOGGER.info(message);
         return result;

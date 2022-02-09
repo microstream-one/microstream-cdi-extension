@@ -14,6 +14,7 @@
 
 package one.microstream.cdi;
 
+import one.microstream.reference.LazyReferenceManager;
 import one.microstream.storage.embedded.configuration.types.EmbeddedStorageConfigurationBuilder;
 import one.microstream.storage.types.StorageManager;
 import org.eclipse.microprofile.config.Config;
@@ -51,5 +52,7 @@ class StorageManagerProducer {
     public void dispose(@Disposes StorageManager manager) {
         LOGGER.info("Closing the default StorageManager");
         manager.close();
+        LOGGER.info("Closing the LazyReferenceManager");
+        LazyReferenceManager.get().stop();
     }
 }

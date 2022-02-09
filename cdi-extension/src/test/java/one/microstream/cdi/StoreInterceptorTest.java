@@ -44,4 +44,10 @@ class StoreInterceptorTest {
     public void add() {
         service2.add("Ada");
     }
+
+    @Test
+    public void addEager() {
+        service2.addEager("Ada");
+    }
+
 }

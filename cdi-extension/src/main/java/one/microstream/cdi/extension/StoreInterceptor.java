@@ -43,7 +43,8 @@ class StoreInterceptor {
         Object result = context.proceed();
         XThreads.executeSynchronized(() -> {
             Object root = manager.root();
-            manager.store(root);
+            long store = manager.store(root);
+            LOGGER.log(Level.FINE, "Store in the object id " + store);
         });
 
         return result;

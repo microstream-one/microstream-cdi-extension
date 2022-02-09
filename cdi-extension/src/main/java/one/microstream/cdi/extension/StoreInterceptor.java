@@ -14,6 +14,7 @@
 package one.microstream.cdi.extension;
 
 import one.microstream.cdi.Store;
+import one.microstream.concurrency.XThreads;
 import one.microstream.storage.types.StorageManager;
 
 import javax.annotation.Priority;
@@ -22,6 +23,7 @@ import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @ApplicationScoped
@@ -36,14 +38,14 @@ class StoreInterceptor {
     private StorageManager manager;
 
     @AroundInvoke
-    public Object auditMethod(InvocationContext context) throws Exception {
-
+    public Object store(InvocationContext context) throws Exception {
+        LOGGER.log(Level.FINE, "Using Store operation in the " + context.getMethod());
         Object result = context.proceed();
-        long storeRoot = manager.storeRoot();
-        String message = String.format("Saving the state of root at %s in the method %s, storeRoot id %d",
-                context.getTarget().getClass(), context.getMethod().getName(), storeRoot);
+        XThreads.executeSynchronized(() -> {
+            Object root = manager.root();
+            manager.store(root);
+        });
 
-        LOGGER.info(message);
         return result;
     }
 }

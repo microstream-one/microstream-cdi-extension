@@ -14,15 +14,24 @@
 package one.microstream.cdi;
 
 /**
- *Defines the way the instance that will be stored in the  {@link one.microstream.storage.types.StorageManager}.
- *
+ * Defines the way the instance that will be stored in the  {@link one.microstream.storage.types.StorageManager}.
+ * <p>
  * E.g.: Given we have an Inventory class with a name and a list of products.
  * Lazy: will {@link one.microstream.storage.types.StorageManager#store} the list of products:
  * storageManager.store(inventory.getProducts());
- *
+ * <p>
  * EAGER: will {@link one.microstream.storage.types.StorageManager#store} the root instance:
  * storageManager.store(inventory);
  */
 public enum StoreType {
-    LAZY, EAGER;
+    /**
+     * it will {@link one.microstream.storage.types.StorageManager#store} the list of products:
+     * storageManager.store(inventory.getProducts());
+     */
+    LAZY,
+    /**
+     * it will {@link one.microstream.storage.types.StorageManager#store} the root instance:
+     * * storageManager.store(inventory);
+     */
+    EAGER;
 }

@@ -13,5 +13,8 @@
  */
 package one.microstream.cdi;
 
+/**
+ * 
+ */
 public @interface Store {
 }

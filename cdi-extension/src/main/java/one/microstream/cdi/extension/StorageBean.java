@@ -55,7 +55,7 @@ class StorageBean<T> extends AbstractBean<T> {
     public T create(CreationalContext<T> context) {
         StorageManager manager = getInstance(StorageManager.class);
         Object root = manager.root();
-        T entity = null;
+        T entity;
         if (Objects.isNull(root)) {
             entity = ConstructorUtil.create(type);
             manager.setRoot(entity);

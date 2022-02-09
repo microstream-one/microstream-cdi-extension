@@ -25,12 +25,12 @@ package one.microstream.cdi;
  */
 public enum StoreType {
     /**
-     * it will {@link one.microstream.storage.types.StorageManager#store} the list of products:
+     * It will {@link one.microstream.storage.types.StorageManager#store} the list of products:
      * storageManager.store(inventory.getProducts());
      */
     LAZY,
     /**
-     * it will {@link one.microstream.storage.types.StorageManager#store} the root instance:
+     * It will {@link one.microstream.storage.types.StorageManager#store} the root instance:
      * * storageManager.store(inventory);
      */
     EAGER;

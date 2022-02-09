@@ -16,5 +16,7 @@ package one.microstream.cdi;
 import one.microstream.cdi.test.CDIExtension;
 
 @CDIExtension
-public class StoreInterceptorTest {
+class StoreInterceptorTest {
+
+
 }

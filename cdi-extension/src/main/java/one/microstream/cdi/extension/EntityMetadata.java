@@ -19,12 +19,15 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 class EntityMetadata {
 
+    private final Class<?> type;
     private List<FieldMetadata> fields;
 
-    private EntityMetadata(List<FieldMetadata> fields) {
+    private EntityMetadata(Class<?> type, List<FieldMetadata> fields) {
+        this.type = type;
         this.fields = fields;
     }
 
@@ -32,6 +35,16 @@ class EntityMetadata {
         return Collections.unmodifiableList(fields);
     }
 
+    public Stream<Object> values(Object entity) {
+        Objects.requireNonNull(entity, "entity is required");
+        if (!type.equals(entity)) {
+            throw new IllegalArgumentException(String.format("The entity %s is not compatible with the metadata %s"
+                    , entity.getClass(), type));
+        }
+        return fields.stream()
+                .map(f -> f.read(entity))
+                .filter(Objects::nonNull);
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -42,19 +55,12 @@ class EntityMetadata {
             return false;
         }
         EntityMetadata that = (EntityMetadata) o;
-        return Objects.equals(fields, that.fields);
+        return Objects.equals(type, that.type) && Objects.equals(fields, that.fields);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(fields);
-    }
-
-    @Override
-    public String toString() {
-        return "EntityMetadata{" +
-                "fields=" + fields +
-                '}';
+        return Objects.hash(type, fields);
     }
 
     static <T> EntityMetadata of(Class<T> entity) {
@@ -66,7 +72,7 @@ class EntityMetadata {
                 fields.add(FieldMetadata.of(field));
             }
         }
-        return new EntityMetadata(fields);
+        return new EntityMetadata(entity, fields);
     }
 
     /**

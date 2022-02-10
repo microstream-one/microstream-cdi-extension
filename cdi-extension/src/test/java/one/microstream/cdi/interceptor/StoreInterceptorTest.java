@@ -11,7 +11,7 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package one.microstream.cdi;
+package one.microstream.cdi.interceptor;
 
 import one.microstream.cdi.interceptor.AgendaService;
 import one.microstream.cdi.interceptor.AgendaService2;

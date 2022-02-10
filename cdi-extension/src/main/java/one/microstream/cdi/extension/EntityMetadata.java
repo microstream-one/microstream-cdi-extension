@@ -17,6 +17,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 class EntityMetadata {
 
@@ -33,9 +34,23 @@ class EntityMetadata {
     static <T> EntityMetadata of(Class<T> entity) {
         List<FieldMetadata> fields = new ArrayList<>();
         for (Field field : entity.getDeclaredFields()) {
-
+            Class<?> type = field.getType();
+            if (isLazyFields(type)) {
+                fields.add(FieldMetadata.of(field));
+            }
         }
         return new EntityMetadata(fields);
+    }
+
+    /**
+     * Returns if the is lazy, so is {@link  Iterable} and {@link  Map} type.
+     *
+     * @param type the entity type
+     * @return if it is a Lazy field or not
+     * @see one.microstream.cdi.StoreType
+     */
+    private static boolean isLazyFields(Class<?> type) {
+        return Iterable.class.isAssignableFrom(type) || Map.class.isAssignableFrom(type);
     }
 
     @Override

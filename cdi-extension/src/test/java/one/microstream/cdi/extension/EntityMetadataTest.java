@@ -23,4 +23,16 @@ class EntityMetadataTest {
         EntityMetadata metadata = EntityMetadata.of(Cat.class);
         Assertions.assertTrue(metadata.getFields().isEmpty());
     }
+
+    @Test
+    public void shouldReturnEmptyFields2() {
+        EntityMetadata metadata = EntityMetadata.of(Product.class);
+        Assertions.assertTrue(metadata.getFields().isEmpty());
+    }
+
+    @Test
+    public void shouldReturnIterable() {
+        EntityMetadata metadata = EntityMetadata.of(Inventory.class);
+        Assertions.assertFalse(metadata.getFields().isEmpty());
+    }
 }

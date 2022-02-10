@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 class EntityMetadataTest {
 
@@ -77,6 +76,7 @@ class EntityMetadataTest {
         EntityMetadata metadata = EntityMetadata.of(MediaUser.class);
         Assertions.assertThrows(NullPointerException.class, ()-> metadata.values(null));
     }
+
     @Test
     public void shouldReturnIllegalErrorWhenTypesAreIncompatibles() {
         EntityMetadata metadata = EntityMetadata.of(MediaUser.class);

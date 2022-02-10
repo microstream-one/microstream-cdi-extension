@@ -19,12 +19,10 @@ import one.microstream.concurrency.XThreads;
 import one.microstream.storage.types.StorageManager;
 
 import javax.annotation.Priority;
-import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
-import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

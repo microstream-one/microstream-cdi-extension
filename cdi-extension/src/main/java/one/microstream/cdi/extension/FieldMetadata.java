@@ -16,8 +16,9 @@ package one.microstream.cdi.extension;
 import one.microstream.cdi.MicrostreamException;
 
 import java.lang.reflect.Field;
+import java.util.function.Supplier;
 
-class FieldMetadata {
+class FieldMetadata implements Supplier<Field> {
 
     private final Field field;
 
@@ -32,9 +33,9 @@ class FieldMetadata {
             throw new MicrostreamException("There is an issue to read the field: " + field, e);
         }
     }
-
-    static FieldMetadata of(Field field) {
-        return new FieldMetadata(field);
+    @Override
+    public Field get() {
+        return field;
     }
 
     @Override
@@ -43,4 +44,9 @@ class FieldMetadata {
                 "field=" + field +
                 '}';
     }
+
+    static FieldMetadata of(Field field) {
+        return new FieldMetadata(field);
+    }
+
 }

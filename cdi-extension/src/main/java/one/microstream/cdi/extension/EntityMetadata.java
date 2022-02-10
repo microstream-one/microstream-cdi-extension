@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 class EntityMetadata {
 
@@ -29,6 +30,31 @@ class EntityMetadata {
 
     public List<FieldMetadata> getFields() {
         return Collections.unmodifiableList(fields);
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        EntityMetadata that = (EntityMetadata) o;
+        return Objects.equals(fields, that.fields);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(fields);
+    }
+
+    @Override
+    public String toString() {
+        return "EntityMetadata{" +
+                "fields=" + fields +
+                '}';
     }
 
     static <T> EntityMetadata of(Class<T> entity) {
@@ -52,12 +78,5 @@ class EntityMetadata {
      */
     private static boolean isLazyFields(Class<?> type) {
         return Iterable.class.isAssignableFrom(type) || Map.class.isAssignableFrom(type);
-    }
-
-    @Override
-    public String toString() {
-        return "EntityMetadata{" +
-                "fields=" + fields +
-                '}';
     }
 }

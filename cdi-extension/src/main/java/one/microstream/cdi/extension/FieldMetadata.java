@@ -16,6 +16,7 @@ package one.microstream.cdi.extension;
 import one.microstream.cdi.MicrostreamException;
 
 import java.lang.reflect.Field;
+import java.util.Objects;
 import java.util.function.Supplier;
 
 class FieldMetadata implements Supplier<Field> {
@@ -36,6 +37,23 @@ class FieldMetadata implements Supplier<Field> {
     @Override
     public Field get() {
         return field;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        FieldMetadata that = (FieldMetadata) o;
+        return Objects.equals(field, that.field);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(field);
     }
 
     @Override

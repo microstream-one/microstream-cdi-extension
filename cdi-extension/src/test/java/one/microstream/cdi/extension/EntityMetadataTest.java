@@ -18,6 +18,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 class EntityMetadataTest {
 
@@ -65,5 +70,29 @@ class EntityMetadataTest {
         Field postsBySocialMedia = MediaUser.class.getDeclaredField("postsBySocialMedia");
         Assertions.assertEquals(fieldA.get(), medias);
         Assertions.assertEquals(fieldB.get(), postsBySocialMedia);
+    }
+
+    @Test
+    public void shouldReturnNPEWhenIsNull() {
+        EntityMetadata metadata = EntityMetadata.of(MediaUser.class);
+        Assertions.assertThrows(NullPointerException.class, ()-> metadata.values(null));
+    }
+    @Test
+    public void shouldReturnIllegalErrorWhenTypesAreIncompatibles() {
+        EntityMetadata metadata = EntityMetadata.of(MediaUser.class);
+        Assertions.assertThrows(IllegalArgumentException.class, ()-> metadata.values(new Cat()));
+    }
+
+    @Test
+    public void shouldReturnValues() {
+        EntityMetadata metadata = EntityMetadata.of(MediaUser.class);
+        String user = "Otavio";
+        Set<String> medias = null;
+        Map<String, String> postsBySocialMedia = Map.of("otaviojava", "my post", "otavio", "my photo");
+        MediaUser mediaUser = new MediaUser(user, medias, postsBySocialMedia);
+        List<Object> values = metadata.values(mediaUser).collect(Collectors.toList());
+
+        Assertions.assertEquals(1, values.size());
+        Assertions.assertEquals(postsBySocialMedia, values.get(0));
     }
 }

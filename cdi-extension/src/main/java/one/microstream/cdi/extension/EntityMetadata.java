@@ -37,7 +37,7 @@ class EntityMetadata {
 
     public Stream<Object> values(Object entity) {
         Objects.requireNonNull(entity, "entity is required");
-        if (!type.equals(entity)) {
+        if (!type.equals(entity.getClass())) {
             throw new IllegalArgumentException(String.format("The entity %s is not compatible with the metadata %s"
                     , entity.getClass(), type));
         }

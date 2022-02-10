@@ -14,4 +14,8 @@
 package one.microstream.cdi.extension;
 
 class FieldMetadata {
+
+    Object read(Object bean) {
+        return null;
+    }
 }

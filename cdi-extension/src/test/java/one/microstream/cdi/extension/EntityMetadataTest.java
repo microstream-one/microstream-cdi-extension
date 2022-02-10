@@ -16,6 +16,8 @@ package one.microstream.cdi.extension;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Field;
+
 class EntityMetadataTest {
 
     @Test
@@ -31,8 +33,22 @@ class EntityMetadataTest {
     }
 
     @Test
-    public void shouldReturnIterable() {
+    public void shouldReturnIterable() throws NoSuchFieldException {
         EntityMetadata metadata = EntityMetadata.of(Inventory.class);
         Assertions.assertFalse(metadata.getFields().isEmpty());
+        FieldMetadata field = metadata.getFields().get(0);
+        Field products = Inventory.class.getDeclaredField("products");
+        Assertions.assertEquals(1, metadata.getFields().size());
+        Assertions.assertEquals(products, field.get());
+    }
+
+    @Test
+    public void shouldReturnMap() throws NoSuchFieldException {
+        EntityMetadata metadata = EntityMetadata.of(Contact.class);
+        Assertions.assertFalse(metadata.getFields().isEmpty());
+        FieldMetadata field = metadata.getFields().get(0);
+        Field contacts = Contact.class.getDeclaredField("contacts");
+        Assertions.assertEquals(contacts, field.get());
+        Assertions.assertEquals(1, metadata.getFields().size());
     }
 }

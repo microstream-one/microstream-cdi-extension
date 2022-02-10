@@ -16,7 +16,11 @@ package one.microstream.cdi.extension;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -33,11 +37,31 @@ class FieldMetadataTest {
         Assertions.assertEquals(inventory.getProducts(), read);
     }
 
+    @Test
     public void shouldReturnMap() {
-
+        Map<String, String> contacts = new HashMap<>();
+        contacts.put("Otavio", "123 456789");
+        contacts.put("Poliana", "723 456789");
+        Contact contact = new Contact(LocalDate.now(), "Ada", contacts);
+        EntityMetadata metadata = EntityMetadata.of(Contact.class);
+        List<FieldMetadata> fields = metadata.getFields();
+        FieldMetadata field = fields.get(0);
+        Object read = field.read(contact);
+        Assertions.assertEquals(contacts, read);
     }
 
+    @Test
     public void shouldReturnBoth() {
+        String user = "Otavio";
+        Set<String> medias = Set.of("Twitter", "Instagram");
+        Map<String, String> postsBySocialMedia = Map.of("otaviojava", "my post", "otavio", "my photo");
+        MediaUser mediaUser = new MediaUser(user, medias, postsBySocialMedia);
+        EntityMetadata metadata = EntityMetadata.of(MediaUser.class);
+        List<FieldMetadata> fields = metadata.getFields();
+        FieldMetadata fieldA = fields.get(0);
+        FieldMetadata fieldB = fields.get(1);
 
+        Assertions.assertEquals(medias, fieldA.read(mediaUser));
+        Assertions.assertEquals(postsBySocialMedia, fieldB.read(mediaUser));
     }
 }

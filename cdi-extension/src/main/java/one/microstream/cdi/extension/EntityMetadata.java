@@ -37,4 +37,11 @@ class EntityMetadata {
         }
         return new EntityMetadata(fields);
     }
+
+    @Override
+    public String toString() {
+        return "EntityMetadata{" +
+                "fields=" + fields +
+                '}';
+    }
 }

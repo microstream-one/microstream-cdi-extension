@@ -36,4 +36,11 @@ class FieldMetadata {
     static FieldMetadata of(Field field) {
         return new FieldMetadata(field);
     }
+
+    @Override
+    public String toString() {
+        return "FieldMetadata{" +
+                "field=" + field +
+                '}';
+    }
 }

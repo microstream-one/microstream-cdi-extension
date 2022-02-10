@@ -47,7 +47,8 @@ It is a high-level implementation to save either the Iterable and Map instances 
 By default, it is lazy, and using the EAGER only is extremely necessary.
 The rule is: "The Object that has been modified has to be stored!".
 So, to more tuning and optimization in the persistence process, you can always have the option to do it manually through
-```StorageManager#store(Object)```.
+```StorageManager#store(Object)```. 
+[To get more information](https://docs.microstream.one/manual/storage/storing-data/index.html).
 
 ```java
 @Inject

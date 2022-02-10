@@ -14,6 +14,7 @@
 package one.microstream.cdi.extension;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
@@ -50,5 +51,19 @@ class EntityMetadataTest {
         Field contacts = Contact.class.getDeclaredField("contacts");
         Assertions.assertEquals(contacts, field.get());
         Assertions.assertEquals(1, metadata.getFields().size());
+    }
+
+    @Test
+    @DisplayName("Should return both Map and Iterable")
+    public void shouldReturnMapAndIterable() throws NoSuchFieldException {
+        EntityMetadata metadata = EntityMetadata.of(MediaUser.class);
+        Assertions.assertFalse(metadata.getFields().isEmpty());
+        Assertions.assertEquals(2, metadata.getFields().size());
+        FieldMetadata fieldA = metadata.getFields().get(0);
+        FieldMetadata fieldB = metadata.getFields().get(1);
+        Field medias = MediaUser.class.getDeclaredField("medias");
+        Field postsBySocialMedia = MediaUser.class.getDeclaredField("postsBySocialMedia");
+        Assertions.assertEquals(fieldA.get(), medias);
+        Assertions.assertEquals(fieldB.get(), postsBySocialMedia);
     }
 }

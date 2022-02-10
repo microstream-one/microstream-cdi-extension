@@ -13,8 +13,14 @@
  */
 package one.microstream.cdi.extension;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 class EntityMetadataTest {
 
+    @Test
+    public void shouldReturnEmptyFields() {
+        EntityMetadata metadata = EntityMetadata.of(Cat.class);
+        Assertions.assertTrue(metadata.getFields().isEmpty());
+    }
 }

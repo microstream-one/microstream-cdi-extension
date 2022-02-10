@@ -13,9 +13,27 @@
  */
 package one.microstream.cdi.extension;
 
+import one.microstream.cdi.MicrostreamException;
+
+import java.lang.reflect.Field;
+
 class FieldMetadata {
 
-    Object read(Object bean) {
-        return null;
+    private final Field field;
+
+    private FieldMetadata(Field field) {
+        this.field = field;
+    }
+
+    Object read(Object entity) {
+        try {
+            return field.get(entity);
+        } catch (IllegalAccessException e) {
+            throw new MicrostreamException("There is an issue to read the field: " + field, e);
+        }
+    }
+
+    static FieldMetadata of(Field field) {
+        return new FieldMetadata(field);
     }
 }

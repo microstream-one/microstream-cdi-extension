@@ -13,9 +13,28 @@
  */
 package one.microstream.cdi.extension;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 class EntityMetadata {
 
     private List<FieldMetadata> fields;
+
+    private EntityMetadata(List<FieldMetadata> fields) {
+        this.fields = fields;
+    }
+
+    public List<FieldMetadata> getFields() {
+        return Collections.unmodifiableList(fields);
+    }
+
+    static <T> EntityMetadata of(Class<T> entity) {
+        List<FieldMetadata> fields = new ArrayList<>();
+        for (Field field : entity.getDeclaredFields()) {
+
+        }
+        return new EntityMetadata(fields);
+    }
 }

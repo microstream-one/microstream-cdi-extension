@@ -62,7 +62,8 @@ class StoreInterceptor {
                 EntityMetadata metadata = extension.get(root.getClass())
                         .orElseThrow(() -> new MicrostreamException("The entity metadata does" +
                                 " not found to the related root class: " + root.getClass()));
-                LOGGER.log(Level.FINEST, "Storing Iterables and Maps fields from the root ");
+                metadata.values(root).forEach(manager::store);
+                LOGGER.log(Level.FINEST, "Storing Iterables and Maps fields from the root class " + root.getClass());
             }
         });
 

@@ -13,8 +13,6 @@
  */
 package one.microstream.cdi.interceptor;
 
-import one.microstream.cdi.interceptor.AgendaService;
-import one.microstream.cdi.interceptor.AgendaService2;
 import one.microstream.cdi.test.CDIExtension;
 import org.junit.jupiter.api.Test;
 

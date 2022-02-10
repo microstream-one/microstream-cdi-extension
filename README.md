@@ -68,6 +68,26 @@ private CachingProvider provider;
 private CacheManager cacheManager;
 ```
 
+### Store
+
+This annotation indicates the operation that will be stored using Microstream automatically.
+It is a high-level implementation to save either the Iterable and Map instances or the root itself, where you can set by StoreType. 
+By default, it is lazy, and using the EAGER only is extremely necessary.
+
+
+```java
+@Inject
+private Items items;
+
+@Override
+@Store
+public Item save(Item item) {
+    this.items.add(item);
+    return item;
+}
+
+``
+
 ## Eclipse MicroProfile Configuration
 
 The integration allows receiving all information from the Eclipse MicroProfile Config instead of either a programmatic

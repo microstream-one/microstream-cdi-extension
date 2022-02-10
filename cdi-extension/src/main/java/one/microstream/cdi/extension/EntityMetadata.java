@@ -13,5 +13,9 @@
  */
 package one.microstream.cdi.extension;
 
+import java.util.List;
+
 class EntityMetadata {
+
+    private List<FieldMetadata> fields;
 }

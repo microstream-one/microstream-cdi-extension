@@ -13,6 +13,7 @@
  */
 package one.microstream.cdi.extension;
 
+import one.microstream.cdi.MicrostreamException;
 import one.microstream.cdi.Store;
 import one.microstream.cdi.StoreType;
 import one.microstream.concurrency.XThreads;
@@ -23,6 +24,7 @@ import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,6 +39,9 @@ class StoreInterceptor {
 
     @Inject
     private StorageManager manager;
+
+    @Inject
+    private StorageExtension extension;
 
     @AroundInvoke
     public Object store(InvocationContext context) throws Exception {
@@ -54,6 +59,9 @@ class StoreInterceptor {
                 long storeId = manager.store(root);
                 LOGGER.log(Level.WARNING, "Store the root it might return performance issue " + storeId);
             } else {
+                EntityMetadata metadata = extension.get(root.getClass())
+                        .orElseThrow(() -> new MicrostreamException("The entity metadata does" +
+                                " not found to the related root class: " + root.getClass()));
                 LOGGER.log(Level.FINEST, "Storing Iterables and Maps fields from the root ");
             }
         });

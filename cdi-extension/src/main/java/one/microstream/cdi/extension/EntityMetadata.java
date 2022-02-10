@@ -36,6 +36,7 @@ class EntityMetadata {
         for (Field field : entity.getDeclaredFields()) {
             Class<?> type = field.getType();
             if (isLazyFields(type)) {
+                field.setAccessible(true);
                 fields.add(FieldMetadata.of(field));
             }
         }

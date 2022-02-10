@@ -21,8 +21,12 @@ import java.util.List;
  *
  */
 public class Inventory {
-    private List<Product> products = new ArrayList<>();
-    private String name;
+    private final List<Product> products = new ArrayList<>();
+    private final String name;
+
+    public Inventory(String name) {
+        this.name = name;
+    }
 
     public void add(Product product) {
         products.add(product);

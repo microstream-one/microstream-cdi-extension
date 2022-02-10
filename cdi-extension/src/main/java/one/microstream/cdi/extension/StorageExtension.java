@@ -23,7 +23,12 @@ import javax.enterprise.inject.spi.BeanManager;
 import javax.enterprise.inject.spi.Extension;
 import javax.enterprise.inject.spi.ProcessAnnotatedType;
 import javax.enterprise.inject.spi.WithAnnotations;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Logger;
 
@@ -37,7 +42,9 @@ public class StorageExtension implements Extension {
 
     private final Set<Class<?>> storageRoot = new HashSet<>();
 
-    public <T> void loadEntity(@Observes @WithAnnotations({Storage.class}) final ProcessAnnotatedType<T> target) {
+    private final Map<Class<?>, EntityMetadata> entities = new HashMap<>();
+
+    <T> void loadEntity(@Observes @WithAnnotations({Storage.class}) final ProcessAnnotatedType<T> target) {
         AnnotatedType<T> annotatedType = target.getAnnotatedType();
         if (annotatedType.isAnnotationPresent(Storage.class)) {
             Class<T> javaClass = target.getAnnotatedType().getJavaClass();
@@ -53,15 +60,21 @@ public class StorageExtension implements Extension {
                     + storageRoot);
         }
         storageRoot.forEach(entity -> {
-         StorageBean<?> bean = new StorageBean<>(beanManager, entity);
-         afterBeanDiscovery.addBean(bean);
+            StorageBean<?> bean = new StorageBean<>(beanManager, entity);
+            afterBeanDiscovery.addBean(bean);
+            entities.put(entity, EntityMetadata.of(entity));
         });
+    }
+
+    <T> Optional<EntityMetadata> get(Class<T> entity) {
+        return Optional.ofNullable(this.entities.get(entity));
     }
 
     @Override
     public String toString() {
         return "StorageExtension{" +
                 "storageRoot=" + storageRoot +
+                ", entities=" + entities +
                 '}';
     }
 }

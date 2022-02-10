@@ -15,6 +15,8 @@
 package one.microstream.payara;
 
 
+import one.microstream.cdi.Store;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.util.Collection;
@@ -35,6 +37,7 @@ public class RestaurantRepositoryStorage implements RestaurantRepository {
     }
 
     @Override
+    @Store
     public Item save(Item item) {
         this.items.add(item);
         return item;
@@ -47,6 +50,7 @@ public class RestaurantRepositoryStorage implements RestaurantRepository {
     }
 
     @Override
+    @Store
     public void deleteById(String id) {
         items.deleteById(id);
     }

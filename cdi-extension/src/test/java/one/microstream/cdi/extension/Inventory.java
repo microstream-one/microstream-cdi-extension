@@ -14,7 +14,6 @@
 package one.microstream.cdi.extension;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -36,7 +35,7 @@ public class Inventory {
     }
 
     public List<Product> getProducts() {
-        return Collections.unmodifiableList(products);
+        return products;
     }
 
     @Override

@@ -23,6 +23,8 @@ The CDI will create an instance application-scoped, and it will close automatica
 ### Storage
 
 The Storage annotation allows injecting an entity from Microstream.
+Each application must have a unique class with this annotation.
+Note: To increase performance use immutable sub-graphs as often as possible.
 
 ```java
 @Storage
@@ -36,6 +38,26 @@ It will create/load this annotation using CDI.
 ```java
 @Inject
 private NameStorage nameStorage;
+```
+
+### Store
+
+This annotation indicates the operation that will be stored using Microstream automatically.
+It is a high-level implementation to save either the Iterable and Map instances or the root itself, where you can set by StoreType.
+By default, it is lazy, and using the EAGER only is extremely necessary.
+
+
+```java
+@Inject
+private Items items;
+
+@Override
+@Store
+public Item save(Item item) {
+    this.items.add(item);
+    return item;
+}
+
 ```
 
 ### Cache
@@ -67,26 +89,6 @@ private CachingProvider provider;
 @StorageCache
 private CacheManager cacheManager;
 ```
-
-### Store
-
-This annotation indicates the operation that will be stored using Microstream automatically.
-It is a high-level implementation to save either the Iterable and Map instances or the root itself, where you can set by StoreType. 
-By default, it is lazy, and using the EAGER only is extremely necessary.
-
-
-```java
-@Inject
-private Items items;
-
-@Override
-@Store
-public Item save(Item item) {
-    this.items.add(item);
-    return item;
-}
-
-``
 
 ## Eclipse MicroProfile Configuration
 

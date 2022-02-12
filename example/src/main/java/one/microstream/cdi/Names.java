@@ -17,9 +17,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Supplier;
 
 @Storage
-public class NameStorage {
+public class Names implements Supplier<List<String>> {
 
     private final List<String> names = new ArrayList<>();
 
@@ -27,7 +28,8 @@ public class NameStorage {
         this.names.add(Objects.requireNonNull(name, "name is required"));
     }
 
-    public List<String> getNames() {
+    @Override
+    public List<String> get() {
         return Collections.unmodifiableList(names);
     }
 
@@ -39,8 +41,8 @@ public class NameStorage {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        NameStorage nameStorage = (NameStorage) o;
-        return Objects.equals(names, nameStorage.names);
+        Names names = (Names) o;
+        return Objects.equals(this.names, names.names);
     }
 
     @Override
@@ -50,7 +52,7 @@ public class NameStorage {
 
     @Override
     public String toString() {
-        return "NameRoot{" +
+        return "Names{" +
                 "names=" + names +
                 '}';
     }

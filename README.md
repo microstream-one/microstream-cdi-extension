@@ -37,7 +37,7 @@ It will create/load this annotation using CDI.
 
 ```java
 @Inject
-private NameStorage nameStorage;
+private NameStorage names;
 ```
 
 ### Store
@@ -105,7 +105,7 @@ It will use the Eclipse Microprofile to read/parse the properties.
 
 ```java
 @Inject
-private NameStorage nameStorage;
+private NameStorage names;
 ```
 
 This injection will look in the ```microprofile-config.properties``` file to the property that will be a file to load directly by Micrscrostream with the ``EmbeddedStorageConfiguration.load(value);`` method.
@@ -113,7 +113,7 @@ This injection will look in the ```microprofile-config.properties``` file to the
 ```java
 @Inject
 @ConfigProperty(name = "microstream.ini")
-private NameStorage nameStorage;
+private NameStorage names;
 ```
 
 

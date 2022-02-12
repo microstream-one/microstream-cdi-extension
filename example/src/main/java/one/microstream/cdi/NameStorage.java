@@ -21,7 +21,7 @@ import java.util.Objects;
 @Storage
 public class NameStorage {
 
-    private List<String> names = new ArrayList<>();
+    private final List<String> names = new ArrayList<>();
 
     public void add(String name) {
         this.names.add(Objects.requireNonNull(name, "name is required"));

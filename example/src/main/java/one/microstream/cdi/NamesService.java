@@ -18,18 +18,18 @@ import javax.inject.Inject;
 import java.util.List;
 
 @ApplicationScoped
-public class NameServices {
+public class NamesService {
 
     @Inject
-    private NameStorage nameStorage;
+    private Names names;
 
     @Store
     public void add(String name) {
-        this.nameStorage.add(name);
+        this.names.add(name);
     }
 
     public List<String> getNames() {
-        return this.nameStorage.getNames();
+        return this.names.get();
     }
 
 }

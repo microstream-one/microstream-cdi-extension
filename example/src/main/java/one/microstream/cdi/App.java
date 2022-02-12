@@ -25,7 +25,7 @@ public class App {
             StorageManager manager = container.select(StorageManager.class).get();
             Object root = manager.root();
             System.out.println("The root value: " + root);
-            NameServices service = container.select(NameServices.class).get();
+            NamesService service = container.select(NamesService.class).get();
 
             System.out.println("The names: " + service.getNames());
             service.add("Sebastian");

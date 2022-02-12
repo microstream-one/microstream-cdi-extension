@@ -15,7 +15,7 @@ package one.microstream.cdi;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import java.util.List;
+import java.util.Set;
 
 @ApplicationScoped
 public class NamesService {
@@ -28,7 +28,7 @@ public class NamesService {
         this.names.add(name);
     }
 
-    public List<String> getNames() {
+    public Set<String> getNames() {
         return this.names.get();
     }
 

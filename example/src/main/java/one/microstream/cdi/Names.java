@@ -13,24 +13,25 @@
  */
 package one.microstream.cdi;
 
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.function.Supplier;
 
 @Storage
-public class Names implements Supplier<List<String>> {
+public class Names implements Supplier<Set<String>> {
 
-    private final List<String> names = new ArrayList<>();
+    private final Set<String> names = new HashSet<>();
 
     public void add(String name) {
         this.names.add(Objects.requireNonNull(name, "name is required"));
     }
 
     @Override
-    public List<String> get() {
-        return Collections.unmodifiableList(names);
+    public Set<String> get() {
+        return Collections.unmodifiableSet(names);
     }
 
     @Override

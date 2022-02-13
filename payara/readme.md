@@ -18,39 +18,21 @@ java -jar target/payara-example-microbundle.jar
 To launch the test page, open your browser at the following URL
 
 ```shell
-http://localhost:8080/index.html  
+http://localhost:8080/hello  
 ```
 To execute the tests:
 
 ```shell
-curl --location --request POST 'http://localhost:8080/restaurants' \
+curl --location --request POST 'http://localhost:8080/products/' \
 --header 'Content-Type: application/json' \
---data-raw '{"name": "water", "description": "Water appears as a clear, nontoxic liquid composed of hydrogen and oxygen, essential for life.", "type": "BEVERAGE", 
-"expires": "2025-12-03", "ingredients": [{"name": "water", "unit": "L", "quantity": 2}]}'
+--data-raw '{"id": 1, "name": "banana", "description": "a fruit", "rating": 5}'
 
-curl --location --request POST 'http://localhost:8080/restaurants' \
+curl --location --request POST 'http://localhost:8080/products/' \
 --header 'Content-Type: application/json' \
---data-raw '{"name": "coconut-water", "description": "Coconut water is the clear liquid inside coconuts.", "type": "BEVERAGE", 
-"expires": "2025-12-03", "ingredients": [{"name": "coconut water", "unit": "L", "quantity": 1}]}'
+--data-raw '{"id": 2, "name": "watermelon", "description": "watermelon sugar ahh", "rating": 4}'
 
+curl --location --request GET 'http://localhost:8080/products/'
 
-curl --location --request GET 'http://localhost:8080/restaurants/water'
+curl --location --request GET 'http://localhost:8080/products/1'
 
-curl --location --request GET 'http://localhost:8080/restaurants'
 ```
-
-## Specification examples
-
-By default, there is always the creation of a JAX-RS application class to define the path on which the JAX-RS endpoints are available.
-
-Also, a simple Hello world endpoint is created, have a look at the class **HelloController**.
-
-More information on MicroProfile can be found [here](https://microprofile.io/)
-
-
-### Config
-
-Configuration of your application parameters. Specification [here](https://microprofile.io/project/eclipse/microprofile-config)
-
-The example class **ConfigTestController** shows you how to inject a configuration parameter and how you can retrieve it programmatically.
-

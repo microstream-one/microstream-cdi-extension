@@ -18,12 +18,46 @@ package one.microstream.payara;
 import one.microstream.cdi.Storage;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 
 @Storage
 public class Inventory {
-    private String name;
 
     private final List<Product> products = new ArrayList<>();
+
+    public void add(Product product) {
+        Objects.requireNonNull(product, "product is required");
+        this.products.add(product);
+    }
+
+    public List<Product> getProducts() {
+        return Collections.unmodifiableList(products);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Inventory inventory = (Inventory) o;
+        return Objects.equals(products, inventory.products);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(products);
+    }
+
+    @Override
+    public String toString() {
+        return "Inventory{" +
+                "products=" + products +
+                '}';
+    }
 }

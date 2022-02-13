@@ -61,20 +61,19 @@ public class Product {
             return false;
         }
         Product product = (Product) o;
-        return rating == product.rating
-                && Objects.equals(name, product.name)
-                && Objects.equals(description, product.description);
+        return id == product.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, description, rating);
+        return Objects.hashCode(id);
     }
 
     @Override
     public String toString() {
         return "Product{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", rating=" + rating +
                 '}';

@@ -26,5 +26,6 @@
         <module>example</module>
         <module>payara</module>
         <module>helidon</module>
+        <module>wildfly</module>
     </modules>
 </project>

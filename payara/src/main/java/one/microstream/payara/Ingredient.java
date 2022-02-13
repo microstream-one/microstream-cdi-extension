@@ -14,19 +14,26 @@
 
 package one.microstream.payara;
 
-import one.microstream.payara.infra.FieldPropertyVisibilityStrategy;
-
-import javax.json.bind.annotation.JsonbVisibility;
+import javax.json.bind.annotation.JsonbCreator;
+import javax.json.bind.annotation.JsonbProperty;
 import java.util.Objects;
 
-@JsonbVisibility(FieldPropertyVisibilityStrategy.class)
 public class Ingredient {
 
-    private String name;
+    private final String name;
 
-    private String unit;
+    private final String unit;
 
-    private double quantity;
+    private final double quantity;
+
+    @JsonbCreator
+    public Ingredient(@JsonbProperty("name") String name,
+                      @JsonbProperty("unit") String unit,
+                      @JsonbProperty("quantity") double quantity) {
+        this.name = name;
+        this.unit = unit;
+        this.quantity = quantity;
+    }
 
     public String getName() {
         return name;

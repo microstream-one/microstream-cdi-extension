@@ -25,7 +25,7 @@ import java.util.Set;
 @Storage
 public class Items {
 
-    private Set<Item> data = new HashSet<>();
+    private final Set<Item> data = new HashSet<>();
 
     public void add(Item item) {
         Objects.requireNonNull(item, "item is required");

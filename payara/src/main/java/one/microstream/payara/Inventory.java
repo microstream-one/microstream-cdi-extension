@@ -20,6 +20,7 @@ import one.microstream.cdi.Storage;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 
@@ -35,6 +36,14 @@ public class Inventory {
 
     public Set<Product> getProducts() {
         return Collections.unmodifiableSet(products);
+    }
+
+    public Optional<Product> findById(String id) {
+        return null;
+    }
+
+    public void deleteById(String id) {
+
     }
 
     @Override
@@ -60,4 +69,6 @@ public class Inventory {
                 "products=" + products +
                 '}';
     }
+
+
 }

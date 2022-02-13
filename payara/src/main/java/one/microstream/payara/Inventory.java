@@ -15,5 +15,15 @@
 package one.microstream.payara;
 
 
+import one.microstream.cdi.Storage;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+@Storage
 public class Inventory {
+    private String name;
+
+    private final List<Product> products = new ArrayList<>();
 }

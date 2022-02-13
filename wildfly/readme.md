@@ -14,20 +14,25 @@ This will create an executable jar file **wildfly-example-bootable.jar** within 
     java -jar target/wildfly-example-bootable.jar
 
 
-
-
 To launch the test page, open your browser at the following URL
 
-    http://localhost:8080/index.html  
+```shell
+http://localhost:8080/hello  
+```
+To execute the tests:
 
+```shell
+curl --location --request POST 'http://localhost:8080/products/' \
+--header 'Content-Type: application/json' \
+--data-raw '{"id": 1, "name": "banana", "description": "a fruit", "rating": 5}'
 
+curl --location --request POST 'http://localhost:8080/products/' \
+--header 'Content-Type: application/json' \
+--data-raw '{"id": 2, "name": "watermelon", "description": "watermelon sugar ahh", "rating": 4}'
 
-## Specification examples
+curl --location --request GET 'http://localhost:8080/products/'
 
-By default, there is always the creation of a JAX-RS application class to define the path on which the JAX-RS endpoints are available.
+curl --location --request GET 'http://localhost:8080/products/1'
 
-Also, a simple Hello world endpoint is created, have a look at the class **HelloController**.
-
-More information on MicroProfile can be found [here](https://microprofile.io/)
-
+```
 

@@ -13,6 +13,7 @@
  */
 
 package one.microstream.payara;
-public enum ItemType {
-    BEVERAGE, FOOD;
+
+
+public class Inventory {
 }

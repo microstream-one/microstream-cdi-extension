@@ -20,17 +20,24 @@ import java.util.Objects;
 
 public class Product {
 
+    private final long id;
     private final String name;
     private final String description;
     private final int rating;
 
     @JsonbCreator
-    public Product(@JsonbProperty("name") String name,
+    public Product(@JsonbProperty("id") long id,
+                   @JsonbProperty("name") String name,
                    @JsonbProperty("description") String description,
                    @JsonbProperty("rating") int rating) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.rating = rating;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getName() {

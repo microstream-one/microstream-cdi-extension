@@ -17,24 +17,23 @@ java -jar target/helidon-example.jar
 ```
 To launch the test page, open your browser at the following URL
 
-```shell
-http://localhost:8080/index.html  
-```
 
+```shell
+http://localhost:8080/hello  
+```
 To execute the tests:
 
 ```shell
-curl --location --request POST 'http://localhost:8080/restaurants' \
+curl --location --request POST 'http://localhost:8080/products/' \
 --header 'Content-Type: application/json' \
---data-raw '{"name": "water", "description": "Water appears as a clear, nontoxic liquid composed of hydrogen and oxygen, essential for life.", "type": "BEVERAGE", 
-"expires": "2025-12-03", "ingredients": [{"name": "water", "unit": "L", "quantity": 2}]}'
+--data-raw '{"id": 1, "name": "banana", "description": "a fruit", "rating": 5}'
 
-curl --location --request POST 'http://localhost:8080/restaurants' \
+curl --location --request POST 'http://localhost:8080/products/' \
 --header 'Content-Type: application/json' \
---data-raw '{"name": "coconut-water", "description": "Coconut water is the clear liquid inside coconuts.", "type": "BEVERAGE", 
-"expires": "2025-12-03", "ingredients": [{"name": "coconut water", "unit": "L", "quantity": 1}]}'
+--data-raw '{"id": 2, "name": "watermelon", "description": "watermelon sugar ahh", "rating": 4}'
 
-curl --location --request GET 'http://localhost:8080/restaurants/water'
+curl --location --request GET 'http://localhost:8080/products/'
 
-curl --location --request GET 'http://localhost:8080/restaurants'
+curl --location --request GET 'http://localhost:8080/products/1'
+
 ```

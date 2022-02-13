@@ -14,25 +14,15 @@
 
 package one.microstream.helidon;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Collection;
+import java.util.Optional;
 
-/**
- *
- */
-@ApplicationPath("/")
-@ApplicationScoped
-public class RestApplication extends Application {
+public interface ProductRepository {
+    Collection<Product> getAll();
 
-    @Override
-    public Set<Class<?>> getClasses() {
-        Set<Class<?>> classes = new HashSet<>();
-        // resources
-        classes.add(HelloController.class);
-        classes.add(ProductController.class);
-        return classes;
-    }
+    Product save(Product item);
+
+    Optional<Product> findById(long id);
+
+    void deleteById(long id);
 }

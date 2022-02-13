@@ -1,4 +1,4 @@
-package one.microstream.wildfly.wildfly.example;
+package one.microstream.wildfly;
 
 import javax.inject.Singleton;
 import javax.ws.rs.GET;

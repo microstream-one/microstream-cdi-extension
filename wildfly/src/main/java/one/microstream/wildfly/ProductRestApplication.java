@@ -1,4 +1,4 @@
-package one.microstream.wildfly.wildfly.example;
+package one.microstream.wildfly;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.ApplicationPath;

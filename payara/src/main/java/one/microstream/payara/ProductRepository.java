@@ -22,7 +22,7 @@ public interface ProductRepository {
 
     Product save(Product item);
 
-    Optional<Product> findById(String id);
+    Optional<Product> findById(long id);
 
-    void deleteById(String id);
+    void deleteById(long id);
 }

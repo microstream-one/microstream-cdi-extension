@@ -42,8 +42,8 @@ public class Inventory {
     public Optional<Product> findById(long id) {
         return this.products
                 .stream()
-                .limit(1)
                 .filter(isIdEquals(id))
+                .limit(1)
                 .findFirst();
     }
 

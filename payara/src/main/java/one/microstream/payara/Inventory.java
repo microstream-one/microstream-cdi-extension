@@ -22,6 +22,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Predicate;
 
 
 @Storage
@@ -38,13 +39,23 @@ public class Inventory {
         return Collections.unmodifiableSet(products);
     }
 
-    public Optional<Product> findById(String id) {
-        return null;
+    public Optional<Product> findById(long id) {
+        return this.products
+                .stream()
+                .limit(1)
+                .filter(isIdEquals(id))
+                .findFirst();
     }
 
-    public void deleteById(String id) {
+    public void deleteById(long id) {
+        this.products.removeIf(isIdEquals(id));
 
     }
+
+    private Predicate<Product> isIdEquals(long id) {
+        return p -> p.getId() == id;
+    }
+
 
     @Override
     public boolean equals(Object o) {

@@ -24,34 +24,34 @@ import java.util.Optional;
 import java.util.logging.Logger;
 
 @ApplicationScoped
-public class RestaurantRepositoryStorage implements RestaurantRepository {
+public class ProductRepositoryStorage implements ProductRepository {
 
-    private static final Logger LOGGER = Logger.getLogger(RestaurantRepositoryStorage.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ProductRepositoryStorage.class.getName());
 
     @Inject
-    private Items items;
+    private Inventory inventory;
 
     @Override
-    public Collection<Item> getAll() {
-        return items.getData();
+    public Collection<Product> getAll() {
+        return inventory.getProducts();
     }
 
     @Override
     @Store
-    public Item save(Item item) {
-        this.items.add(item);
+    public Product save(Product item) {
+        this.inventory.add(item);
         return item;
     }
 
     @Override
-    public Optional<Item> findById(String id) {
+    public Optional<Product> findById(long id) {
         LOGGER.info("Finding the item by id: " + id);
-        return items.findById(id);
+        return inventory.findById(id);
     }
 
     @Override
     @Store
-    public void deleteById(String id) {
-        items.deleteById(id);
+    public void deleteById(long id) {
+        inventory.deleteById(id);
     }
 }

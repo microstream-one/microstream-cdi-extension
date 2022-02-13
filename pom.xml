@@ -27,5 +27,6 @@
         <module>payara</module>
         <module>helidon</module>
         <module>wildfly</module>
+        <module>liberty</module>
     </modules>
 </project>

@@ -6,13 +6,14 @@ MicroProfile Starter has generated this MicroProfile application for you.
 
 The generation of the executable jar file can be performed by issuing the following command
 
-
-    mvn clean package
-
+```shell
+mvn clean package
+```
 This will create an executable jar file **wildfly-example-bootable.jar** within the _target_ maven folder. This can be started by executing the following command
 
-    java -jar target/wildfly-example-bootable.jar
-
+```shell
+java -jar target/wildfly-example-bootable.jar
+```
 
 To launch the test page, open your browser at the following URL
 

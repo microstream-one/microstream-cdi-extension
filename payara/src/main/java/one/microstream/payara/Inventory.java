@@ -17,24 +17,24 @@ package one.microstream.payara;
 
 import one.microstream.cdi.Storage;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 
 @Storage
 public class Inventory {
 
-    private final List<Product> products = new ArrayList<>();
+    private final Set<Product> products = new HashSet<>();
 
     public void add(Product product) {
         Objects.requireNonNull(product, "product is required");
         this.products.add(product);
     }
 
-    public List<Product> getProducts() {
-        return Collections.unmodifiableList(products);
+    public Set<Product> getProducts() {
+        return Collections.unmodifiableSet(products);
     }
 
     @Override

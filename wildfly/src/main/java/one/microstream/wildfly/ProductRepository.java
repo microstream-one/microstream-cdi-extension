@@ -12,7 +12,7 @@
  *    limitations under the License.
  */
 
-package one.microstream.payara;
+package one.microstream.wildfly;
 
 import java.util.Collection;
 import java.util.Optional;

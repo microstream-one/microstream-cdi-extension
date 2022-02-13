@@ -12,7 +12,7 @@
  *    limitations under the License.
  */
 
-package one.microstream.payara;
+package one.microstream.wildfly;
 
 
 import one.microstream.cdi.Storage;

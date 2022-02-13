@@ -12,7 +12,7 @@
  *    limitations under the License.
  */
 
-package one.microstream.payara;
+package one.microstream.wildfly;
 
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;

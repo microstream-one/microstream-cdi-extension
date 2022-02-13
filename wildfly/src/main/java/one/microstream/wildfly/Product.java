@@ -12,7 +12,7 @@
  *    limitations under the License.
  */
 
-package one.microstream.payara;
+package one.microstream.wildfly;
 
 import javax.json.bind.annotation.JsonbCreator;
 import javax.json.bind.annotation.JsonbProperty;

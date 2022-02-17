@@ -51,19 +51,9 @@ class StoreInterceptor {
                 + " using the store type: " + store.value());
 
         Object result = context.proceed();
-
         XThreads.executeSynchronized(() -> {
-            Object root = manager.root();
-            if (StoreType.EAGER.equals(store.value())) {
-                long storeId = manager.store(root);
-                LOGGER.log(Level.WARNING, "Store the root it might return performance issue " + storeId);
-            } else {
-                EntityMetadata metadata = extension.get(root.getClass())
-                        .orElseThrow(() -> new MicrostreamException("The entity metadata does" +
-                                " not found to the related root class: " + root.getClass()));
-                metadata.values(root).forEach(manager::store);
-                LOGGER.log(Level.FINEST, "Storing Iterables and Maps fields from the root class " + root.getClass());
-            }
+            StoreStrategy strategy = StoreStrategy.of(store);
+            strategy.store(store, manager, extension);
         });
 
         return result;

@@ -13,6 +13,33 @@
  */
 package one.microstream.cdi.extension;
 
-enum StoreTypeStrategy {
-    LAZY, EAGER;
+import one.microstream.cdi.MicrostreamException;
+import one.microstream.cdi.Store;
+import one.microstream.storage.types.StorageManager;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+enum StoreTypeStrategy implements StoreStrategy {
+
+    LAZY{
+        @Override
+        public void store(Store store, StorageManager manager, StorageExtension extension) {
+            Object root = manager.root();
+            long storeId = manager.store(root);
+            LOGGER.log(Level.WARNING, "Store the root it might return performance issue " + storeId);
+        }
+    }, EAGER {
+        @Override
+        public void store(Store store, StorageManager manager, StorageExtension extension) {
+            Object root = manager.root();
+            EntityMetadata metadata = extension.get(root.getClass())
+                    .orElseThrow(() -> new MicrostreamException("The entity metadata does" +
+                            " not found to the related root class: " + root.getClass()));
+            metadata.values(root).forEach(manager::store);
+            LOGGER.log(Level.FINEST, "Storing Iterables and Maps fields from the root class " + root.getClass());
+        }
+    };
+
+    private static final Logger LOGGER = Logger.getLogger(StoreTypeStrategy.class.getName());
 }

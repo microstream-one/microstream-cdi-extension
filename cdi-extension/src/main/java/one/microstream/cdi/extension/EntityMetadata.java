@@ -35,13 +35,13 @@ class EntityMetadata {
         return Collections.unmodifiableList(fields);
     }
 
-    public Stream<Object> values(Object entity) {
+    public Stream<Object> values(Object entity, String[] fields) {
         Objects.requireNonNull(entity, "entity is required");
         if (!type.equals(entity.getClass())) {
             throw new IllegalArgumentException(String.format("The entity %s is not compatible with the metadata %s"
                     , entity.getClass(), type));
         }
-        return fields.stream()
+        return this.fields.stream()
                 .map(f -> f.read(entity))
                 .filter(Objects::nonNull);
     }

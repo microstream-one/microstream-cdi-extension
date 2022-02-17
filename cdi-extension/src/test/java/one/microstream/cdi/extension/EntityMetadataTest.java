@@ -74,13 +74,13 @@ class EntityMetadataTest {
     @Test
     public void shouldReturnNPEWhenIsNull() {
         EntityMetadata metadata = EntityMetadata.of(MediaUser.class);
-        Assertions.assertThrows(NullPointerException.class, ()-> metadata.values(null));
+        Assertions.assertThrows(NullPointerException.class, ()-> metadata.values(null, new String[0]));
     }
 
     @Test
     public void shouldReturnIllegalErrorWhenTypesAreIncompatibles() {
         EntityMetadata metadata = EntityMetadata.of(MediaUser.class);
-        Assertions.assertThrows(IllegalArgumentException.class, ()-> metadata.values(new Cat()));
+        Assertions.assertThrows(IllegalArgumentException.class, ()-> metadata.values(new Cat(), new String[0]));
     }
 
     @Test
@@ -90,7 +90,7 @@ class EntityMetadataTest {
         Set<String> medias = null;
         Map<String, String> postsBySocialMedia = Map.of("otaviojava", "my post", "otavio", "my photo");
         MediaUser mediaUser = new MediaUser(user, medias, postsBySocialMedia);
-        List<Object> values = metadata.values(mediaUser).collect(Collectors.toList());
+        List<Object> values = metadata.values(mediaUser, new String[0]).collect(Collectors.toList());
 
         Assertions.assertEquals(1, values.size());
         Assertions.assertEquals(postsBySocialMedia, values.get(0));

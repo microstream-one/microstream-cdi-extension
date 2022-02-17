@@ -18,5 +18,5 @@ import one.microstream.storage.types.StorageManager;
 
 interface StoreStrategy {
 
-    long store(Store store, StorageManager manager, StorageExtension extension);
+    void store(Store store, StorageManager manager, StorageExtension extension);
 }

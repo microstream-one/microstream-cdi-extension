@@ -32,13 +32,19 @@ enum StoreTypeStrategy implements StoreStrategy {
     }, LAZY {
         @Override
         public void store(Store store, StorageManager manager, StorageExtension extension) {
+
             Object root = manager.root();
-            EntityMetadata metadata = extension.get(root.getClass())
-                    .orElseThrow(() -> new MicrostreamException("The entity metadata does" +
-                            " not found to the related root class: " + root.getClass()));
-            metadata.values(root, store.fields()).forEach(manager::store);
-            LOGGER.log(Level.FINEST, "Storing Iterables and Maps fields from the root class "
-                    + root.getClass() + " the fields: " + store.fields());
+            if (store.root()) {
+                long storeId = manager.store(root);
+                LOGGER.log(Level.WARNING, "Store the root it might return performance issue " + storeId);
+            } else {
+                EntityMetadata metadata = extension.get(root.getClass())
+                        .orElseThrow(() -> new MicrostreamException("The entity metadata does" +
+                                " not found to the related root class: " + root.getClass()));
+                metadata.values(root, store.fields()).forEach(manager::store);
+                LOGGER.log(Level.FINEST, "Storing Iterables and Maps fields from the root class "
+                        + root.getClass() + " the fields: " + store.fields());
+            }
         }
     };
 

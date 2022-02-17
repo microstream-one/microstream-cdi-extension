@@ -16,9 +16,11 @@ package one.microstream.cdi.extension;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 class EntityMetadata {
@@ -35,16 +37,27 @@ class EntityMetadata {
         return Collections.unmodifiableList(fields);
     }
 
-    public Stream<Object> values(Object entity, String[] fields) {
+    public Stream<Object> values(Object entity, String[] filters) {
         Objects.requireNonNull(entity, "entity is required");
         Objects.requireNonNull(fields, "fields is required");
         if (!type.equals(entity.getClass())) {
             throw new IllegalArgumentException(String.format("The entity %s is not compatible with the metadata %s"
                     , entity.getClass(), type));
         }
-        return this.fields.stream()
+        return this.getFields(filters)
                 .map(f -> f.read(entity))
                 .filter(Objects::nonNull);
+    }
+
+    private Stream<FieldMetadata> getFields(String[] filters) {
+        if (filters.length == 0) {
+            return this.fields.stream();
+        }
+
+        List<String> storeFields = List.of(filters);
+        storeFields.sort(Comparator.naturalOrder());
+        Predicate<FieldMetadata> find = f -> Collections.binarySearch(storeFields, f.getName()) >= 0;
+        return this.getFields().stream().filter(find);
     }
 
     @Override

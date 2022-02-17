@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 
 enum StoreTypeStrategy implements StoreStrategy {
 
-    LAZY{
+    LAZY {
         @Override
         public void store(Store store, StorageManager manager, StorageExtension extension) {
             Object root = manager.root();

@@ -9,7 +9,7 @@ import javax.inject.Inject;
 import java.util.Objects;
 
 @ApplicationScoped
-public class AgendaService {
+public class AgendaLazyService {
 
     @Inject
     private Agenda agenda;
@@ -20,8 +20,8 @@ public class AgendaService {
         agenda.add(name);
     }
 
-    @Store(StoreType.EAGER)
-    public void addNameEager(String name) {
+    @Store(value = StoreType.LAZY, root = true)
+    public void addNameRoot(String name) {
         Objects.requireNonNull(name, "name is required");
         agenda.add(name);
     }

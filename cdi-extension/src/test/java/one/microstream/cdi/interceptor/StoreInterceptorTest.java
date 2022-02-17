@@ -23,7 +23,7 @@ class StoreInterceptorTest {
 
 
     @Inject
-    private AgendaService service;
+    private AgendaLazyService lazyService;
 
     @Inject
     private AgendaService2 service2;
@@ -32,13 +32,13 @@ class StoreInterceptorTest {
     private AgendaService3 service3;
 
     @Test
-    public void addNameEager() {
-        service.addNameEager("Poliana");
+    public void shouldUpdateRootLazily() {
+        lazyService.addNameRoot("Poliana");
     }
 
     @Test
-    public void addNameLazy() {
-        service.addNameLazy("Otavio");
+    public void shouldUpdateFieldLazy() {
+        lazyService.addNameLazy("Otavio");
     }
 
     @Test

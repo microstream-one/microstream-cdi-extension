@@ -63,6 +63,35 @@ public Item save(Item item) {
 
 ```
 
+Inside the lazy type, we also can filter the fields to be stored in operation. E.g., Give an Inventory instance where you have several attributes. You can only keep the products field in a method and another the list of users ass it shows the method bellow.
+
+```java
+@Inject
+private Inventory inventory;
+
+@Store(fields = "products")
+public void add(Product product) {
+       this.inventory.add(product);
+}
+
+@Store(fields = "users")
+public void add(User user) {
+       this.inventory.add(user);
+}
+
+//be default lazy, and it will store all iterable and map fields
+@Store
+public void add(Product product, User user) {
+       this.inventory.add(user);
+       this.inventory.add(product);
+}
+//avoid this annotation
+@Store(StoreType.EAGER)
+public void add(String name) {
+        this.inventory.setName(name)
+ }
+```
+
 ### Cache
 
 You can use Microsctream as a cache as well, thanks to the ```StorageCache``` annotation.

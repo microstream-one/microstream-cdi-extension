@@ -20,6 +20,12 @@ public class AgendaLazyService {
         agenda.add(name);
     }
 
+    @Store(fields = "names")
+    public void updateName(String name) {
+        Objects.requireNonNull(name, "name is required");
+        agenda.add(name);
+    }
+
     @Store(value = StoreType.LAZY, root = true)
     public void addNameRoot(String name) {
         Objects.requireNonNull(name, "name is required");

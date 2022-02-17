@@ -40,6 +40,11 @@ class StoreInterceptorTest {
     }
 
     @Test
+    public void shouldUpdateLazilyAField() {
+        lazyService.updateName("Otavio");
+    }
+
+    @Test
     public void shouldUpdateRootEagerly() {
         eagerService.add("Ada");
     }
@@ -47,6 +52,11 @@ class StoreInterceptorTest {
     @Test
     public void shouldUpdateFieldsEagerly() {
         eagerService.addEager("Ada");
+    }
+
+    @Test
+    public void shouldUpdateEagerlyAFields() {
+        lazyService.updateName("Otavio");
     }
 
 

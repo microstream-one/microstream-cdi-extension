@@ -15,14 +15,20 @@ public class AgendaEagerService {
     @Inject
     private Agenda agenda;
 
-    @Store(StoreType.LAZY)
+    @Store(StoreType.EAGER)
     public void add(String name) {
         Objects.requireNonNull(name, "name is required");
         agenda.add(name);
     }
 
-    @Store(StoreType.EAGER)
+    @Store(value = StoreType.EAGER, root = true)
     public void addEager(String name) {
+        Objects.requireNonNull(name, "name is required");
+        agenda.add(name);
+    }
+
+    @Store(value = StoreType.EAGER, fields = "names")
+    public void updateName(String name) {
         Objects.requireNonNull(name, "name is required");
         agenda.add(name);
     }

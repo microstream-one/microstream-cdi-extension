@@ -13,6 +13,6 @@
  */
 package one.microstream.cdi.extension;
 
-enum StoryTypeStrategy {
+enum StoreTypeStrategy {
     LAZY, EAGER;
 }

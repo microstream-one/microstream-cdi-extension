@@ -65,6 +65,9 @@ public Item save(Item item) {
 
 Inside the lazy type, we also can filter the fields to be stored in operation. E.g., Give an Inventory instance where you have several attributes. You can only keep the products field in a method and another the list of users ass it shows the method bellow.
 
+The lazy mode will execute: ```StorageManager#store(Object)```.
+[To get more information](https://docs.microstream.one/manual/storage/storing-data/index.html).
+
 ```java
 @Inject
 private Inventory inventory;
@@ -86,7 +89,7 @@ public void add(Product product, User user) {
        this.inventory.add(product);
 }
 //avoid this annotation
-@Store(StoreType.EAGER)
+@Store(StoreType.LAZY, root = true)
 public void add(String name) {
         this.inventory.setName(name)
  }

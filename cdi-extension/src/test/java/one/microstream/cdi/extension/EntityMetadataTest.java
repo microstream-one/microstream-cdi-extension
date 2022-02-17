@@ -119,4 +119,27 @@ class EntityMetadataTest {
         Assertions.assertEquals(1, values.size());
         Assertions.assertEquals(postsBySocialMedia, values.get(0));
     }
+
+    @Test
+    public void shouldReturnEmptyWhenIsNotIterableOrMap() {
+        EntityMetadata metadata = EntityMetadata.of(MediaUser.class);
+        String user = "Otavio";
+        Set<String> medias = Set.of("Twitter", "Facebook");
+        Map<String, String> postsBySocialMedia = Map.of("otaviojava", "my post", "otavio", "my photo");
+        MediaUser mediaUser = new MediaUser(user, medias, postsBySocialMedia);
+        List<Object> values = metadata.values(mediaUser, new String[]{"user"}).collect(Collectors.toList());
+        Assertions.assertTrue(values.isEmpty());
+    }
+
+    @Test
+    public void shouldIgnoreNonIterableOrMap() {
+        EntityMetadata metadata = EntityMetadata.of(MediaUser.class);
+        String user = "Otavio";
+        Set<String> medias = Set.of("Twitter", "Facebook");
+        Map<String, String> postsBySocialMedia = Map.of("otaviojava", "my post", "otavio", "my photo");
+        MediaUser mediaUser = new MediaUser(user, medias, postsBySocialMedia);
+        List<Object> values = metadata.values(mediaUser, new String[]{"user", "medias"}).collect(Collectors.toList());
+        Assertions.assertEquals(1, values.size());
+        Assertions.assertEquals(medias, values.get(0));
+    }
 }

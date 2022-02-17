@@ -15,6 +15,8 @@ package one.microstream.cdi.extension;
 
 import one.microstream.cdi.MicrostreamException;
 import one.microstream.cdi.Store;
+import one.microstream.persistence.types.PersistenceStoring;
+import one.microstream.persistence.types.Storer;
 import one.microstream.storage.types.StorageManager;
 
 import java.util.logging.Level;
@@ -25,28 +27,42 @@ enum StoreTypeStrategy implements StoreStrategy {
     EAGER {
         @Override
         public void store(Store store, StorageManager manager, StorageExtension extension) {
+            LOGGER.log(Level.WARNING, "Store with Eager has a high cost of performance.");
             Object root = manager.root();
-            long storeId = manager.store(root);
-            LOGGER.log(Level.WARNING, "Store the root it might return performance issue " + storeId);
+            Storer storer = manager.createEagerStorer();
+            execute(store, extension, root, storer);
+            storer.commit();
+
         }
+
     }, LAZY {
         @Override
         public void store(Store store, StorageManager manager, StorageExtension extension) {
-
             Object root = manager.root();
-            if (store.root()) {
-                long storeId = manager.store(root);
-                LOGGER.log(Level.WARNING, "Store the root it might return performance issue " + storeId);
-            } else {
-                EntityMetadata metadata = extension.get(root.getClass())
-                        .orElseThrow(() -> new MicrostreamException("The entity metadata does" +
-                                " not found to the related root class: " + root.getClass()));
-                metadata.values(root, store.fields()).forEach(manager::store);
-                LOGGER.log(Level.FINEST, "Storing Iterables and Maps fields from the root class "
-                        + root.getClass() + " the fields: " + store.fields());
-            }
+            execute(store, extension, root, manager);
         }
     };
 
     private static final Logger LOGGER = Logger.getLogger(StoreTypeStrategy.class.getName());
+
+    private static EntityMetadata getEntityMetadata(StorageExtension extension, Object root) {
+        EntityMetadata metadata = extension.get(root.getClass())
+                .orElseThrow(() -> new MicrostreamException("The entity metadata does" +
+                        " not found to the related root class: " + root.getClass()));
+        return metadata;
+    }
+
+    private static void execute(Store store, StorageExtension extension, Object root, PersistenceStoring storing) {
+        if (store.root()) {
+            long storeId = storing.store(root);
+            LOGGER.log(Level.WARNING, "Store the root it might return performance issue " + storeId);
+        } else {
+            EntityMetadata metadata = getEntityMetadata(extension, root);
+            metadata.values(root, store.fields()).forEach(storing::store);
+            LOGGER.log(Level.FINEST, "Storing Iterables and Maps fields from the root class "
+                    + root.getClass() + " the fields: " + store.fields());
+        }
+    }
+
+
 }

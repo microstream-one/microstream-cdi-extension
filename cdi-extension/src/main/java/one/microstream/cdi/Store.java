@@ -47,5 +47,10 @@ public @interface Store {
      */
     @Nonbinding StoreType value() default StoreType.LAZY;
 
-    @Nonbinding String[] values() default {""};
+    /**
+     * Define the fields there will be stored once the store type is Lazy.
+     * By default, all iterable or Map domains are targets of the storage method.
+     * @return the storage fields targets
+     */
+    @Nonbinding String[] fields() default {""};
 }

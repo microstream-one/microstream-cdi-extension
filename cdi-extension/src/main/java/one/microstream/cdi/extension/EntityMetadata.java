@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 class EntityMetadata {
@@ -54,8 +55,7 @@ class EntityMetadata {
             return this.fields.stream();
         }
 
-        List<String> storeFields = List.of(filters);
-        storeFields.sort(Comparator.naturalOrder());
+        List<String> storeFields = Stream.of(filters).sorted().collect(Collectors.toList());
         Predicate<FieldMetadata> find = f -> Collections.binarySearch(storeFields, f.getName()) >= 0;
         return this.getFields().stream().filter(find);
     }

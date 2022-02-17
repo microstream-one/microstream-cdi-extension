@@ -14,6 +14,8 @@
 package one.microstream.cdi;
 
 
+import one.microstream.functional._intIndexedSupplier;
+
 import javax.enterprise.util.Nonbinding;
 import javax.interceptor.InterceptorBinding;
 import java.lang.annotation.ElementType;
@@ -55,4 +57,11 @@ public @interface Store {
      * @return the storage fields targets in the
      */
     @Nonbinding String[] fields() default {""};
+
+    /**
+     * Define if Microstream will ignore the {@link Store#fields()} and then store the whole entity class root.
+     * By default, it will use the fields.
+     * @return it will store the fields or the root class.
+     */
+    @Nonbinding boolean root() default false;
 }

@@ -88,13 +88,51 @@ public void add(Product product, User user) {
        this.inventory.add(user);
        this.inventory.add(product);
 }
-//avoid this annotation
+//avoid this combination it has a high performance cost.
 @Store(StoreType.LAZY, root = true)
 public void add(String name) {
         this.inventory.setName(name)
  }
 ```
 
+In another hand we have the ```EAGER``` strategy that will execute the save eagerly:
+E.g.: 
+```java
+Storer storer = storage.createEagerStorer();
+storer.store(inventory.getProducts());
+storer.commit();
+```
+
+Contrary to Lazy storing this will also store modified child objects at the cost of performance.
+
+```java
+@Inject
+private Inventory inventory;
+
+@Store(value = StoreType.EAGER, fields = "products")
+public void add(Product product) {
+       this.inventory.add(product);
+}
+
+@Store(value = StoreType.EAGER, fields = "users")
+public void add(User user) {
+       this.inventory.add(user);
+}
+
+//be default, it will store all iterable and map fields
+@Store(value = StoreType.EAGER)
+public void add(Product product, User user) {
+       this.inventory.add(user);
+       this.inventory.add(product);
+}
+
+@Store(StoreType.EAGER, root = true)
+public void add(String name) {
+        this.inventory.setName(name)
+ }
+```
+
+[To get more information](https://docs.microstream.one/manual/storage/storing-data/lazy-eager-full.html)
 ### Cache
 
 You can use Microsctream as a cache as well, thanks to the ```StorageCache``` annotation.

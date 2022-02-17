@@ -28,6 +28,9 @@ class StoreInterceptorTest {
     @Inject
     private AgendaService2 service2;
 
+    @Inject
+    private AgendaService3 service3;
+
     @Test
     public void addNameEager() {
         service.addNameEager("Poliana");
@@ -46,6 +49,11 @@ class StoreInterceptorTest {
     @Test
     public void addEager() {
         service2.addEager("Ada");
+    }
+
+    @Test
+    public void addSpecific() {
+        service3.add("Ada");
     }
 
 }

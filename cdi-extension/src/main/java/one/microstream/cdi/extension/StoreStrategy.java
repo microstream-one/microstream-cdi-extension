@@ -13,5 +13,10 @@
  */
 package one.microstream.cdi.extension;
 
+import one.microstream.cdi.Store;
+import one.microstream.storage.types.StorageManager;
+
 interface StoreStrategy {
+
+    long store(Store store, StorageManager manager, StorageExtension extension);
 }

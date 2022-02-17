@@ -46,4 +46,6 @@ public @interface Store {
      * @return the {@link StoreType}
      */
     @Nonbinding StoreType value() default StoreType.LAZY;
+
+    @Nonbinding String[] values() default {""};
 }

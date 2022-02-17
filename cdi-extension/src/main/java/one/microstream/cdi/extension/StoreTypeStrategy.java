@@ -22,14 +22,14 @@ import java.util.logging.Logger;
 
 enum StoreTypeStrategy implements StoreStrategy {
 
-    LAZY {
+    EAGER {
         @Override
         public void store(Store store, StorageManager manager, StorageExtension extension) {
             Object root = manager.root();
             long storeId = manager.store(root);
             LOGGER.log(Level.WARNING, "Store the root it might return performance issue " + storeId);
         }
-    }, EAGER {
+    }, LAZY {
         @Override
         public void store(Store store, StorageManager manager, StorageExtension extension) {
             Object root = manager.root();

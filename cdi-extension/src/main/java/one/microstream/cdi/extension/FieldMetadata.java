@@ -23,8 +23,11 @@ class FieldMetadata implements Supplier<Field> {
 
     private final Field field;
 
+    private final String name;
+
     private FieldMetadata(Field field) {
         this.field = field;
+        this.name = field.getName();
     }
 
     Object read(Object entity) {
@@ -60,6 +63,7 @@ class FieldMetadata implements Supplier<Field> {
     public String toString() {
         return "FieldMetadata{" +
                 "field=" + field +
+                ", name='" + name + '\'' +
                 '}';
     }
 

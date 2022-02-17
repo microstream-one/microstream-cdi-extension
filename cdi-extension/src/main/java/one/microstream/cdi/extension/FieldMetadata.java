@@ -37,6 +37,11 @@ class FieldMetadata implements Supplier<Field> {
             throw new MicrostreamException("There is an issue to read the field: " + field, e);
         }
     }
+
+    public String getName() {
+        return this.name;
+    }
+
     @Override
     public Field get() {
         return field;

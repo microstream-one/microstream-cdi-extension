@@ -10,7 +10,7 @@ import java.util.Objects;
 
 @ApplicationScoped
 @Store
-public class AgendaService2 {
+public class AgendaEagerService {
 
     @Inject
     private Agenda agenda;

@@ -26,7 +26,7 @@ class StoreInterceptorTest {
     private AgendaLazyService lazyService;
 
     @Inject
-    private AgendaService2 service2;
+    private AgendaEagerService eagerService;
 
     @Inject
     private AgendaService3 service3;
@@ -43,12 +43,12 @@ class StoreInterceptorTest {
 
     @Test
     public void add() {
-        service2.add("Ada");
+        eagerService.add("Ada");
     }
 
     @Test
     public void addEager() {
-        service2.addEager("Ada");
+        eagerService.addEager("Ada");
     }
 
     @Test

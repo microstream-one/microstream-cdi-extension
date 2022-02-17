@@ -25,8 +25,9 @@ package one.microstream.cdi;
  */
 public enum StoreType {
     /**
-     * It will {@link one.microstream.storage.types.StorageManager#store} the list of products:
-     * storageManager.store(inventory.getProducts());
+     * It will {@link one.microstream.storage.types.StorageManager#store} either {@link Iterable} or
+     * {@link java.util.Map} implementations.
+     * E.g.: The list of products: storageManager.store(inventory.getProducts());
      */
     LAZY,
     /**

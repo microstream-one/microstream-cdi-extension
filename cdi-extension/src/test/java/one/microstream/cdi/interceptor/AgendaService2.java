@@ -15,6 +15,7 @@ public class AgendaService2 {
     @Inject
     private Agenda agenda;
 
+    @Store(StoreType.LAZY)
     public void add(String name) {
         Objects.requireNonNull(name, "name is required");
         agenda.add(name);

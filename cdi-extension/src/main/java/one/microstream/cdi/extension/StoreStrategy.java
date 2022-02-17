@@ -14,9 +14,20 @@
 package one.microstream.cdi.extension;
 
 import one.microstream.cdi.Store;
+import one.microstream.cdi.StoreType;
 import one.microstream.storage.types.StorageManager;
+
+import java.util.Objects;
 
 interface StoreStrategy {
 
     void store(Store store, StorageManager manager, StorageExtension extension);
+
+    static StoreStrategy of(Store store) {
+        Objects.requireNonNull(store, "store is required");
+        if (StoreType.EAGER.equals(store.value())) {
+            return StoreTypeStrategy.EAGER;
+        }
+        return StoreTypeStrategy.LAZY;
+    }
 }

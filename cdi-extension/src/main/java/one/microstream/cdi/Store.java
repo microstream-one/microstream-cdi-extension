@@ -50,9 +50,8 @@ public @interface Store {
     @Nonbinding StoreType value() default StoreType.LAZY;
 
     /**
-     * Define the fields there will be stored once the store type is Lazy.
+     * Define the fields there will be stored.
      * By default, all iterable or Map domains are targets of the storage method.
-     * Highlight, it will work on the same fields of the {@link StoreType#LAZY} conditions
      *
      * @return the storage fields targets in the
      */

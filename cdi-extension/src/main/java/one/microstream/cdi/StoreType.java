@@ -25,14 +25,16 @@ package one.microstream.cdi;
  */
 public enum StoreType {
     /**
-     * It will {@link one.microstream.storage.types.StorageManager#store} either {@link Iterable} or
-     * {@link java.util.Map} implementations.
+     * It will use the method {@link one.microstream.storage.types.StorageManager#store}
      * E.g.: The list of products: storageManager.store(inventory.getProducts());
      */
     LAZY,
     /**
-     * It will {@link one.microstream.storage.types.StorageManager#store} the root instance:
-     * * storageManager.store(inventory);
+     * It will {@link one.microstream.storage.types.StorageManager#createEagerStorer}.
+     * E.g.:
+     *  Storer storer = storage.createEagerStorer();
+     *  storer.store(inventory.getProducts());
+     *  storer.commit();
      */
     EAGER;
 }

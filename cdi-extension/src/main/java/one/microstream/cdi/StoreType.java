@@ -22,6 +22,7 @@ package one.microstream.cdi;
  * <p>
  * EAGER: will {@link one.microstream.storage.types.StorageManager#store} the root instance:
  * storageManager.store(inventory);
+ * To get more information: https://docs.microstream.one/manual/storage/storing-data/lazy-eager-full.html
  */
 public enum StoreType {
     /**

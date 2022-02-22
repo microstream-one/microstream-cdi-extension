@@ -7,6 +7,18 @@ This project has two minimum requirements:
 * A [CDI](https://jakarta.ee/specifications/cdi/) 2.0 implementation or higher
 * An [Eclipse MicroProfile Config](https://github.com/eclipse/microprofile-config) 2.0 implementation or higher
 
+## Dependency
+
+To use in your project you can put it on your maven project:
+
+```xml
+<dependency>
+    <groupId>one.microstream</groupId>
+    <artifactId>cdi-extension</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+</dependency>
+```
+
 ## Features
 
 ### StorageManager

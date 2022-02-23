@@ -51,13 +51,17 @@ class EntityMetadata {
     }
 
     private Stream<FieldMetadata> getFields(String[] filters) {
-        if (filters.length == 0) {
+        if (isFieldsEmpty(filters)) {
             return this.fields.stream();
         }
 
         List<String> storeFields = Stream.of(filters).sorted().collect(Collectors.toList());
         Predicate<FieldMetadata> find = f -> Collections.binarySearch(storeFields, f.getName()) >= 0;
         return this.getFields().stream().filter(find);
+    }
+
+    private boolean isFieldsEmpty(String[] filters) {
+        return Stream.of(filters).allMatch(s -> s == null || s.isBlank());
     }
 
     @Override

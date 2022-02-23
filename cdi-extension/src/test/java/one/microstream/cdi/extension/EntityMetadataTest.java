@@ -146,6 +146,14 @@ class EntityMetadataTest {
     @Test
     @DisplayName("Should return all Iterable and map fields when it uses the default annotation")
     public void shouldReturnAllFieldsOnDefault() {
-
+        EntityMetadata metadata = EntityMetadata.of(MediaUser.class);
+        String user = "Otavio";
+        Set<String> medias = Set.of("Twitter", "Facebook");
+        Map<String, String> postsBySocialMedia = Map.of("otaviojava", "my post", "otavio", "my photo");
+        MediaUser mediaUser = new MediaUser(user, medias, postsBySocialMedia);
+        List<Object> values = metadata.values(mediaUser, new String[]{""}).collect(Collectors.toList());
+        Assertions.assertEquals(2, values.size());
+        Assertions.assertEquals(medias, values.get(0));
+        Assertions.assertEquals(postsBySocialMedia, values.get(1));
     }
 }

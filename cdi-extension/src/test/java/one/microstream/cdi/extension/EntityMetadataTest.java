@@ -142,4 +142,10 @@ class EntityMetadataTest {
         Assertions.assertEquals(1, values.size());
         Assertions.assertEquals(medias, values.get(0));
     }
+
+    @Test
+    @DisplayName("Should return all Iterable and map fields when it uses the default annotation")
+    public void shouldReturnAllFieldsOnDefault() {
+
+    }
 }

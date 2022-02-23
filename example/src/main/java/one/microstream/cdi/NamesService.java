@@ -23,7 +23,7 @@ public class NamesService {
     @Inject
     private Names names;
 
-    @Store(fields = "names")
+    @Store
     public void add(String name) {
         this.names.add(name);
     }

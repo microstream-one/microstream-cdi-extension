@@ -23,7 +23,7 @@
 
     <modules>
         <module>cdi-extension</module>
-        <module>example</module>
+        <module>java-se</module>
         <module>payara</module>
         <module>helidon</module>
         <module>wildfly</module>

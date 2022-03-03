@@ -14,8 +14,6 @@
 package one.microstream.cdi;
 
 
-import one.microstream.functional._intIndexedSupplier;
-
 import javax.enterprise.util.Nonbinding;
 import javax.interceptor.InterceptorBinding;
 import java.lang.annotation.ElementType;

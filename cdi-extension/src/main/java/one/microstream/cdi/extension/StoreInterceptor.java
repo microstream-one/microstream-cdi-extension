@@ -13,9 +13,7 @@
  */
 package one.microstream.cdi.extension;
 
-import one.microstream.cdi.MicrostreamException;
 import one.microstream.cdi.Store;
-import one.microstream.cdi.StoreType;
 import one.microstream.concurrency.XThreads;
 import one.microstream.storage.types.StorageManager;
 

@@ -49,6 +49,7 @@ class CachePropertiesTest {
         Assertions.assertThrows(NullPointerException.class, () -> CacheProperties.getLoaderFactory(null));
         Assertions.assertThrows(NullPointerException.class, () -> CacheProperties.getWriterFactory(null));
         Assertions.assertThrows(NullPointerException.class, () -> CacheProperties.getExpiryFactory(null));
+        Assertions.assertThrows(NullPointerException.class, () -> CacheProperties.getStorage(null));
     }
 
     @Test
@@ -175,5 +176,16 @@ class CachePropertiesTest {
         Assertions.assertTrue(loaderFactory instanceof MockExpiryPolicy);
         System.clearProperty(CacheProperties.CACHE_EXPIRES_FACTORY.get());
     }
+
+    @Test
+    @DisplayName("Should get storage from Eclipse MicroProfile Config")
+    public void shouldReturnStorage() {
+        System.setProperty(CacheProperties.STORAGE.get(), "false");
+        Assertions.assertFalse(CacheProperties.getStorage(config));
+        System.setProperty(CacheProperties.STORAGE.get(), "true");
+        Assertions.assertTrue(CacheProperties.getStorage(config));
+        System.clearProperty(CacheProperties.STORAGE.get());
+    }
+
 
 }

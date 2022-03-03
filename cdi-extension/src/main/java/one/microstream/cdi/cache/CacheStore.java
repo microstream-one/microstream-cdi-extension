@@ -29,8 +29,8 @@ interface CacheStore<K, V> extends CacheLoader<K, V>, CacheWriter<K, V> {
     Iterator<K> keys();
 
 
-    static <K, V> CacheStore<K, V> New(final String cacheKey,
-                                                                          final StorageManager storage) {
+    static <K, V> CacheStore<K, V> of(final String cacheKey,
+                                      final StorageManager storage) {
         return new Default<>(cacheKey, storage);
     }
 

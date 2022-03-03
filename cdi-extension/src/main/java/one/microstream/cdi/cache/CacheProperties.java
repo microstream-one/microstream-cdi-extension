@@ -67,7 +67,13 @@ public enum CacheProperties implements Supplier<String> {
     /**
      * managementEnabled - Checks whether management is enabled on this cache.
      */
-    CACHE_MANAGEMENT("microstream.cache.management");
+    CACHE_MANAGEMENT("microstream.cache.management"),
+    /**
+     * MicroStream’s storage can be used as a backing store for the cache.
+     * It functions as a CacheWriter as well as a CacheReader, depending on the writeThrough
+     * and readThrough configuration. Per default it is used for both.
+     */
+    STORAGE("microstream.store");
 
     private final String value;
 
@@ -79,6 +85,7 @@ public enum CacheProperties implements Supplier<String> {
     /**
      * Loads the properties {@link CacheProperties#CACHE_STORE_VALUE} from {@link Config}
      * the respective value; it will return false by default.
+     *
      * @param config the Eclipse Microprofile instance
      * @return the properties from {@link Config} or false
      * @throws NullPointerException when config is null
@@ -90,6 +97,7 @@ public enum CacheProperties implements Supplier<String> {
     /**
      * Loads the properties {@link CacheProperties#CACHE_WRITE_THROUGH} from {@link Config}
      * the respective value; it will return false by default.
+     *
      * @param config the Eclipse Microprofile instance
      * @return the properties from {@link Config} or false
      * @throws NullPointerException when config is null
@@ -101,6 +109,7 @@ public enum CacheProperties implements Supplier<String> {
     /**
      * Loads the properties {@link CacheProperties#CACHE_READ_THROUGH} from {@link Config}
      * the respective value; it will return false by default.
+     *
      * @param config the Eclipse Microprofile instance
      * @return the properties from {@link Config} or false
      * @throws NullPointerException when config is null
@@ -112,6 +121,7 @@ public enum CacheProperties implements Supplier<String> {
     /**
      * Loads the properties {@link CacheProperties#CACHE_MANAGEMENT} from {@link Config}
      * the respective value; it will return false by default.
+     *
      * @param config the Eclipse Microprofile instance
      * @return the properties from {@link Config} or false
      * @throws NullPointerException when config is null
@@ -123,6 +133,7 @@ public enum CacheProperties implements Supplier<String> {
     /**
      * Loads the properties {@link CacheProperties#CACHE_STATISTICS} from {@link Config}
      * the respective value; it will return false by default.
+     *
      * @param config the Eclipse Microprofile instance
      * @return the properties from {@link Config} or false
      * @throws NullPointerException when config is null
@@ -131,11 +142,22 @@ public enum CacheProperties implements Supplier<String> {
         return getBoolean(config, CACHE_STATISTICS);
     }
 
+    /**
+     * MicroStream’s storage can be used as a backing store for the cache.
+     *
+     * @param config the Eclipse Microprofile instance
+     * @return the properties from {@link Config} or false
+     * @throws NullPointerException when config is null
+     */
+    static boolean getStorage(Config config) {
+        return getBoolean(config, STORAGE);
+    }
 
 
     /**
      * Loads the properties {@link CacheProperties#CACHE_LOADER_FACTORY} from {@link Config}
      * the respective value
+     *
      * @param config the Eclipse Microprofile instance
      * @return the Factory from {@link Config} or null
      * @throws NullPointerException when config is null
@@ -149,6 +171,7 @@ public enum CacheProperties implements Supplier<String> {
     /**
      * Loads the properties {@link CacheProperties#CACHE_WRITER_FACTORY} from {@link Config}
      * the respective value
+     *
      * @param config the Eclipse Microprofile instance
      * @return the Factory from {@link Config} or null
      * @throws NullPointerException when config is null
@@ -162,6 +185,7 @@ public enum CacheProperties implements Supplier<String> {
     /**
      * Loads the properties {@link CacheProperties#CACHE_EXPIRES_FACTORY} from {@link Config}
      * the respective value
+     *
      * @param config the Eclipse Microprofile instance
      * @return the Factory from {@link Config} or null
      * @throws NullPointerException when config is null

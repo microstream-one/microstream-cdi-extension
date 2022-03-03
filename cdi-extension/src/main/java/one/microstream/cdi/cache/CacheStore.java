@@ -26,15 +26,15 @@ import static one.microstream.chars.XChars.notEmpty;
  * @param <V> the value
  */
 interface CacheStore<K, V> extends CacheLoader<K, V>, CacheWriter<K, V> {
-    public Iterator<K> keys();
+    Iterator<K> keys();
 
 
-    public static <K, V> one.microstream.cache.types.CacheStore<K, V> New(final String cacheKey,
+    static <K, V> CacheStore<K, V> New(final String cacheKey,
                                                                           final StorageManager storage) {
         return new Default<>(cacheKey, storage);
     }
 
-    public static class Default<K, V> implements one.microstream.cache.types.CacheStore<K, V> {
+    class Default<K, V> implements CacheStore<K, V> {
         private final String cacheKey;
         private final StorageManager storage;
 
@@ -166,5 +166,4 @@ interface CacheStore<K, V> extends CacheLoader<K, V>, CacheWriter<K, V> {
         }
 
     }
-
 }

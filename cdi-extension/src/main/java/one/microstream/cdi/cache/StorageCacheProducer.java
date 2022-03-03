@@ -14,6 +14,7 @@
 
 package one.microstream.cdi.cache;
 
+import one.microstream.storage.types.StorageManager;
 import org.eclipse.microprofile.config.Config;
 
 import javax.annotation.PostConstruct;
@@ -24,7 +25,9 @@ import javax.cache.configuration.MutableConfiguration;
 import javax.cache.spi.CachingProvider;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Disposes;
+import javax.enterprise.inject.Instance;
 import javax.enterprise.inject.Produces;
+import javax.enterprise.inject.spi.Bean;
 import javax.enterprise.inject.spi.InjectionPoint;
 import javax.inject.Inject;
 import java.util.Objects;
@@ -44,6 +47,9 @@ class StorageCacheProducer {
 
     @Inject
     private Config config;
+
+    @Inject
+    private Instance<StorageManager> storageManager;
 
     @PostConstruct
     void setUp() {
@@ -77,7 +83,8 @@ class StorageCacheProducer {
 
         Cache<K, V> cache;
         if (Objects.isNull(cacheManager.getCache(name, key, value))) {
-            MutableConfigurationSupplier<K, V> supplier = MutableConfigurationSupplier.of(cacheProperty, config);
+            MutableConfigurationSupplier<K, V> supplier = MutableConfigurationSupplier
+                    .of(cacheProperty, config, storageManager);
             LOGGER.info("Cache " + name + " does not exist. Creating with configuration: " + supplier);
             MutableConfiguration<K, V> configuration = supplier.get();
             cache = cacheManager.createCache(name, configuration);

@@ -14,6 +14,7 @@
 
 package one.microstream.cdi.cache;
 
+import one.microstream.cache.types.CacheConfiguration;
 import one.microstream.cache.types.CachingProvider;
 import one.microstream.storage.types.StorageManager;
 import org.eclipse.microprofile.config.Config;
@@ -120,20 +121,25 @@ class MutableConfigurationSupplier<K, V> implements Supplier<MutableConfiguratio
         if (storage) {
             URI uri = CachingProvider.defaultURI();
             String cacheKey = uri.toString() + "::" + cacheProperty.getName();
-            CacheStore<K, V> cacheStore = CacheStore.New(cacheKey, storageManager.get());
+            CacheStore<K, V> cacheStore = CacheStore.of(cacheKey, storageManager.get());
+            configuration.setCacheLoaderFactory(() -> cacheStore);
+            configuration.setCacheWriterFactory(() -> cacheStore);
+            configuration.setWriteThrough(true);
+            configuration.setWriteThrough(true);
         }
         return configuration;
     }
 
     @Override
     public String toString() {
-        return "{" +
+        return "MutableConfigurationSupplier{" +
                 "cacheProperty=" + cacheProperty +
                 ", storeByValue=" + storeByValue +
                 ", writeThrough=" + writeThrough +
                 ", readThrough=" + readThrough +
                 ", managementEnabled=" + managementEnabled +
                 ", statisticsEnabled=" + statisticsEnabled +
+                ", storage=" + storage +
                 ", loaderFactory=" + loaderFactory +
                 ", writerFactory=" + writerFactory +
                 ", expiryFactory=" + expiryFactory +

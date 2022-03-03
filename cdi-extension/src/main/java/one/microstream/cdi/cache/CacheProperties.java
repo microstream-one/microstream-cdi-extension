@@ -67,15 +67,14 @@ public enum CacheProperties implements Supplier<String> {
     /**
      * managementEnabled - Checks whether management is enabled on this cache.
      */
-    CACHE_MANAGEMENT("microstream.cache.management"),
-    STORE_BY_VALUE("microstream.cache.store.value"),
-    ENABLE_STATISTICS("microstream.cache.statistics");
+    CACHE_MANAGEMENT("microstream.cache.management");
 
     private final String value;
 
     CacheProperties(String value) {
         this.value = value;
     }
+
 
     /**
      * Loads the properties {@link CacheProperties#CACHE_STORE_VALUE} from {@link Config}
@@ -131,6 +130,8 @@ public enum CacheProperties implements Supplier<String> {
     static boolean getStatisticsEnabled(Config config) {
         return getBoolean(config, CACHE_STATISTICS);
     }
+
+
 
     /**
      * Loads the properties {@link CacheProperties#CACHE_LOADER_FACTORY} from {@link Config}

@@ -67,7 +67,8 @@ class MutableConfigurationSupplier<K, V> implements Supplier<MutableConfiguratio
         this.expiryFactory = expiryFactory;
     }
 
-    public static <K, V> MutableConfigurationSupplier<K, V> of(StorageCacheProperty<K, V> cacheProperty, Config config) {
+    public static <K, V> MutableConfigurationSupplier<K, V> of(StorageCacheProperty<K, V> cacheProperty,
+                                                               Config config) {
         boolean storeByValue = CacheProperties.getStoreByValue(config);
         boolean writeThrough = CacheProperties.getWriteThrough(config);
         boolean readThrough = CacheProperties.getReadThrough(config);

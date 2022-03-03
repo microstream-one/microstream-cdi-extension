@@ -90,7 +90,7 @@ public enum CacheProperties implements Supplier<String> {
      * @return the properties from {@link Config} or false
      * @throws NullPointerException when config is null
      */
-    static boolean getStoreByValue(Config config) {
+    static boolean isStoreByValue(Config config) {
         return getBoolean(config, CACHE_STORE_VALUE);
     }
 
@@ -102,7 +102,7 @@ public enum CacheProperties implements Supplier<String> {
      * @return the properties from {@link Config} or false
      * @throws NullPointerException when config is null
      */
-    static boolean getWriteThrough(Config config) {
+    static boolean isWriteThrough(Config config) {
         return getBoolean(config, CACHE_WRITE_THROUGH);
     }
 
@@ -114,7 +114,7 @@ public enum CacheProperties implements Supplier<String> {
      * @return the properties from {@link Config} or false
      * @throws NullPointerException when config is null
      */
-    static boolean getReadThrough(Config config) {
+    static boolean isReadThrough(Config config) {
         return getBoolean(config, CACHE_READ_THROUGH);
     }
 
@@ -126,7 +126,7 @@ public enum CacheProperties implements Supplier<String> {
      * @return the properties from {@link Config} or false
      * @throws NullPointerException when config is null
      */
-    static boolean getManagementEnabled(Config config) {
+    static boolean isManagementEnabled(Config config) {
         return getBoolean(config, CACHE_MANAGEMENT);
     }
 
@@ -138,7 +138,7 @@ public enum CacheProperties implements Supplier<String> {
      * @return the properties from {@link Config} or false
      * @throws NullPointerException when config is null
      */
-    static boolean getStatisticsEnabled(Config config) {
+    static boolean isStatisticsEnabled(Config config) {
         return getBoolean(config, CACHE_STATISTICS);
     }
 
@@ -149,7 +149,7 @@ public enum CacheProperties implements Supplier<String> {
      * @return the properties from {@link Config} or false
      * @throws NullPointerException when config is null
      */
-    static boolean getStorage(Config config) {
+    static boolean isStorage(Config config) {
         return getBoolean(config, STORAGE);
     }
 

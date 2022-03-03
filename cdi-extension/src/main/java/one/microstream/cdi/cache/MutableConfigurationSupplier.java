@@ -69,11 +69,11 @@ class MutableConfigurationSupplier<K, V> implements Supplier<MutableConfiguratio
 
     public static <K, V> MutableConfigurationSupplier<K, V> of(StorageCacheProperty<K, V> cacheProperty,
                                                                Config config) {
-        boolean storeByValue = CacheProperties.getStoreByValue(config);
-        boolean writeThrough = CacheProperties.getWriteThrough(config);
-        boolean readThrough = CacheProperties.getReadThrough(config);
-        boolean managementEnabled = CacheProperties.getManagementEnabled(config);
-        boolean statisticsEnabled = CacheProperties.getStatisticsEnabled(config);
+        boolean storeByValue = CacheProperties.isStoreByValue(config);
+        boolean writeThrough = CacheProperties.isWriteThrough(config);
+        boolean readThrough = CacheProperties.isReadThrough(config);
+        boolean managementEnabled = CacheProperties.isManagementEnabled(config);
+        boolean statisticsEnabled = CacheProperties.isStatisticsEnabled(config);
         Factory<CacheLoader<K, V>> loaderFactory = CacheProperties.getLoaderFactory(config);
         Factory<CacheWriter<K, V>> writerFactory = CacheProperties.getWriterFactory(config);
         Factory<ExpiryPolicy> expiryFactory = CacheProperties.getExpiryFactory(config);

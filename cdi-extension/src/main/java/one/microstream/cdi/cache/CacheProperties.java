@@ -67,7 +67,9 @@ public enum CacheProperties implements Supplier<String> {
     /**
      * managementEnabled - Checks whether management is enabled on this cache.
      */
-    CACHE_MANAGEMENT("microstream.cache.management");
+    CACHE_MANAGEMENT("microstream.cache.management"),
+    STORE_BY_VALUE("microstream.cache.store.value"),
+    ENABLE_STATISTICS("microstream.cache.statistics");
 
     private final String value;
 

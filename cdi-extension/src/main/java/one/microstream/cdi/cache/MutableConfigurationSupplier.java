@@ -14,6 +14,8 @@
 
 package one.microstream.cdi.cache;
 
+import one.microstream.cache.types.CachingProvider;
+import one.microstream.storage.types.StorageManager;
 import org.eclipse.microprofile.config.Config;
 
 import javax.cache.configuration.Factory;
@@ -21,6 +23,8 @@ import javax.cache.configuration.MutableConfiguration;
 import javax.cache.expiry.ExpiryPolicy;
 import javax.cache.integration.CacheLoader;
 import javax.cache.integration.CacheWriter;
+import javax.enterprise.inject.Instance;
+import java.net.URI;
 import java.util.Objects;
 import java.util.function.Supplier;
 
@@ -44,18 +48,24 @@ class MutableConfigurationSupplier<K, V> implements Supplier<MutableConfiguratio
 
     private final boolean statisticsEnabled;
 
+    private final boolean storage;
+
     private final Factory<CacheLoader<K, V>> loaderFactory;
 
     private final Factory<CacheWriter<K, V>> writerFactory;
 
     private final Factory<ExpiryPolicy> expiryFactory;
 
+    private final Instance<StorageManager> storageManager;
+
     private MutableConfigurationSupplier(StorageCacheProperty<K, V> cacheProperty, boolean storeByValue,
                                          boolean writeThrough, boolean readThrough,
                                          boolean managementEnabled, boolean statisticsEnabled,
+                                         boolean storage,
                                          Factory<CacheLoader<K, V>> loaderFactory,
                                          Factory<CacheWriter<K, V>> writerFactory,
-                                         Factory<ExpiryPolicy> expiryFactory) {
+                                         Factory<ExpiryPolicy> expiryFactory,
+                                         Instance<StorageManager> storageManager) {
         this.cacheProperty = cacheProperty;
         this.storeByValue = storeByValue;
         this.writeThrough = writeThrough;
@@ -65,22 +75,25 @@ class MutableConfigurationSupplier<K, V> implements Supplier<MutableConfiguratio
         this.loaderFactory = loaderFactory;
         this.writerFactory = writerFactory;
         this.expiryFactory = expiryFactory;
+        this.storage = storage;
+        this.storageManager = storageManager;
     }
 
     public static <K, V> MutableConfigurationSupplier<K, V> of(StorageCacheProperty<K, V> cacheProperty,
-                                                               Config config) {
+                                                               Config config, Instance<StorageManager> storageManager) {
         boolean storeByValue = CacheProperties.isStoreByValue(config);
         boolean writeThrough = CacheProperties.isWriteThrough(config);
         boolean readThrough = CacheProperties.isReadThrough(config);
         boolean managementEnabled = CacheProperties.isManagementEnabled(config);
         boolean statisticsEnabled = CacheProperties.isStatisticsEnabled(config);
+        boolean storage = CacheProperties.isStorage(config);
         Factory<CacheLoader<K, V>> loaderFactory = CacheProperties.getLoaderFactory(config);
         Factory<CacheWriter<K, V>> writerFactory = CacheProperties.getWriterFactory(config);
         Factory<ExpiryPolicy> expiryFactory = CacheProperties.getExpiryFactory(config);
 
         return new MutableConfigurationSupplier<>(cacheProperty, storeByValue, writeThrough,
-                readThrough, managementEnabled, statisticsEnabled,
-                loaderFactory, writerFactory, expiryFactory);
+                readThrough, managementEnabled, statisticsEnabled, storage,
+                loaderFactory, writerFactory, expiryFactory, storageManager);
     }
 
     @Override
@@ -103,6 +116,11 @@ class MutableConfigurationSupplier<K, V> implements Supplier<MutableConfiguratio
         }
         if (Objects.nonNull(expiryFactory)) {
             configuration.setExpiryPolicyFactory(expiryFactory);
+        }
+        if (storage) {
+            URI uri = CachingProvider.defaultURI();
+            String cacheKey = uri.toString() + "::" + cacheProperty.getName();
+            CacheStore<K, V> cacheStore = CacheStore.New(cacheKey, storageManager.get());
         }
         return configuration;
     }

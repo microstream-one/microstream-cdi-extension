@@ -27,7 +27,7 @@ import java.util.stream.Stream;
 class EntityMetadata {
 
     private final Class<?> type;
-    private List<FieldMetadata> fields;
+    private final List<FieldMetadata> fields;
 
     private EntityMetadata(Class<?> type, List<FieldMetadata> fields) {
         this.type = type;

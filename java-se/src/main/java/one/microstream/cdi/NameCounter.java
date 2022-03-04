@@ -20,6 +20,10 @@ import javax.cache.Cache;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.StreamSupport;
+
 import static java.util.Optional.ofNullable;
 
 @ApplicationScoped
@@ -38,5 +42,11 @@ public class NameCounter {
 
     public int show(String name) {
         return ofNullable(this.counter.get(name)).orElse(0);
+    }
+
+    public Map<String, Integer> getNames() {
+        Map<String, Integer> map = new HashMap<>();
+        counter.forEach(c -> map.put(c.getKey(), c.getValue()));
+        return map;
     }
 }

@@ -28,6 +28,7 @@ public class App1 {
             String otavio = "Otavio";
             NameCounter counter = container.select(NameCounter.class).get();
 
+            System.out.println("The name counter values: " + counter.getNames());
             ThreadLocalRandom random = ThreadLocalRandom.current();
             int sebastianCounter = random.nextInt(1, 10);
             int otavioCounter = random.nextInt(1, 10);

@@ -41,8 +41,8 @@ public class App1 {
             for (int index = 0; index < otavioCounter; index++) {
                 counter.count(otavio);
             }
-            System.out.println("The Sebastian's count: " + counter.show("Sebastian"));
-            System.out.println("The Otavio's count: " + counter.show("Otavio"));
+
+            System.out.println("The name counter values: " + counter.getNames());
         }
     }
 }

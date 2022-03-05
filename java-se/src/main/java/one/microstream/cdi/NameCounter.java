@@ -33,6 +33,7 @@ public class NameCounter {
     @StorageCache
     private Cache<String, Integer> counter;
 
+    @Store
     public synchronized int count(String name) {
         int counter = show(name);
         counter++;

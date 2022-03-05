@@ -19,10 +19,8 @@ import one.microstream.cdi.cache.StorageCache;
 import javax.cache.Cache;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.StreamSupport;
 
 import static java.util.Optional.ofNullable;
 
@@ -46,6 +44,7 @@ public class NameCounter {
     }
 
     public Map<String, Integer> getNames() {
+
         Map<String, Integer> map = new HashMap<>();
         counter.forEach(c -> map.put(c.getKey(), c.getValue()));
         return map;

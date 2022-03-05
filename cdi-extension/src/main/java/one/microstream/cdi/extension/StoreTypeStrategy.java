@@ -19,6 +19,7 @@ import one.microstream.persistence.types.PersistenceStoring;
 import one.microstream.persistence.types.Storer;
 import one.microstream.storage.types.StorageManager;
 
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -45,23 +46,25 @@ enum StoreTypeStrategy implements StoreStrategy {
 
     private static final Logger LOGGER = Logger.getLogger(StoreTypeStrategy.class.getName());
 
-    private static EntityMetadata getEntityMetadata(StorageExtension extension, Object root) {
-        EntityMetadata metadata = extension.get(root.getClass())
-                .orElseThrow(() -> new MicrostreamException("The entity metadata does" +
-                        " not found to the related root class: " + root.getClass()));
-        return metadata;
-    }
-
     private static void execute(Store store, StorageExtension extension, Object root, PersistenceStoring storing) {
         if (store.root()) {
-            long storeId = storing.store(root);
-            LOGGER.log(Level.WARNING, "Store the root it might return performance issue " + storeId);
+            storeRoot(root, storing);
         } else {
-            EntityMetadata metadata = getEntityMetadata(extension, root);
-            metadata.values(root, store.fields()).forEach(storing::store);
+            Optional<EntityMetadata> metadata = extension.get(root.getClass());
+            if (metadata.isEmpty()) {
+                LOGGER.log(Level.FINEST, "There is no entity with the @Storage annotation to the current root class " +
+                        root.getClass() + " so it will store by root");
+                storeRoot(root, storing);
+            }
+            metadata.ifPresent(m -> m.values(root, store.fields()).forEach(storing::store));
             LOGGER.log(Level.FINEST, "Storing Iterables and Maps fields from the root class "
                     + root.getClass() + " the fields: " + store.fields());
         }
+    }
+
+    private static void storeRoot(Object root, PersistenceStoring storing) {
+        long storeId = storing.store(root);
+        LOGGER.log(Level.WARNING, "Store the root it might return performance issue " + storeId);
     }
 
 

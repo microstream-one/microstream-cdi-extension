@@ -14,7 +14,6 @@
 
 package one.microstream.cdi.cache;
 
-import one.microstream.cache.types.CachingProvider;
 import one.microstream.storage.types.StorageManager;
 import org.eclipse.microprofile.config.Config;
 
@@ -24,9 +23,9 @@ import javax.cache.expiry.ExpiryPolicy;
 import javax.cache.integration.CacheLoader;
 import javax.cache.integration.CacheWriter;
 import javax.enterprise.inject.Instance;
-import java.net.URI;
 import java.util.Objects;
 import java.util.function.Supplier;
+import java.util.logging.Logger;
 
 /**
  * Create a Parser to explore the benefits of Eclipse MicroProfile Configuration
@@ -35,6 +34,8 @@ import java.util.function.Supplier;
  * @param <V> the value type in the cache
  */
 class MutableConfigurationSupplier<K, V> implements Supplier<MutableConfiguration<K, V>> {
+
+    private static final Logger LOGGER = Logger.getLogger(MutableConfigurationSupplier.class.getName());
 
     private final StorageCacheProperty<K, V> cacheProperty;
 
@@ -118,11 +119,13 @@ class MutableConfigurationSupplier<K, V> implements Supplier<MutableConfiguratio
             configuration.setExpiryPolicyFactory(expiryFactory);
         }
         if (storage) {
-            CacheStore<K, V> cacheStore = CacheStore.of(cacheProperty.getName(), storageManager.get());
-            configuration.setCacheLoaderFactory(() -> cacheStore);
-            configuration.setCacheWriterFactory(() -> cacheStore);
-            configuration.setWriteThrough(true);
-            configuration.setWriteThrough(true);
+            LOGGER.warning("The storage option is disable so, we'll ignore this option");
+//            StorageManager storageManager = this.storageManager.get();
+//            CacheStore<K, V> cacheStore = CacheStore.New(cacheProperty.getName(),storageManager);
+//            configuration.setCacheLoaderFactory(() -> cacheStore);
+//            configuration.setCacheWriterFactory(() -> cacheStore);
+//            configuration.setWriteThrough(true);
+//            configuration.setWriteThrough(true);
         }
         return configuration;
     }

@@ -118,9 +118,7 @@ class MutableConfigurationSupplier<K, V> implements Supplier<MutableConfiguratio
             configuration.setExpiryPolicyFactory(expiryFactory);
         }
         if (storage) {
-            URI uri = CachingProvider.defaultURI();
-            String cacheKey = uri + "::" + cacheProperty.getName();
-            CacheStore<K, V> cacheStore = CacheStore.of(cacheKey, storageManager.get());
+            CacheStore<K, V> cacheStore = CacheStore.of(cacheProperty.getName(), storageManager.get());
             configuration.setCacheLoaderFactory(() -> cacheStore);
             configuration.setCacheWriterFactory(() -> cacheStore);
             configuration.setWriteThrough(true);
